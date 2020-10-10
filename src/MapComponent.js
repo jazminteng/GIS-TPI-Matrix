@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-
+import { Button } from 'reactstrap';
 import View from 'ol/View';
 import Projection from 'ol/proj/Projection';
 import olMap from 'ol/Map';
@@ -13,14 +13,18 @@ require('ol/ol.css');
 export default class MapComponent extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+          count:0
+        }
+        this.countPlus = this.countPlus.bind(this);
 
         this.view = new View({
-            center: [-41925.302985762304, 4789880.268977703],
-            zoom: 12,
-            minZoom: 2,
-            maxZoom: 28,
+            center: [-58.986666666667,-27.451388888889],
+            zoom: 30,
+            minZoom: 19,
+            maxZoom: 37,
             projection: new Projection({
-                code: 'EPSG:3857',
+                code: 'EPSG:4326',
                 units: 'm'
             })
         });
@@ -35,10 +39,21 @@ export default class MapComponent extends React.Component {
         });
     }
 
+    countPlus(){
+      this.setState({
+        count: this.state.count+1
+      });
+    }
+
     render() {
         console.log('-> render App')
         return (
-            <div id="mapContainer" ref="mapContainer"> </div>
+            <div>
+              <h4> Mapa </h4>
+              <p> Aqui va algun estado {this.state.count}</p>
+              <Button color='primary' onClick={this.countPlus}> Count++ </Button>
+              <div id="mapContainer" ref="mapContainer"> </div>
+            </div>
         );
     }
 }

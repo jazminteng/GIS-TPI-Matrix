@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import React from 'react';
 import { Button } from 'reactstrap';
 import View from 'ol/View';
@@ -7,7 +6,9 @@ import olMap from 'ol/Map';
 import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import Zoom from 'ol/control/Zoom';
-import {ScaleLine, defaults as defaultControls} from 'ol/control';
+
+import { scaleControl } from './controls';
+import { Vector_Paises } from './layers';
 
 require('ol/ol.css');
 
@@ -31,24 +32,10 @@ export default class MapComponent extends React.Component {
       })
     });
 
-    var scaleBarSteps = 4;
-    var scaleBarText = true;
-
-    function scaleControl() {
-      const control = new ScaleLine({
-        bar: true,
-        steps: scaleBarSteps,
-        text: scaleBarText,
-        minWidth: 140,
-      });
-      return control;
-    }
-
-
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [new Tile({ source: new OSM() })],
+      layers: [new Tile({ source: new OSM() }),Vector_Paises],
       target: this.refs.mapContainer
     });
   }

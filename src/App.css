@@ -41,3 +41,7 @@
     height: 850px;
     width: 100%;
 }
+
+#overlay {
+  background-color: white; border-radius: 10px; border: 1px solid black; padding: 5px 10px;
+}

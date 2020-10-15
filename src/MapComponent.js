@@ -21,6 +21,7 @@ import { Vector_Paises, osm_default } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
+import { ZoomToExtent } from 'ol/control'
 
 // require('ol/ol.css'); no hace falta esto aca xd
 
@@ -86,6 +87,13 @@ export default class MapComponent extends React.Component {
     });
     
     map.addInteraction(dragBox);
+
+
+    // Mover a saladas NO FUNCIONA
+    var zoomToExtentControl = new ZoomToExtent({
+      extent: [-58.625, -58.6,-28.256, -28.26]
+    });
+    map.addControl(zoomToExtentControl);
 
   }
 

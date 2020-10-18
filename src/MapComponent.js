@@ -17,7 +17,7 @@ import {DragBox, Select} from 'ol/interaction';
 import {platformModifierKeyOnly} from 'ol/events/condition';
 
 // Capas
-import { Vector_Paises, osm_default } from './layers';
+import { ign250, Vector_Paises, osm_default } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
@@ -36,13 +36,10 @@ export default class MapComponent extends React.Component {
   componentDidMount() {
     const view = new View({
       center: [-58.986666666667, -27.451388888889],
-      zoom: 30,
-      minZoom: 19,
-      maxZoom: 37,
-      projection: new Projection({
-        code: 'EPSG:4326',
-        units: 'm'
-      })
+      zoom: 13,
+      minZoom: 2,
+      maxZoom: 20,
+      projection: 'EPSG:4326',
     });
 
     this.view = view;
@@ -50,7 +47,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [osm_default],
+      layers: [osm_default, ign250],
       target: this.refs.mapContainer
     });
 
@@ -100,7 +97,7 @@ export default class MapComponent extends React.Component {
   moveToSaladas() {
     // this.map.getView().setCenter([-58.625, -28.256]);
     this.view.setCenter([-58.625, -28.256]);
-    this.map.getView().setZoom(33);
+    this.map.getView().setZoom(15);
   }
 
   render() {

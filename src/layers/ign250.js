@@ -10,7 +10,9 @@ const layer = new Tile({
       'TRANSPARENT': true,
     },
     serverType: 'qgis'                                         
-  })
+  }),
+  opacity: 0.6,
+  brightness: 0.2
 })
 
 export default layer;

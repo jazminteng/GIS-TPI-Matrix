@@ -21,9 +21,11 @@ import { ign250, Vector_Paises, osm_default } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
-import { ZoomToExtent } from 'ol/control'
+// import { ZoomToExtent } from 'ol/control'
 
 // require('ol/ol.css'); no hace falta esto aca xd
+
+import NavBar from './components/Navbar'
 
 export default class MapComponent extends React.Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [osm_default, ign250],
+      layers: [ ign250],
       target: this.refs.mapContainer
     });
 
@@ -85,13 +87,6 @@ export default class MapComponent extends React.Component {
     
     map.addInteraction(dragBox);
 
-
-    // Mover a saladas NO FUNCIONA
-    var zoomToExtentControl = new ZoomToExtent({
-      extent: [-58.625, -58.6,-28.256, -28.26]
-    });
-    map.addControl(zoomToExtentControl);
-
   }
 
   moveToSaladas() {
@@ -100,18 +95,24 @@ export default class MapComponent extends React.Component {
     this.map.getView().setZoom(15);
   }
 
+  // <h4> Mapa </h4>
+  // <Button color='primary' onClick={this.moveToSaladas}> Vamos a Saladas? </Button>
+
   render() {
     console.log('-> render App')
     return (
       <div>
-        <h4> Mapa </h4>
-        <Button color='primary' onClick={this.moveToSaladas}> Vamos a Saladas? </Button>
+
+        {/* Navbar */}
+        <NavBar></NavBar>
+
+        {/* Mapa */}        
         <div id="mapContainer" ref="mapContainer"> </div>
 
-        {/*
-          Elemento para el click
-        */}
+
+        {/* Elemento para el click */}
         <div id="overlay"></div>
+
       </div>
     );
   }

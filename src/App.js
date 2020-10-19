@@ -7,9 +7,7 @@ import MapComponent from './MapComponent';
 function App() {
   return (
     <div className="App">
-      <div className="mapContainer">
-        <MapComponent/>
-      </div>
+      <MapComponent/>
     </div>
   );
 }

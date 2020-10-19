@@ -17,7 +17,7 @@ import {DragBox, Select} from 'ol/interaction';
 import {platformModifierKeyOnly} from 'ol/events/condition';
 
 // Capas
-import { provincias, ign250, Vector_Paises, osm_default, red_vial, espejo_de_agua } from './layers';
+import { provincias, ign250, Vector_Paises, osm_default, red_vial, espejo_de_agua_hid } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
@@ -49,7 +49,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [ provincias, red_vial, espejo_de_agua ],
+      layers: [ espejo_de_agua_hid ],
       target: this.refs.mapContainer
     });
 

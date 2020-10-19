@@ -3,4 +3,4 @@ export { default as osm_default } from './osm_default';
 export { default as ign250 } from './ign250';
 export { default as provincias } from './provincias';
 export { default as red_vial } from './red_vial';
-export { default as espejo_de_agua } from './espejo_de_agua';
+export { default as espejo_de_agua_hid } from './espejo_de_agua';

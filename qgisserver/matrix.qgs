@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="3.14.16-Pi" saveDateTime="2020-10-19T20:10:45" saveUser="martinejaw" saveUserFull="Martin">
+<qgis projectname="" version="3.14.16-Pi" saveDateTime="2020-10-19T20:16:20" saveUser="martinejaw" saveUserFull="Martin">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -236,10 +236,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-65.92865794405709323</xmin>
-      <ymin>-48.51834267545250867</ymin>
-      <xmax>-54.98237238845224795</xmax>
-      <ymax>-29.3163988602323613</ymax>
+      <xmin>-56.55756878823041944</xmin>
+      <ymin>-37.08949342389358605</ymin>
+      <xmax>-51.0844260104279968</xmax>
+      <ymax>-27.48852151628351237</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -4434,7 +4434,7 @@
           <symbol alpha="1" type="fill" clip_to_extent="1" name="3" force_rhr="0">
             <layer enabled="1" class="SimpleFill" pass="0" locked="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="color" v="47,206,169,255"/>
+              <prop k="color" v="204,239,252,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
@@ -4444,6 +4444,31 @@
               <prop k="outline_width" v="0.26"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+            <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+              <prop k="capstyle" v="square"/>
+              <prop k="customdash" v="5;2"/>
+              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="customdash_unit" v="MM"/>
+              <prop k="draw_inside_polygon" v="0"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="line_color" v="80,198,244,255"/>
+              <prop k="line_style" v="solid"/>
+              <prop k="line_width" v="0.26"/>
+              <prop k="line_width_unit" v="MM"/>
+              <prop k="offset" v="0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="ring_filter" v="0"/>
+              <prop k="use_custom_dash" v="0"/>
+              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
               <data_defined_properties>
                 <Option type="Map">
                   <Option type="QString" value="" name="name"/>

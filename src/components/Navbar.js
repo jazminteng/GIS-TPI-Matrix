@@ -14,6 +14,7 @@ import {
   NavbarText
 } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { provincias } from '../layers';
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,65 +24,59 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
   const activarCapas = () => setCapas(!capas);
 
-  function capasElement() {
-    if (capas == true) { return ''; }
-    return (<Navbar color="light" light expand="md">
-    <NavbarBrand href="/">reactstrap</NavbarBrand>
-    <NavbarToggler onClick={toggle} />
-    <Collapse isOpen={isOpen} navbar>
-      <Nav className="mr-auto" navbar>
-        <NavItem>
-          <NavLink href="/components/">Muchas capas</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="https://github.com/reactstrap/reactstrap">AHHH</NavLink>
-        </NavItem>
-      </Nav>
-      <NavbarText>Capitas bien ricas</NavbarText>
-    </Collapse>
-  </Navbar>)
+  function mostrarCapa() {
+    console.log("Aya");
+    console.log(props.provincias.getVisible());
+    props.provincias.setVisible(!props.provincias.getVisible());
+
   }
 
+  function capasElement() {
 
-return (
-  <div>
-    <Navbar color="light" light expand="md">
+    return (<Navbar color="light" light expand="md">
       <NavbarBrand href="/">reactstrap</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/components/">Components</NavLink>
+            <NavLink href="/components/">Muchas capas</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+            <NavLink href="https://github.com/reactstrap/reactstrap">AHHH</NavLink>
           </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret onClick={activarCapas}>
-              Capas
-              </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>
-                Option 1
-                </DropdownItem>
-              <DropdownItem>
-                Option 2
-                </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>
-                Reset
-                </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
         </Nav>
-        <NavbarText>Simple Text</NavbarText>
+        <NavbarText>Capitas bien ricas</NavbarText>
+        <Button onClick={mostrarCapa()}>Provincias</Button>
       </Collapse>
-    </Navbar>
+    </Navbar>)
+  }
 
-    {capasElement()}
 
-  </div>
-);
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/components/">Components</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={activarCapas}>Capas</NavLink>
+            </NavItem>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
+
+      {capasElement()}
+
+    </div>
+  );
 }
 
 export default NavBar;

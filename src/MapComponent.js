@@ -17,7 +17,7 @@ import {DragBox, Select} from 'ol/interaction';
 import {platformModifierKeyOnly} from 'ol/events/condition';
 
 // Capas
-import { ign250, Vector_Paises, osm_default } from './layers';
+import { provincias, ign250, Vector_Paises, osm_default, red_vial } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
@@ -49,7 +49,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [ ign250],
+      layers: [ provincias, red_vial ],
       target: this.refs.mapContainer
     });
 
@@ -104,7 +104,7 @@ export default class MapComponent extends React.Component {
       <div>
 
         {/* Navbar */}
-        <NavBar></NavBar>
+        <NavBar provincias={provincias} ></NavBar>
 
         {/* Mapa */}        
         <div id="mapContainer" ref="mapContainer"> </div>

@@ -16,12 +16,10 @@ class NavBar extends Component{
   constructor(props){
     super(props);
     this.toggleCapas = this.toggleCapas.bind(this);
-    this.toggleC0= this.toggleC0.bind(this);
-    this.toggleC1= this.toggleC1.bind(this);
+    this.toggleCollapse= this.toggleCollapse.bind(this);
     this.state = {
       isCapasOpen: false,
-      isC1Open: false,
-      isC0Open: false
+      isCollapseOpen: false
     }
   }
 
@@ -31,33 +29,19 @@ class NavBar extends Component{
     });
   }
 
-  toggleC0(){
+  toggleCollapse(){
     this.setState({
-      isC0Open: !this.state.isC0Open
+      isCollapseOpen: !this.state.isCollapseOpen
     });
   }
-
-  toggleC1(){
-    this.setState({
-      isC1Open: !this.state.isC1Open
-    });
-  }
-
-
-  /*const [isOpen, setIsOpen] = useState(false);
-
-  const [capas, setCapas] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-  const activarCapas = () => setCapas(!capas);*/
 
   render(){
     return (
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Bievenido a mapita</NavbarBrand>
-          <NavbarToggler onClick={this.toggleC0} />
-          <Collapse isOpen={this.state.isC0Open} navbar>
+          <NavbarToggler onClick={this.toggleCollapse} />
+          <Collapse isOpen={this.state.isCollapseOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>

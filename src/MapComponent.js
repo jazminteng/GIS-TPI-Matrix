@@ -4,7 +4,6 @@ import { Button } from 'reactstrap';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
 import View from 'ol/View';
-import Projection from 'ol/proj/Projection';
 import Zoom from 'ol/control/Zoom';
 
 //Funciones OpenLayers
@@ -49,7 +48,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [ espejo_de_agua_hid ],
+      layers: [ osm_default, provincias ],
       target: this.refs.mapContainer
     });
 
@@ -100,11 +99,12 @@ export default class MapComponent extends React.Component {
 
   render() {
     console.log('-> render App')
+    console.log(provincias);
     return (
       <div>
 
         {/* Navbar */}
-        <NavBar provincias={provincias} ></NavBar>
+        <NavBar />
 
         {/* Mapa */}        
         <div id="mapContainer" ref="mapContainer"> </div>

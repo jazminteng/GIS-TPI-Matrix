@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="3.14.16-Pi" saveDateTime="2020-10-19T20:16:20" saveUser="martinejaw" saveUserFull="Martin">
+<qgis projectname="" version="3.14.16-Pi" saveDateTime="2020-10-19T21:13:37" saveUser="martinejaw" saveUserFull="Martin">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -20,13 +20,22 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="espejo_de_agua_hid_459c401a_e7a8_4310_8371_625c6667fe06" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;espejo_de_agua_hid&quot; (geom)" name="espejo_de_agua_hid" checked="Qt::Checked" legend_exp="">
+    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="espejo_de_agua_hid_459c401a_e7a8_4310_8371_625c6667fe06" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;espejo_de_agua_hid&quot; (geom)" name="espejo_de_agua_hid" checked="Qt::Unchecked" legend_exp="">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="red_vial_e0c3c980_f362_4154_bfc3_0ae53fe6f02b" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;red_vial&quot; (geom)" name="red_vial" checked="Qt::Unchecked" legend_exp="">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="provincias_1ca82514_d94c_4fc4_a664_df022d2009bc" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;provincias&quot; (geom)" name="provincias" checked="Qt::Checked" legend_exp="">
+    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_arborea_8b0aa9af_ddbe_47f7_93dc_338c5620a840" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_arborea&quot; (geom)" name="veg_arborea" checked="Qt::Unchecked" legend_exp="">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_cultivos_f84108fb_aef2_465d_a77b_ce81cf84e327" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_cultivos&quot; (geom)" name="veg_cultivos" checked="Qt::Unchecked" legend_exp="">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_hidrofila_83dd8acf_d584_450a_82ca_ef176cb12b0c" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_hidrofila&quot; (geom)" name="veg_hidrofila" checked="Qt::Unchecked" legend_exp="">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="provincias_1ca82514_d94c_4fc4_a664_df022d2009bc" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;provincias&quot; (geom)" name="provincias" checked="Qt::Unchecked" legend_exp="">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="edif_construcciones_turisticas_f45e2f08_454a_41fd_a31d_1c6c0d7098ff" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;edif_construcciones_turisticas&quot; (geom)" name="edif_construcciones_turisticas" checked="Qt::Unchecked" legend_exp="">
@@ -125,16 +134,7 @@
     <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="sue_no_consolidado_d022ae87_9b36_46ee_9089_f9fef74c51bc" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;sue_no_consolidado&quot; (geom)" name="sue_no_consolidado" checked="Qt::Unchecked" legend_exp="">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_arborea_8b0aa9af_ddbe_47f7_93dc_338c5620a840" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_arborea&quot; (geom)" name="veg_arborea" checked="Qt::Unchecked" legend_exp="">
-      <customproperties/>
-    </layer-tree-layer>
     <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_arbustiva_4cc4d18f_67e4_4808_bdf4_28d503cb18e3" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_arbustiva&quot; (geom)" name="veg_arbustiva" checked="Qt::Unchecked" legend_exp="">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_cultivos_f84108fb_aef2_465d_a77b_ce81cf84e327" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_cultivos&quot; (geom)" name="veg_cultivos" checked="Qt::Unchecked" legend_exp="">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_hidrofila_83dd8acf_d584_450a_82ca_ef176cb12b0c" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_hidrofila&quot; (geom)" name="veg_hidrofila" checked="Qt::Unchecked" legend_exp="">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer providerKey="postgres" expanded="1" legend_split_behavior="0" id="veg_suelo_desnudo_3917a24f_9271_489f_b886_cc7e4ea15ba3" patch_size="-1,-1" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;veg_suelo_desnudo&quot; (geom)" name="veg_suelo_desnudo" checked="Qt::Unchecked" legend_exp="">
@@ -236,10 +236,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-56.55756878823041944</xmin>
-      <ymin>-37.08949342389358605</ymin>
-      <xmax>-51.0844260104279968</xmax>
-      <ymax>-27.48852151628351237</ymax>
+      <xmin>-63.64495495900806787</xmin>
+      <ymin>-42.2122799409906122</ymin>
+      <xmax>-61.82057403307151588</xmax>
+      <ymax>-39.01195597178482899</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -260,9 +260,9 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" checked="Qt::Checked" name="espejo_de_agua_hid" showFeatureCount="0" open="true">
+    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="espejo_de_agua_hid" showFeatureCount="0" open="true">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" visible="1" layerid="espejo_de_agua_hid_459c401a_e7a8_4310_8371_625c6667fe06"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="espejo_de_agua_hid_459c401a_e7a8_4310_8371_625c6667fe06"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="red_vial" showFeatureCount="0" open="true">
@@ -270,9 +270,24 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="red_vial_e0c3c980_f362_4154_bfc3_0ae53fe6f02b"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Checked" name="provincias" showFeatureCount="0" open="true">
+    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_arborea" showFeatureCount="0" open="true">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" visible="1" layerid="provincias_1ca82514_d94c_4fc4_a664_df022d2009bc"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="veg_arborea_8b0aa9af_ddbe_47f7_93dc_338c5620a840"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_cultivos" showFeatureCount="0" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="0" layerid="veg_cultivos_f84108fb_aef2_465d_a77b_ce81cf84e327"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_hidrofila" showFeatureCount="0" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="0" layerid="veg_hidrofila_83dd8acf_d584_450a_82ca_ef176cb12b0c"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="provincias" showFeatureCount="0" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="0" layerid="provincias_1ca82514_d94c_4fc4_a664_df022d2009bc"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="edif_construcciones_turisticas" showFeatureCount="0" open="true">
@@ -435,24 +450,9 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="sue_no_consolidado_d022ae87_9b36_46ee_9089_f9fef74c51bc"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_arborea" showFeatureCount="0" open="true">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" visible="0" layerid="veg_arborea_8b0aa9af_ddbe_47f7_93dc_338c5620a840"/>
-      </filegroup>
-    </legendlayer>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_arbustiva" showFeatureCount="0" open="true">
       <filegroup hidden="false" open="true">
         <legendlayerfile isInOverview="0" visible="0" layerid="veg_arbustiva_4cc4d18f_67e4_4808_bdf4_28d503cb18e3"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_cultivos" showFeatureCount="0" open="true">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" visible="0" layerid="veg_cultivos_f84108fb_aef2_465d_a77b_ce81cf84e327"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_hidrofila" showFeatureCount="0" open="true">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" visible="0" layerid="veg_hidrofila_83dd8acf_d584_450a_82ca_ef176cb12b0c"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" checked="Qt::Unchecked" name="veg_suelo_desnudo" showFeatureCount="0" open="true">
@@ -3162,7 +3162,9 @@
         <constraint desc="" field="igds_level" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
         <columns/>
       </attributetableconfig>
@@ -11579,7 +11581,7 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
             <layer enabled="1" class="SimpleFill" pass="0" locked="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="color" v="180,183,93,255"/>
+              <prop k="color" v="182,183,146,240"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
@@ -17562,7 +17564,9 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" field="shape_area" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
         <columns/>
       </attributetableconfig>
@@ -17618,6 +17622,15 @@ def my_form_open(dialog, layer, feature):
         <type>dataset</type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -17634,7 +17647,15 @@ def my_form_open(dialog, layer, feature):
             <geographicflag>true</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial miny="0" maxz="0" crs="EPSG:4326" minz="0" maxy="0" maxx="0" dimensions="2" minx="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="">postgres</provider>
       <vectorjoins/>
@@ -17657,12 +17678,239 @@ def my_form_open(dialog, layer, feature):
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="categorizedSymbol" attr="tipo">
+        <categories>
+          <category label="Bosque Artificial" render="false" value="Bosque Artificial" symbol="0"/>
+          <category label="Bosque, Selva, Foresta o Parque Natural Bajo" render="false" value="Bosque, Selva, Foresta o Parque Natural Bajo" symbol="1"/>
+          <category label="Coniferas" render="false" value="Coniferas" symbol="2"/>
+          <category label="Palmar" render="false" value="Palmar" symbol="3"/>
+          <category label="" render="false" value="" symbol="4"/>
+        </categories>
         <symbols>
           <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
+            <layer enabled="1" class="PointPatternFill" pass="0" locked="0">
+              <prop k="displacement_x" v="0"/>
+              <prop k="displacement_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="displacement_x_unit" v="MM"/>
+              <prop k="displacement_y" v="0"/>
+              <prop k="displacement_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="displacement_y_unit" v="MM"/>
+              <prop k="distance_x" v="2"/>
+              <prop k="distance_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="distance_x_unit" v="MM"/>
+              <prop k="distance_y" v="2"/>
+              <prop k="distance_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="distance_y_unit" v="MM"/>
+              <prop k="offset_x" v="0"/>
+              <prop k="offset_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_x_unit" v="MM"/>
+              <prop k="offset_y" v="0"/>
+              <prop k="offset_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_y_unit" v="MM"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="marker" clip_to_extent="1" name="@0@0" force_rhr="0">
+                <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
+                  <prop k="angle" v="0"/>
+                  <prop k="color" v="0,166,80,255"/>
+                  <prop k="horizontal_anchor_point" v="1"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="name" v="circle"/>
+                  <prop k="offset" v="0,0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="outline_color" v="0,166,80,255"/>
+                  <prop k="outline_style" v="solid"/>
+                  <prop k="outline_width" v="0"/>
+                  <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="outline_width_unit" v="MM"/>
+                  <prop k="scale_method" v="diameter"/>
+                  <prop k="size" v="0.5"/>
+                  <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="size_unit" v="MM"/>
+                  <prop k="vertical_anchor_point" v="1"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="1" force_rhr="0">
+            <layer enabled="1" class="PointPatternFill" pass="0" locked="0">
+              <prop k="displacement_x" v="0"/>
+              <prop k="displacement_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="displacement_x_unit" v="MM"/>
+              <prop k="displacement_y" v="0"/>
+              <prop k="displacement_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="displacement_y_unit" v="MM"/>
+              <prop k="distance_x" v="2"/>
+              <prop k="distance_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="distance_x_unit" v="MM"/>
+              <prop k="distance_y" v="2"/>
+              <prop k="distance_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="distance_y_unit" v="MM"/>
+              <prop k="offset_x" v="0"/>
+              <prop k="offset_x_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_x_unit" v="MM"/>
+              <prop k="offset_y" v="0"/>
+              <prop k="offset_y_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_y_unit" v="MM"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="marker" clip_to_extent="1" name="@1@0" force_rhr="0">
+                <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
+                  <prop k="angle" v="0"/>
+                  <prop k="color" v="255,255,255,0"/>
+                  <prop k="horizontal_anchor_point" v="1"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="name" v="circle"/>
+                  <prop k="offset" v="0,0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="outline_color" v="62,188,123,255"/>
+                  <prop k="outline_style" v="solid"/>
+                  <prop k="outline_width" v="0"/>
+                  <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="outline_width_unit" v="MM"/>
+                  <prop k="scale_method" v="diameter"/>
+                  <prop k="size" v="0.7"/>
+                  <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="size_unit" v="MM"/>
+                  <prop k="vertical_anchor_point" v="1"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="2" force_rhr="0">
+            <layer enabled="1" class="SVGFill" pass="0" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="0,166,80,255"/>
+              <prop k="outline_color" v="255,255,255,255"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="pattern_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="pattern_width_unit" v="MM"/>
+              <prop k="svgFile" v="gpsicons/tree.svg"/>
+              <prop k="svg_outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="svg_outline_width_unit" v="MM"/>
+              <prop k="width" v="2"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="line" clip_to_extent="1" name="@2@0" force_rhr="0">
+                <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                  <prop k="capstyle" v="square"/>
+                  <prop k="customdash" v="5;2"/>
+                  <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="customdash_unit" v="MM"/>
+                  <prop k="draw_inside_polygon" v="0"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="line_color" v="35,35,35,255"/>
+                  <prop k="line_style" v="solid"/>
+                  <prop k="line_width" v="0.26"/>
+                  <prop k="line_width_unit" v="MM"/>
+                  <prop k="offset" v="0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="ring_filter" v="0"/>
+                  <prop k="use_custom_dash" v="0"/>
+                  <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="3" force_rhr="0">
+            <layer enabled="1" class="SVGFill" pass="0" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="0,166,80,255"/>
+              <prop k="outline_color" v="255,255,255,255"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="pattern_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="pattern_width_unit" v="MM"/>
+              <prop k="svgFile" v="gpsicons/tree.svg"/>
+              <prop k="svg_outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="svg_outline_width_unit" v="MM"/>
+              <prop k="width" v="2"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="line" clip_to_extent="1" name="@3@0" force_rhr="0">
+                <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                  <prop k="capstyle" v="square"/>
+                  <prop k="customdash" v="5;2"/>
+                  <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="customdash_unit" v="MM"/>
+                  <prop k="draw_inside_polygon" v="0"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="line_color" v="35,35,35,255"/>
+                  <prop k="line_style" v="solid"/>
+                  <prop k="line_width" v="0.26"/>
+                  <prop k="line_width_unit" v="MM"/>
+                  <prop k="offset" v="0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="ring_filter" v="0"/>
+                  <prop k="use_custom_dash" v="0"/>
+                  <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="4" force_rhr="0">
             <layer enabled="1" class="SimpleFill" pass="0" locked="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="color" v="229,182,54,255"/>
+              <prop k="color" v="209,114,200,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
@@ -17682,206 +17930,282 @@ def my_form_open(dialog, layer, feature):
             </layer>
           </symbol>
         </symbols>
+        <source-symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
+            <layer enabled="1" class="SimpleFill" pass="0" locked="0">
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="203,116,145,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </source-symbol>
+        <colorramp type="randomcolors" name="[source]"/>
         <rotation/>
         <sizescale/>
       </renderer-v2>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" penAlpha="255" height="15" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" width="15" minScaleDenominator="0" minimumSize="0" sizeType="MM" direction="0" penWidth="0" diagramOrientation="Up" backgroundAlpha="255" lineSizeType="MM" rotationOffset="270" backgroundColor="#ffffff" barWidth="5" spacingUnitScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" showAxis="1" scaleDependency="Area" spacing="5" labelPlacementMethod="XHeight" opacity="1" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" maxScaleDenominator="1e+08">
+          <fontProperties style="" description="Ubuntu,11,-1,5,50,0,0,0,0,0"/>
+          <axisSymbol>
+            <symbol alpha="1" type="line" clip_to_extent="1" name="" force_rhr="0">
+              <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                <prop k="capstyle" v="square"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="35,35,35,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.26"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="ring_filter" v="0"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <data_defined_properties>
+                  <Option type="Map">
+                    <Option type="QString" value="" name="name"/>
+                    <Option name="properties"/>
+                    <Option type="QString" value="collection" name="type"/>
+                  </Option>
+                </data_defined_properties>
+              </layer>
+            </symbol>
+          </axisSymbol>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings obstacle="0" dist="0" zIndex="0" linePlacementFlags="18" showAll="1" priority="0" placement="1">
+        <properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
-        <activeChecks type="StringList">
-          <Option type="QString" value=""/>
-        </activeChecks>
-        <checkConfiguration/>
+        <activeChecks/>
+        <checkConfiguration type="Map">
+          <Option type="Map" name="QgsGeometryGapCheck">
+            <Option type="double" value="0" name="allowedGapsBuffer"/>
+            <Option type="bool" value="false" name="allowedGapsEnabled"/>
+            <Option type="QString" value="" name="allowedGapsLayer"/>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <referencedLayers/>
       <referencingLayers/>
       <fieldConfiguration>
         <field name="gid">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="tipo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="escala">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="signo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fuente">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="operador">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="dataset">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fclass">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="responsabl">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="cargo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="progreso">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="t_act">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="coord">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="sp">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="datum">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="ac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="detalle">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="actualizac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_style">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_type">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_weigh">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="rotation">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_color">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="group">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_level">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="length">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="shape_area">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
@@ -18007,9 +18331,40 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" field="shape_area" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
-        <columns/>
+        <columns>
+          <column width="-1" type="field" hidden="0" name="gid"/>
+          <column width="-1" type="field" hidden="0" name="tipo"/>
+          <column width="-1" type="field" hidden="0" name="escala"/>
+          <column width="-1" type="field" hidden="0" name="signo"/>
+          <column width="-1" type="field" hidden="0" name="fuente"/>
+          <column width="-1" type="field" hidden="0" name="operador"/>
+          <column width="-1" type="field" hidden="0" name="dataset"/>
+          <column width="-1" type="field" hidden="0" name="fclass"/>
+          <column width="-1" type="field" hidden="0" name="responsabl"/>
+          <column width="-1" type="field" hidden="0" name="cargo"/>
+          <column width="-1" type="field" hidden="0" name="progreso"/>
+          <column width="-1" type="field" hidden="0" name="t_act"/>
+          <column width="-1" type="field" hidden="0" name="coord"/>
+          <column width="-1" type="field" hidden="0" name="sp"/>
+          <column width="-1" type="field" hidden="0" name="datum"/>
+          <column width="-1" type="field" hidden="0" name="ac"/>
+          <column width="-1" type="field" hidden="0" name="detalle"/>
+          <column width="-1" type="field" hidden="0" name="actualizac"/>
+          <column width="-1" type="field" hidden="0" name="igds_style"/>
+          <column width="-1" type="field" hidden="0" name="igds_type"/>
+          <column width="-1" type="field" hidden="0" name="igds_weigh"/>
+          <column width="-1" type="field" hidden="0" name="rotation"/>
+          <column width="-1" type="field" hidden="0" name="igds_color"/>
+          <column width="-1" type="field" hidden="0" name="group"/>
+          <column width="-1" type="field" hidden="0" name="igds_level"/>
+          <column width="-1" type="field" hidden="0" name="length"/>
+          <column width="-1" type="field" hidden="0" name="shape_area"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -18020,14 +18375,86 @@ def my_form_open(dialog, layer, feature):
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- codificación: utf-8 -*-
+"""
+Los formularios de QGIS pueden tener una función de Python que
+es llamada cuando se abre el formulario.
+
+Use esta función para añadir lógica extra a sus formularios.
+
+Introduzca el nombre de la función en el campo
+"Python Init function".
+Sigue un ejemplo:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
-      <editable/>
-      <labelOnTop/>
+      <editable>
+        <field editable="1" name="ac"/>
+        <field editable="1" name="actualizac"/>
+        <field editable="1" name="cargo"/>
+        <field editable="1" name="coord"/>
+        <field editable="1" name="dataset"/>
+        <field editable="1" name="datum"/>
+        <field editable="1" name="detalle"/>
+        <field editable="1" name="escala"/>
+        <field editable="1" name="fclass"/>
+        <field editable="1" name="fuente"/>
+        <field editable="1" name="gid"/>
+        <field editable="1" name="group"/>
+        <field editable="1" name="igds_color"/>
+        <field editable="1" name="igds_level"/>
+        <field editable="1" name="igds_style"/>
+        <field editable="1" name="igds_type"/>
+        <field editable="1" name="igds_weigh"/>
+        <field editable="1" name="length"/>
+        <field editable="1" name="operador"/>
+        <field editable="1" name="progreso"/>
+        <field editable="1" name="responsabl"/>
+        <field editable="1" name="rotation"/>
+        <field editable="1" name="shape_area"/>
+        <field editable="1" name="signo"/>
+        <field editable="1" name="sp"/>
+        <field editable="1" name="t_act"/>
+        <field editable="1" name="tipo"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="ac"/>
+        <field labelOnTop="0" name="actualizac"/>
+        <field labelOnTop="0" name="cargo"/>
+        <field labelOnTop="0" name="coord"/>
+        <field labelOnTop="0" name="dataset"/>
+        <field labelOnTop="0" name="datum"/>
+        <field labelOnTop="0" name="detalle"/>
+        <field labelOnTop="0" name="escala"/>
+        <field labelOnTop="0" name="fclass"/>
+        <field labelOnTop="0" name="fuente"/>
+        <field labelOnTop="0" name="gid"/>
+        <field labelOnTop="0" name="group"/>
+        <field labelOnTop="0" name="igds_color"/>
+        <field labelOnTop="0" name="igds_level"/>
+        <field labelOnTop="0" name="igds_style"/>
+        <field labelOnTop="0" name="igds_type"/>
+        <field labelOnTop="0" name="igds_weigh"/>
+        <field labelOnTop="0" name="length"/>
+        <field labelOnTop="0" name="operador"/>
+        <field labelOnTop="0" name="progreso"/>
+        <field labelOnTop="0" name="responsabl"/>
+        <field labelOnTop="0" name="rotation"/>
+        <field labelOnTop="0" name="shape_area"/>
+        <field labelOnTop="0" name="signo"/>
+        <field labelOnTop="0" name="sp"/>
+        <field labelOnTop="0" name="t_act"/>
+        <field labelOnTop="0" name="tipo"/>
+      </labelOnTop>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"gid"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer simplifyDrawingHints="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" minScale="100000000" readOnly="0" simplifyLocal="1" refreshOnNotifyMessage="" geometry="Polygon" refreshOnNotifyEnabled="0" labelsEnabled="0" simplifyDrawingTol="1" wkbType="MultiPolygon" type="vector" maxScale="0" autoRefreshTime="0" simplifyAlgorithm="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">
@@ -18452,7 +18879,9 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" field="shape_area" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
         <columns/>
       </attributetableconfig>
@@ -18508,6 +18937,15 @@ def my_form_open(dialog, layer, feature):
         <type>dataset</type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -18524,7 +18962,15 @@ def my_form_open(dialog, layer, feature):
             <geographicflag>true</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial miny="0" maxz="0" crs="EPSG:4326" minz="0" maxy="0" maxx="0" dimensions="2" minx="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="">postgres</provider>
       <vectorjoins/>
@@ -18547,8 +18993,170 @@ def my_form_open(dialog, layer, feature):
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="categorizedSymbol" attr="tipo">
+        <categories>
+          <category label="Plantaciones Perennes" render="false" value="Plantaciones Perennes" symbol="0"/>
+          <category label="Terreno para Cultivo" render="false" value="Terreno para Cultivo" symbol="1"/>
+          <category label="" render="false" value="" symbol="2"/>
+        </categories>
         <symbols>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
+            <layer enabled="1" class="RandomMarkerFill" pass="0" locked="0">
+              <prop k="clip_points" v="0"/>
+              <prop k="count_method" v="0"/>
+              <prop k="density_area" v="250"/>
+              <prop k="density_area_unit" v="MM"/>
+              <prop k="density_area_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="point_count" v="10"/>
+              <prop k="seed" v="606748821"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="marker" clip_to_extent="1" name="@0@0" force_rhr="0">
+                <layer enabled="1" class="GeometryGenerator" pass="0" locked="0">
+                  <prop k="SymbolType" v="Fill"/>
+                  <prop k="geometryModifier" v="$geometry"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                  <symbol alpha="1" type="fill" clip_to_extent="1" name="@@0@0@0" force_rhr="0">
+                    <layer enabled="1" class="LinePatternFill" pass="0" locked="0">
+                      <prop k="angle" v="45"/>
+                      <prop k="color" v="0,0,255,255"/>
+                      <prop k="distance" v="5"/>
+                      <prop k="distance_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                      <prop k="distance_unit" v="MM"/>
+                      <prop k="line_width" v="0.26"/>
+                      <prop k="line_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                      <prop k="line_width_unit" v="MM"/>
+                      <prop k="offset" v="0"/>
+                      <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                      <prop k="offset_unit" v="MM"/>
+                      <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                      <prop k="outline_width_unit" v="MM"/>
+                      <data_defined_properties>
+                        <Option type="Map">
+                          <Option type="QString" value="" name="name"/>
+                          <Option name="properties"/>
+                          <Option type="QString" value="collection" name="type"/>
+                        </Option>
+                      </data_defined_properties>
+                      <symbol alpha="1" type="line" clip_to_extent="1" name="@@@0@0@0@0" force_rhr="0">
+                        <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                          <prop k="capstyle" v="square"/>
+                          <prop k="customdash" v="5;2"/>
+                          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                          <prop k="customdash_unit" v="MM"/>
+                          <prop k="draw_inside_polygon" v="0"/>
+                          <prop k="joinstyle" v="bevel"/>
+                          <prop k="line_color" v="52,184,116,255"/>
+                          <prop k="line_style" v="solid"/>
+                          <prop k="line_width" v="0.26"/>
+                          <prop k="line_width_unit" v="MM"/>
+                          <prop k="offset" v="0"/>
+                          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                          <prop k="offset_unit" v="MM"/>
+                          <prop k="ring_filter" v="0"/>
+                          <prop k="use_custom_dash" v="0"/>
+                          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                          <data_defined_properties>
+                            <Option type="Map">
+                              <Option type="QString" value="" name="name"/>
+                              <Option name="properties"/>
+                              <Option type="QString" value="collection" name="type"/>
+                            </Option>
+                          </data_defined_properties>
+                        </layer>
+                      </symbol>
+                    </layer>
+                  </symbol>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="1" force_rhr="0">
+            <layer enabled="1" class="LinePatternFill" pass="0" locked="0">
+              <prop k="angle" v="45"/>
+              <prop k="color" v="153,219,185,255"/>
+              <prop k="distance" v="5"/>
+              <prop k="distance_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="distance_unit" v="MM"/>
+              <prop k="line_width" v="0.5"/>
+              <prop k="line_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="line_width_unit" v="MM"/>
+              <prop k="offset" v="0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="line" clip_to_extent="1" name="@1@0" force_rhr="0">
+                <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                  <prop k="capstyle" v="square"/>
+                  <prop k="customdash" v="5;2"/>
+                  <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="customdash_unit" v="MM"/>
+                  <prop k="draw_inside_polygon" v="0"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="line_color" v="153,219,185,255"/>
+                  <prop k="line_style" v="solid"/>
+                  <prop k="line_width" v="0.5"/>
+                  <prop k="line_width_unit" v="MM"/>
+                  <prop k="offset" v="0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="ring_filter" v="0"/>
+                  <prop k="use_custom_dash" v="0"/>
+                  <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="2" force_rhr="0">
+            <layer enabled="1" class="SimpleFill" pass="0" locked="0">
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="123,51,211,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <source-symbol>
           <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
             <layer enabled="1" class="SimpleFill" pass="0" locked="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
@@ -18571,207 +19179,259 @@ def my_form_open(dialog, layer, feature):
               </data_defined_properties>
             </layer>
           </symbol>
-        </symbols>
+        </source-symbol>
+        <colorramp type="randomcolors" name="[source]"/>
         <rotation/>
         <sizescale/>
       </renderer-v2>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" penAlpha="255" height="15" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" width="15" minScaleDenominator="0" minimumSize="0" sizeType="MM" direction="0" penWidth="0" diagramOrientation="Up" backgroundAlpha="255" lineSizeType="MM" rotationOffset="270" backgroundColor="#ffffff" barWidth="5" spacingUnitScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" showAxis="1" scaleDependency="Area" spacing="5" labelPlacementMethod="XHeight" opacity="1" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" maxScaleDenominator="1e+08">
+          <fontProperties style="" description="Ubuntu,11,-1,5,50,0,0,0,0,0"/>
+          <axisSymbol>
+            <symbol alpha="1" type="line" clip_to_extent="1" name="" force_rhr="0">
+              <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                <prop k="capstyle" v="square"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="35,35,35,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.26"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="ring_filter" v="0"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <data_defined_properties>
+                  <Option type="Map">
+                    <Option type="QString" value="" name="name"/>
+                    <Option name="properties"/>
+                    <Option type="QString" value="collection" name="type"/>
+                  </Option>
+                </data_defined_properties>
+              </layer>
+            </symbol>
+          </axisSymbol>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings obstacle="0" dist="0" zIndex="0" linePlacementFlags="18" showAll="1" priority="0" placement="1">
+        <properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
-        <activeChecks type="StringList">
-          <Option type="QString" value=""/>
-        </activeChecks>
-        <checkConfiguration/>
+        <activeChecks/>
+        <checkConfiguration type="Map">
+          <Option type="Map" name="QgsGeometryGapCheck">
+            <Option type="double" value="0" name="allowedGapsBuffer"/>
+            <Option type="bool" value="false" name="allowedGapsEnabled"/>
+            <Option type="QString" value="" name="allowedGapsLayer"/>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <referencedLayers/>
       <referencingLayers/>
       <fieldConfiguration>
         <field name="gid">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="tipo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="escala">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="signo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fuente">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="operador">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="dataset">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fclass">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="responsabl">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="cargo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="progreso">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="t_act">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="coord">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="sp">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="datum">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="ac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="detalle">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="actualizac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_style">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_type">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_weigh">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="rotation">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_color">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="group">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_level">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="length">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="shape_area">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
@@ -18897,9 +19557,40 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" field="shape_area" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
-        <columns/>
+        <columns>
+          <column width="-1" type="field" hidden="0" name="gid"/>
+          <column width="-1" type="field" hidden="0" name="tipo"/>
+          <column width="-1" type="field" hidden="0" name="escala"/>
+          <column width="-1" type="field" hidden="0" name="signo"/>
+          <column width="-1" type="field" hidden="0" name="fuente"/>
+          <column width="-1" type="field" hidden="0" name="operador"/>
+          <column width="-1" type="field" hidden="0" name="dataset"/>
+          <column width="-1" type="field" hidden="0" name="fclass"/>
+          <column width="-1" type="field" hidden="0" name="responsabl"/>
+          <column width="-1" type="field" hidden="0" name="cargo"/>
+          <column width="-1" type="field" hidden="0" name="progreso"/>
+          <column width="-1" type="field" hidden="0" name="t_act"/>
+          <column width="-1" type="field" hidden="0" name="coord"/>
+          <column width="-1" type="field" hidden="0" name="sp"/>
+          <column width="-1" type="field" hidden="0" name="datum"/>
+          <column width="-1" type="field" hidden="0" name="ac"/>
+          <column width="-1" type="field" hidden="0" name="detalle"/>
+          <column width="-1" type="field" hidden="0" name="actualizac"/>
+          <column width="-1" type="field" hidden="0" name="igds_style"/>
+          <column width="-1" type="field" hidden="0" name="igds_type"/>
+          <column width="-1" type="field" hidden="0" name="igds_weigh"/>
+          <column width="-1" type="field" hidden="0" name="rotation"/>
+          <column width="-1" type="field" hidden="0" name="igds_color"/>
+          <column width="-1" type="field" hidden="0" name="group"/>
+          <column width="-1" type="field" hidden="0" name="igds_level"/>
+          <column width="-1" type="field" hidden="0" name="length"/>
+          <column width="-1" type="field" hidden="0" name="shape_area"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -18910,14 +19601,86 @@ def my_form_open(dialog, layer, feature):
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- codificación: utf-8 -*-
+"""
+Los formularios de QGIS pueden tener una función de Python que
+es llamada cuando se abre el formulario.
+
+Use esta función para añadir lógica extra a sus formularios.
+
+Introduzca el nombre de la función en el campo
+"Python Init function".
+Sigue un ejemplo:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
-      <editable/>
-      <labelOnTop/>
+      <editable>
+        <field editable="1" name="ac"/>
+        <field editable="1" name="actualizac"/>
+        <field editable="1" name="cargo"/>
+        <field editable="1" name="coord"/>
+        <field editable="1" name="dataset"/>
+        <field editable="1" name="datum"/>
+        <field editable="1" name="detalle"/>
+        <field editable="1" name="escala"/>
+        <field editable="1" name="fclass"/>
+        <field editable="1" name="fuente"/>
+        <field editable="1" name="gid"/>
+        <field editable="1" name="group"/>
+        <field editable="1" name="igds_color"/>
+        <field editable="1" name="igds_level"/>
+        <field editable="1" name="igds_style"/>
+        <field editable="1" name="igds_type"/>
+        <field editable="1" name="igds_weigh"/>
+        <field editable="1" name="length"/>
+        <field editable="1" name="operador"/>
+        <field editable="1" name="progreso"/>
+        <field editable="1" name="responsabl"/>
+        <field editable="1" name="rotation"/>
+        <field editable="1" name="shape_area"/>
+        <field editable="1" name="signo"/>
+        <field editable="1" name="sp"/>
+        <field editable="1" name="t_act"/>
+        <field editable="1" name="tipo"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="ac"/>
+        <field labelOnTop="0" name="actualizac"/>
+        <field labelOnTop="0" name="cargo"/>
+        <field labelOnTop="0" name="coord"/>
+        <field labelOnTop="0" name="dataset"/>
+        <field labelOnTop="0" name="datum"/>
+        <field labelOnTop="0" name="detalle"/>
+        <field labelOnTop="0" name="escala"/>
+        <field labelOnTop="0" name="fclass"/>
+        <field labelOnTop="0" name="fuente"/>
+        <field labelOnTop="0" name="gid"/>
+        <field labelOnTop="0" name="group"/>
+        <field labelOnTop="0" name="igds_color"/>
+        <field labelOnTop="0" name="igds_level"/>
+        <field labelOnTop="0" name="igds_style"/>
+        <field labelOnTop="0" name="igds_type"/>
+        <field labelOnTop="0" name="igds_weigh"/>
+        <field labelOnTop="0" name="length"/>
+        <field labelOnTop="0" name="operador"/>
+        <field labelOnTop="0" name="progreso"/>
+        <field labelOnTop="0" name="responsabl"/>
+        <field labelOnTop="0" name="rotation"/>
+        <field labelOnTop="0" name="shape_area"/>
+        <field labelOnTop="0" name="signo"/>
+        <field labelOnTop="0" name="sp"/>
+        <field labelOnTop="0" name="t_act"/>
+        <field labelOnTop="0" name="tipo"/>
+      </labelOnTop>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"gid"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer simplifyDrawingHints="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" minScale="100000000" readOnly="0" simplifyLocal="1" refreshOnNotifyMessage="" geometry="Polygon" refreshOnNotifyEnabled="0" labelsEnabled="0" simplifyDrawingTol="1" wkbType="MultiPolygon" type="vector" maxScale="0" autoRefreshTime="0" simplifyAlgorithm="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">
@@ -18953,6 +19716,15 @@ def my_form_open(dialog, layer, feature):
         <type>dataset</type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -18969,7 +19741,15 @@ def my_form_open(dialog, layer, feature):
             <geographicflag>true</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial miny="0" maxz="0" crs="EPSG:4326" minz="0" maxy="0" maxx="0" dimensions="2" minx="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="">postgres</provider>
       <vectorjoins/>
@@ -18992,8 +19772,63 @@ def my_form_open(dialog, layer, feature):
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 enableorderby="0" forceraster="0" symbollevels="0" type="categorizedSymbol" attr="tipo">
+        <categories>
+          <category label="Pajonal, Malezal, Cardal, Cortaderal, Españal, Jarillal, Quiscal, Juncal, Totoral" render="true" value="Pajonal, Malezal, Cardal, Cortaderal, Españal, Jarillal, Quiscal, Juncal, Totoral" symbol="0"/>
+        </categories>
         <symbols>
+          <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
+            <layer enabled="1" class="SVGFill" pass="0" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="0,166,80,255"/>
+              <prop k="outline_color" v="0,166,80,255"/>
+              <prop k="outline_width" v="1.5"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="pattern_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="pattern_width_unit" v="MM"/>
+              <prop k="svgFile" v="symbol/landuse_swamp.svg"/>
+              <prop k="svg_outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="svg_outline_width_unit" v="MM"/>
+              <prop k="width" v="0"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol alpha="1" type="line" clip_to_extent="1" name="@0@0" force_rhr="0">
+                <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                  <prop k="capstyle" v="square"/>
+                  <prop k="customdash" v="5;2"/>
+                  <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="customdash_unit" v="MM"/>
+                  <prop k="draw_inside_polygon" v="0"/>
+                  <prop k="joinstyle" v="bevel"/>
+                  <prop k="line_color" v="35,35,35,255"/>
+                  <prop k="line_style" v="solid"/>
+                  <prop k="line_width" v="0.26"/>
+                  <prop k="line_width_unit" v="MM"/>
+                  <prop k="offset" v="0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="ring_filter" v="0"/>
+                  <prop k="use_custom_dash" v="0"/>
+                  <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
+            </layer>
+          </symbol>
+        </symbols>
+        <source-symbol>
           <symbol alpha="1" type="fill" clip_to_extent="1" name="0" force_rhr="0">
             <layer enabled="1" class="SimpleFill" pass="0" locked="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
@@ -19016,207 +19851,259 @@ def my_form_open(dialog, layer, feature):
               </data_defined_properties>
             </layer>
           </symbol>
-        </symbols>
+        </source-symbol>
+        <colorramp type="randomcolors" name="[source]"/>
         <rotation/>
         <sizescale/>
       </renderer-v2>
-      <customproperties/>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" penAlpha="255" height="15" enabled="0" lineSizeScale="3x:0,0,0,0,0,0" width="15" minScaleDenominator="0" minimumSize="0" sizeType="MM" direction="0" penWidth="0" diagramOrientation="Up" backgroundAlpha="255" lineSizeType="MM" rotationOffset="270" backgroundColor="#ffffff" barWidth="5" spacingUnitScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" showAxis="1" scaleDependency="Area" spacing="5" labelPlacementMethod="XHeight" opacity="1" sizeScale="3x:0,0,0,0,0,0" spacingUnit="MM" maxScaleDenominator="1e+08">
+          <fontProperties style="" description="Ubuntu,11,-1,5,50,0,0,0,0,0"/>
+          <axisSymbol>
+            <symbol alpha="1" type="line" clip_to_extent="1" name="" force_rhr="0">
+              <layer enabled="1" class="SimpleLine" pass="0" locked="0">
+                <prop k="capstyle" v="square"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="35,35,35,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.26"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="ring_filter" v="0"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                <data_defined_properties>
+                  <Option type="Map">
+                    <Option type="QString" value="" name="name"/>
+                    <Option name="properties"/>
+                    <Option type="QString" value="collection" name="type"/>
+                  </Option>
+                </data_defined_properties>
+              </layer>
+            </symbol>
+          </axisSymbol>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings obstacle="0" dist="0" zIndex="0" linePlacementFlags="18" showAll="1" priority="0" placement="1">
+        <properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
-        <activeChecks type="StringList">
-          <Option type="QString" value=""/>
-        </activeChecks>
-        <checkConfiguration/>
+        <activeChecks/>
+        <checkConfiguration type="Map">
+          <Option type="Map" name="QgsGeometryGapCheck">
+            <Option type="double" value="0" name="allowedGapsBuffer"/>
+            <Option type="bool" value="false" name="allowedGapsEnabled"/>
+            <Option type="QString" value="" name="allowedGapsLayer"/>
+          </Option>
+        </checkConfiguration>
       </geometryOptions>
       <referencedLayers/>
       <referencingLayers/>
       <fieldConfiguration>
         <field name="gid">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="tipo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="escala">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="signo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fuente">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="opeador">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="dataset">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="fclass">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="responsabl">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="cargo">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="progreso">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="t_act">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="coord">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="sp">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="datum">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="ac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="detalle">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="actualizac">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_style">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_type">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_weigh">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="rotation">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_color">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="group">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="igds_level">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="length">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="shape_area">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
@@ -19342,9 +20229,40 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" field="shape_area" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
-        <columns/>
+        <columns>
+          <column width="-1" type="field" hidden="0" name="gid"/>
+          <column width="-1" type="field" hidden="0" name="tipo"/>
+          <column width="-1" type="field" hidden="0" name="escala"/>
+          <column width="-1" type="field" hidden="0" name="signo"/>
+          <column width="-1" type="field" hidden="0" name="fuente"/>
+          <column width="-1" type="field" hidden="0" name="opeador"/>
+          <column width="-1" type="field" hidden="0" name="dataset"/>
+          <column width="-1" type="field" hidden="0" name="fclass"/>
+          <column width="-1" type="field" hidden="0" name="responsabl"/>
+          <column width="-1" type="field" hidden="0" name="cargo"/>
+          <column width="-1" type="field" hidden="0" name="progreso"/>
+          <column width="-1" type="field" hidden="0" name="t_act"/>
+          <column width="-1" type="field" hidden="0" name="coord"/>
+          <column width="-1" type="field" hidden="0" name="sp"/>
+          <column width="-1" type="field" hidden="0" name="datum"/>
+          <column width="-1" type="field" hidden="0" name="ac"/>
+          <column width="-1" type="field" hidden="0" name="detalle"/>
+          <column width="-1" type="field" hidden="0" name="actualizac"/>
+          <column width="-1" type="field" hidden="0" name="igds_style"/>
+          <column width="-1" type="field" hidden="0" name="igds_type"/>
+          <column width="-1" type="field" hidden="0" name="igds_weigh"/>
+          <column width="-1" type="field" hidden="0" name="rotation"/>
+          <column width="-1" type="field" hidden="0" name="igds_color"/>
+          <column width="-1" type="field" hidden="0" name="group"/>
+          <column width="-1" type="field" hidden="0" name="igds_level"/>
+          <column width="-1" type="field" hidden="0" name="length"/>
+          <column width="-1" type="field" hidden="0" name="shape_area"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -19355,14 +20273,86 @@ def my_form_open(dialog, layer, feature):
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- codificación: utf-8 -*-
+"""
+Los formularios de QGIS pueden tener una función de Python que
+es llamada cuando se abre el formulario.
+
+Use esta función para añadir lógica extra a sus formularios.
+
+Introduzca el nombre de la función en el campo
+"Python Init function".
+Sigue un ejemplo:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
-      <editable/>
-      <labelOnTop/>
+      <editable>
+        <field editable="1" name="ac"/>
+        <field editable="1" name="actualizac"/>
+        <field editable="1" name="cargo"/>
+        <field editable="1" name="coord"/>
+        <field editable="1" name="dataset"/>
+        <field editable="1" name="datum"/>
+        <field editable="1" name="detalle"/>
+        <field editable="1" name="escala"/>
+        <field editable="1" name="fclass"/>
+        <field editable="1" name="fuente"/>
+        <field editable="1" name="gid"/>
+        <field editable="1" name="group"/>
+        <field editable="1" name="igds_color"/>
+        <field editable="1" name="igds_level"/>
+        <field editable="1" name="igds_style"/>
+        <field editable="1" name="igds_type"/>
+        <field editable="1" name="igds_weigh"/>
+        <field editable="1" name="length"/>
+        <field editable="1" name="opeador"/>
+        <field editable="1" name="progreso"/>
+        <field editable="1" name="responsabl"/>
+        <field editable="1" name="rotation"/>
+        <field editable="1" name="shape_area"/>
+        <field editable="1" name="signo"/>
+        <field editable="1" name="sp"/>
+        <field editable="1" name="t_act"/>
+        <field editable="1" name="tipo"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="ac"/>
+        <field labelOnTop="0" name="actualizac"/>
+        <field labelOnTop="0" name="cargo"/>
+        <field labelOnTop="0" name="coord"/>
+        <field labelOnTop="0" name="dataset"/>
+        <field labelOnTop="0" name="datum"/>
+        <field labelOnTop="0" name="detalle"/>
+        <field labelOnTop="0" name="escala"/>
+        <field labelOnTop="0" name="fclass"/>
+        <field labelOnTop="0" name="fuente"/>
+        <field labelOnTop="0" name="gid"/>
+        <field labelOnTop="0" name="group"/>
+        <field labelOnTop="0" name="igds_color"/>
+        <field labelOnTop="0" name="igds_level"/>
+        <field labelOnTop="0" name="igds_style"/>
+        <field labelOnTop="0" name="igds_type"/>
+        <field labelOnTop="0" name="igds_weigh"/>
+        <field labelOnTop="0" name="length"/>
+        <field labelOnTop="0" name="opeador"/>
+        <field labelOnTop="0" name="progreso"/>
+        <field labelOnTop="0" name="responsabl"/>
+        <field labelOnTop="0" name="rotation"/>
+        <field labelOnTop="0" name="shape_area"/>
+        <field labelOnTop="0" name="signo"/>
+        <field labelOnTop="0" name="sp"/>
+        <field labelOnTop="0" name="t_act"/>
+        <field labelOnTop="0" name="tipo"/>
+      </labelOnTop>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"gid"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer simplifyDrawingHints="1" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" minScale="100000000" readOnly="0" simplifyLocal="1" refreshOnNotifyMessage="" geometry="Polygon" refreshOnNotifyEnabled="0" labelsEnabled="0" simplifyDrawingTol="1" wkbType="MultiPolygon" type="vector" maxScale="0" autoRefreshTime="0" simplifyAlgorithm="0" autoRefreshEnabled="0" styleCategories="AllStyleCategories">

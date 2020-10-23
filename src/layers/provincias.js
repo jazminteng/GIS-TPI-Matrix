@@ -7,7 +7,7 @@ const layer = new Tile({
     url: url,
     params: {
       'LAYERS': ['provincias'],
-      'TRANSPARENT': false,
+      'TRANSPARENT': true,
     },
     serverType: 'qgis'                                         
   }),

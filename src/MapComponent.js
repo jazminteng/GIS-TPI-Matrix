@@ -48,7 +48,7 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [ osm_default, provincias ],
+      layers: [ osm_default, provincias, espejo_de_agua_hid ],
       target: this.refs.mapContainer
     });
 

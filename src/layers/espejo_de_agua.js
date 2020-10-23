@@ -8,7 +8,7 @@ const layer = new Tile({
     params: {
       'LAYERS': ['espejo_de_agua_hid'],
     },
-    serverType: 'qgis'                                         
+    serverType: 'qgis'
   })
 })
 

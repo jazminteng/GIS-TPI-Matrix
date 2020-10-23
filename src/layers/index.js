@@ -1,6 +1,16 @@
-export { default as Vector_Paises } from './countries';
+import TileWMS_base from './TileWMS_base'
+
+
+
+
+const provincias = TileWMS_base("provincias");
+const red_vial = TileWMS_base("red_vial");
+const espejo_de_agua_hid = TileWMS_base("espejo_de_agua_hid");
+
+
+
+
+// export { default as Vector_Paises } from './countries';
 export { default as osm_default } from './osm_default';
-export { default as ign250 } from './ign250';
-export { default as provincias } from './provincias';
-export { default as red_vial } from './red_vial';
-export { default as espejo_de_agua_hid } from './espejo_de_agua';
+
+export { provincias, red_vial, espejo_de_agua_hid };

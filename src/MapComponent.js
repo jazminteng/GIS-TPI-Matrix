@@ -12,11 +12,11 @@ import Overlay from 'ol/Overlay';
 // import { transform } from 'ol/proj';
 
 // Interacciones
-import {DragBox, Select} from 'ol/interaction';
-import {platformModifierKeyOnly} from 'ol/events/condition';
+import { DragBox, Select } from 'ol/interaction';
+import { platformModifierKeyOnly } from 'ol/events/condition';
 
 // Capas
-import { provincias, ign250, Vector_Paises, osm_default, red_vial, espejo_de_agua_hid } from './layers';
+import { osm_default, provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
@@ -29,12 +29,10 @@ import NavBar from './components/Navbar'
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
-
-    this.moveToSaladas = this.moveToSaladas.bind(this);
-
   }
 
   componentDidMount() {
+
     const view = new View({
       center: [-58.986666666667, -27.451388888889],
       zoom: 13,
@@ -43,23 +41,18 @@ export default class MapComponent extends React.Component {
       projection: 'EPSG:4326',
     });
 
-    this.view = view;
-
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [ osm_default, provincias, espejo_de_agua_hid ],
+      layers: [osm_default, provincias, veg_hidrofila],
       target: this.refs.mapContainer
     });
 
+    /*
     var overlay = new Overlay({
       element: document.getElementById('overlay'),
       positioning: 'bottom-center'
     });
-
-    var map = this.map;
-
-
     // Mostrar coordenadas con click
     this.map.on('click', function (event) {
       // extract the spatial coordinate of the click event in map projection units
@@ -77,21 +70,19 @@ export default class MapComponent extends React.Component {
       console.log(this.map);
       map.addOverlay(overlay);
     });
-
-
     // Cajita con el Ctrl+Click
     var dragBox = new DragBox({
       condition: platformModifierKeyOnly,
     });
-    
     map.addInteraction(dragBox);
 
-  }
-
-  moveToSaladas() {
+    this.moveToSaladas = this.moveToSaladas.bind(this);
+      moveToSaladas() {
     // this.map.getView().setCenter([-58.625, -28.256]);
     this.view.setCenter([-58.625, -28.256]);
     this.map.getView().setZoom(15);
+  }
+  */
   }
 
   // <h4> Mapa </h4>
@@ -106,7 +97,7 @@ export default class MapComponent extends React.Component {
         {/* Navbar */}
         <NavBar />
 
-        {/* Mapa */}        
+        {/* Mapa */}
         <div id="mapContainer" ref="mapContainer"> </div>
 
 

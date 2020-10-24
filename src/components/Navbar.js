@@ -9,23 +9,32 @@ import {
   NavLink,
   NavbarText
 } from 'reactstrap';
-import NavCapas from './NavCapas';
+import NavCapasWMS from './NavCapasWMS';
+import NavCapasWFS from './NavCapasWFS';
 
 class NavBar extends Component{
 
   constructor(props){
     super(props);
-    this.toggleCapas = this.toggleCapas.bind(this);
+    this.toggleCapasWMS = this.toggleCapasWMS.bind(this);
+    this.toggleCapasWFS = this.toggleCapasWFS.bind(this);
     this.toggleCollapse= this.toggleCollapse.bind(this);
     this.state = {
-      isCapasOpen: false,
+      isCapasWMSOpen: false,
+      isCapasWFSOpen: false,
       isCollapseOpen: false
     }
   }
 
-  toggleCapas(){
+  toggleCapasWMS(){
     this.setState({
-      isCapasOpen: !this.state.isCapasOpen
+      isCapasWMSOpen: !this.state.isCapasWMSOpen
+    });
+  }
+
+  toggleCapasWFS(){
+    this.setState({
+      isCapasWFSOpen: !this.state.isCapasWFSOpen
     });
   }
 
@@ -47,16 +56,17 @@ class NavBar extends Component{
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink onClick={this.toggleCapasWFS}>Capas WFS</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.toggleCapas}>Capas</NavLink>
+                <NavLink onClick={this.toggleCapasWMS}>Capas WMS</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>Simple Text</NavbarText>
           </Collapse>
         </Navbar>
-        <NavCapas isCapasOpen={this.state.isCapasOpen} />
+        <NavCapasWMS isCapasWMSOpen={this.state.isCapasWMSOpen} />
+        <NavCapasWFS isCapasWFSOpen={this.state.isCapasWFSOpen} />
 
       </div>
     );

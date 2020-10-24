@@ -4,6 +4,7 @@ import url from '../cfg/url';
 
 const TileWMS_base = (nombre_capa) => {
     const capa = new Tile({
+        visible: false,
         source: new TileWMS({
             url: url,
             params: {

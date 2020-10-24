@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { provincias } from '../layers';
 
-class NavCapas extends Component{
+class NavCapasWFS extends Component{
 
   constructor(props){
     super(props);
@@ -21,7 +21,7 @@ class NavCapas extends Component{
   }
 
   render(){
-    if (this.props.isCapasOpen){
+    if (this.props.isCapasWFSOpen){
       return (
         <div>
           <Nav>
@@ -46,4 +46,4 @@ class NavCapas extends Component{
   }
 }
 
-export default NavCapas;
+export default NavCapasWFS;

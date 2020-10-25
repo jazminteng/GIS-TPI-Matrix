@@ -9,6 +9,6 @@
 // Hernan
 // ...
 
-const rutaServicio = 'http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/home/jt/UBUNTU-ISI20/openlayers/qgisserver-servicio/matrix.qgs';
+const rutaServicio = 'http://localhost/cgi-bin/qgis_mapserv.fcgi?map=/home/hernan/Documentos/facultad/GIS/GIS-TPI-Matrix/qgisserver/matrix.qgs';
 
 export default rutaServicio;

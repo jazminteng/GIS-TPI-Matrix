@@ -6,11 +6,13 @@ const layer = new Tile({
 	source: new TileWMS({
     url: url,
     params: {
-      'LAYERS': ['provincias', 'edif_depor_y_esparcimiento'],
+      'LAYERS': ['provincias'],
       'TRANSPARENT': true,
     },
     serverType: 'qgis'                                         
-  })
+  }),
+  opacity: 0.6,
+  brightness: 0.2
 })
 
 export default layer;

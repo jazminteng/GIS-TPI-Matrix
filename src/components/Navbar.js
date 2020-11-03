@@ -7,7 +7,10 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import NavCapasWFS from './NavCapasWFS';
@@ -19,11 +22,21 @@ class NavBar extends Component{
     this.toggleCapasWMS = this.toggleCapasWMS.bind(this);
     this.toggleCapasWFS = this.toggleCapasWFS.bind(this);
     this.toggleCollapse= this.toggleCollapse.bind(this);
+    this.toggleDropdown= this.toggleDropdown.bind(this);
     this.state = {
       isCapasWMSOpen: false,
       isCapasWFSOpen: false,
-      isCollapseOpen: false
+      isCollapseOpen: false,
+      isDropdownOpen: false,
+      dropdownValue: 'Consultar',
     }
+  }
+
+  toggleDropdown(event){
+    this.setState({
+      isDropdownOpen: !this.state.isDropdownOpen,
+      dropdownValue: event.currentTarget.textContent
+    });
   }
 
   toggleCapasWMS(){
@@ -62,7 +75,41 @@ class NavBar extends Component{
                 <NavLink onClick={this.toggleCapasWMS}>Capas WMS</NavLink>
               </NavItem>
             </Nav>
-            <NavbarText>Simple Text</NavbarText>
+            <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
+              <DropdownToggle 
+                tag="span"
+                data-toggle="dropdown"
+                onClick={this.toggleDropdown}>
+                {this.state.dropdownValue}
+              </DropdownToggle>
+              <DropdownMenu right
+                modifiers={{
+                  setMaxHeight: {
+                    enabled: true,
+                    order: 890,
+                    fn: (data) => {
+                      return {
+                        ...data,
+                        styles: {
+                          ...data.styles,
+                          overflow: 'auto',
+                          maxHeight: '200px',
+                        },
+                      };
+                    },
+                  },
+                }}>
+                <DropdownItem onClick={this.toggleDropdown}>Ola</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>k</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>ases</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>todo</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>bien</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>en casa?</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>que</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>ganas</DropdownItem>
+                <DropdownItem onClick={this.toggleDropdown}>de morir</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </Collapse>
         </Navbar>
         <NavCapasWMS isCapasWMSOpen={this.state.isCapasWMSOpen} />

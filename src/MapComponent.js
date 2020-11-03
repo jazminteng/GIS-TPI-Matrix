@@ -16,7 +16,7 @@ import { DragBox, Select } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 
 // Capas
-import { osm_default, provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila } from './layers';
+import { osm_default, provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila, edif_construcciones_turisticas } from './layers';
 
 // Controles
 import { scaleControl } from './controls';
@@ -44,9 +44,10 @@ export default class MapComponent extends React.Component {
     this.map = new olMap({
       view: view,
       controls: [new Zoom(), scaleControl()],
-      layers: [osm_default, provincias, veg_hidrofila],
+      layers: [ provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila, edif_construcciones_turisticas ],
       target: this.refs.mapContainer
     });
+    provincias.setVisible(true);
 
     /*
     var overlay = new Overlay({
@@ -89,8 +90,6 @@ export default class MapComponent extends React.Component {
   // <Button color='primary' onClick={this.moveToSaladas}> Vamos a Saladas? </Button>
 
   render() {
-    console.log('-> render App')
-    console.log(provincias);
     return (
       <div>
 

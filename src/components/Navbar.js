@@ -14,6 +14,7 @@ import {
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import NavCapasWFS from './NavCapasWFS';
+import CATEGORIAS from '../shared/categorias';
 
 class NavBar extends Component{
 
@@ -23,13 +24,25 @@ class NavBar extends Component{
     this.toggleCapasWFS = this.toggleCapasWFS.bind(this);
     this.toggleCollapse= this.toggleCollapse.bind(this);
     this.toggleDropdown= this.toggleDropdown.bind(this);
+    this.toggleCategoria= this.toggleCategoria.bind(this);
+
+
+
     this.state = {
       isCapasWMSOpen: false,
       isCapasWFSOpen: false,
       isCollapseOpen: false,
       isDropdownOpen: false,
+      categoria: '',
+      capas: {},
       dropdownValue: 'Consultar',
     }
+  }
+
+  toggleCategoria(event){
+    this.setState({
+      categoria: event.target.id,
+    });
   }
 
   toggleDropdown(event){
@@ -66,13 +79,31 @@ class NavBar extends Component{
           <Collapse isOpen={this.state.isCollapseOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink onClick={this.toggleCategoria} id="habitacional"> Habitacional y Cultural </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.toggleCapasWFS}>Capas WFS</NavLink>
+                <NavLink onClick={this.toggleCategoria} id="hidrografia"> Hidrografía </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.toggleCapasWMS}>Capas WMS</NavLink>
+                <NavLink onClick={this.toggleCategoria} id="instituciones"> Inst. Públicas y de Seguiridad </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="limite"> Límite Político </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="relieve"> Relieve </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="suelos"> Suelos </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="transporte"> Transporte </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="vegetacion"> Vegetación </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink onClick={this.toggleCategoria} id="otros" > Otros </NavLink>
               </NavItem>
             </Nav>
             <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
@@ -112,7 +143,7 @@ class NavBar extends Component{
             </Dropdown>
           </Collapse>
         </Navbar>
-        <NavCapasWMS isCapasWMSOpen={this.state.isCapasWMSOpen} />
+        <NavCapasWMS capas={this.state.capas} />
         <NavCapasWFS isCapasWFSOpen={this.state.isCapasWFSOpen} />
 
       </div>

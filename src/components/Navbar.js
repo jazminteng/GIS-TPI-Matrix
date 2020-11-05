@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import NavCapasWFS from './NavCapasWFS';
-import { CATEGORIAS } from '../shared/categorias';
+import { CATEGORIAS } from '../layers/categorias';
 
 class NavBar extends Component {
 
@@ -40,11 +40,18 @@ class NavBar extends Component {
   }
 
   toggleCategoria(event) {
-    console.log(this.state);
-    this.setState({
-      categoria: event.target.id,
-      capas: CATEGORIAS[event.target.id].capas
-    });
+    if (event.target.id == this.state.categoria){
+      this.setState({
+        categoria: '',
+        capas: null
+      });
+    }else{
+      this.setState({
+        categoria: event.target.id,
+        capas: CATEGORIAS[event.target.id].capas
+      });
+    }
+    
   }
 
   toggleDropdown(event) {

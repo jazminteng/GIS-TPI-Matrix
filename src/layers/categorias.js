@@ -1,4 +1,4 @@
-import { provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila, edif_construcciones_turisticas } from '../layers';
+import { provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila, edif_construcciones_turisticas } from '.';
 
 export const CATEGORIAS = {
     habitacional: { title: "Habitacional y Cultural", capas: {} },

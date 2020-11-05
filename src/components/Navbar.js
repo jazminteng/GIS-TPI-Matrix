@@ -14,17 +14,17 @@ import {
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import NavCapasWFS from './NavCapasWFS';
-import CATEGORIAS from '../shared/categorias';
+import { CATEGORIAS } from '../shared/categorias';
 
-class NavBar extends Component{
+class NavBar extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.toggleCapasWMS = this.toggleCapasWMS.bind(this);
     this.toggleCapasWFS = this.toggleCapasWFS.bind(this);
-    this.toggleCollapse= this.toggleCollapse.bind(this);
-    this.toggleDropdown= this.toggleDropdown.bind(this);
-    this.toggleCategoria= this.toggleCategoria.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleCategoria = this.toggleCategoria.bind(this);
 
 
 
@@ -39,75 +39,60 @@ class NavBar extends Component{
     }
   }
 
-  toggleCategoria(event){
+  toggleCategoria(event) {
+    console.log(this.state);
     this.setState({
       categoria: event.target.id,
+      capas: CATEGORIAS[event.target.id].capas
     });
   }
 
-  toggleDropdown(event){
+  toggleDropdown(event) {
     this.setState({
       isDropdownOpen: !this.state.isDropdownOpen,
       dropdownValue: event.currentTarget.textContent
     });
   }
 
-  toggleCapasWMS(){
+  toggleCapasWMS() {
     this.setState({
       isCapasWMSOpen: !this.state.isCapasWMSOpen
     });
   }
 
-  toggleCapasWFS(){
+  toggleCapasWFS() {
     this.setState({
       isCapasWFSOpen: !this.state.isCapasWFSOpen
     });
   }
 
-  toggleCollapse(){
+  toggleCollapse() {
     this.setState({
       isCollapseOpen: !this.state.isCollapseOpen
     });
   }
 
-  render(){
+  render() {
+
+    const navlinks = [];
+
+    for (const index in CATEGORIAS) {
+      navlinks.push(<NavLink onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
+    }
+
     return (
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Bievenido a mapita</NavbarBrand>
           <NavbarToggler onClick={this.toggleCollapse} />
+
           <Collapse isOpen={this.state.isCollapseOpen} navbar>
             <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="habitacional"> Habitacional y Cultural </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="hidrografia"> Hidrografía </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="instituciones"> Inst. Públicas y de Seguiridad </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="limite"> Límite Político </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="relieve"> Relieve </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="suelos"> Suelos </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="transporte"> Transporte </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="vegetacion"> Vegetación </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.toggleCategoria} id="otros" > Otros </NavLink>
-              </NavItem>
+              {navlinks}
             </Nav>
+
             <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
-              <DropdownToggle 
+              <DropdownToggle
                 tag="span"
                 data-toggle="dropdown"
                 onClick={this.toggleDropdown}>
@@ -141,9 +126,14 @@ class NavBar extends Component{
                 <DropdownItem onClick={this.toggleDropdown}>de morir</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+
           </Collapse>
         </Navbar>
-        <NavCapasWMS capas={this.state.capas} />
+        
+        {this.state.categoria !== '' &&
+          <NavCapasWMS capas={this.state.capas} />
+        }
+        
         <NavCapasWFS isCapasWFSOpen={this.state.isCapasWFSOpen} />
 
       </div>

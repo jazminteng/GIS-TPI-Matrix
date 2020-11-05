@@ -1,11 +1,13 @@
+import { provincias, red_vial, espejo_de_agua_hid, veg_arborea, veg_cultivos, veg_hidrofila, edif_construcciones_turisticas } from '../layers';
+
 export const CATEGORIAS = {
-    habitacional: {name: "Habitacional y Cultural",capas: {caps, otracap}},
-    hidrografia: {name: "Hidrografía",capas: {caps, otracap}},
-    instituciones: {name: "Inst. Públicas y de Seguiridad",capas: {caps, otracap}},
-    limite: {name: "Límite Político",capas: {caps, otracap}},
-    relieve: {name: "Relieve",capas: {caps, otracap}},
-    suelos: {name: "Suelos",capas: {caps, otracap}},
-    transporte: {name: "Transporte",capas: {caps, otracap}},
-    vegetacion: {name: "Vegetación",capas: {caps, otracap}},
-    otros: {name: "Otros",capas: {caps, otracap}},
+    habitacional: { title: "Habitacional y Cultural", capas: {} },
+    hidrografia: { title: "Hidrografía", capas: {} },
+    instituciones: { title: "Inst. Públicas y de Seguiridad", capas: {} },
+    limite: { title: "Límite Político", capas: { provincias } },
+    relieve: { title: "Relieve", capas: {} },
+    suelos: { title: "Suelos", capas: {} },
+    transporte: { title: "Transporte", capas: { red_vial } },
+    vegetacion: { title: "Vegetación", capas: {} },
+    otros: { title: "Otros", capas: {} },
 }

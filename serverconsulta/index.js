@@ -5,6 +5,27 @@ const port = 3001
 
 app.use(express.json());
 
+const db = new Pool({
+    user: 'matrix',
+    host: 'localhost',
+    database: 'matrix',
+    password: 'matrix',
+    port: 5432,
+})
+
+db.on('error', (err, client) => {
+    console.error('Unexpected error on idle client', err)
+    process.exit(-1)
+})
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
+    next();
+});
+
+
 function consultar(consulta) {
     return new Promise((resolver, rechazar) => {
         db.connect()
@@ -50,111 +71,87 @@ function tipoGeometria(tabla) {
     })
 }
 
-const db = new Pool({
-    user: 'matrix',
-    host: 'localhost',
-    database: 'matrix',
-    password: 'matrix',
-    port: 5432,
-})
-
-db.on('error', (err, client) => {
-    console.error('Unexpected error on idle client', err)
-    process.exit(-1)
-})
-
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
-    next();
-});
-
 app.get('/', (req, res) => {
     res.status(200).send('Hello World!');
 })
 
 app.post('/punto', (req, res) => {
-    const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')';
+    const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')'
 
-    tipoGeometria(req.body.tabla).then(tipo => {
-        const tolerancia = 4;
+    tipoGeometria(req.body.tabla)
+        .then(tipo => {
+            const tolerancia = 4 // pixeles
 
-        let consulta = `SELECT * FROM ${req.body.tabla} `;
-        
-        if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
-            consulta = consulta.concat(`WHERE
+            let consulta = `SELECT * FROM ${req.body.tabla} `;
+
+            if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
+                consulta = consulta.concat(`WHERE
             st_intersects(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
-            )`);
-        } else if (tipo['st_geometrytype'] == 'ST_Point') {
-            consulta = consulta.concat(`WHERE
+            )`)
+            } else if (tipo['st_geometrytype'] == 'ST_Point') {
+                consulta = consulta.concat(`WHERE
             st_dwithin(
                 ST_geomfromtext('${wkt}', 4326),
                 geom,
-                ${tolerancia*req.body.pixel}
-            )`);
-        } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
-            consulta = consulta.concat(`WHERE
+                ${tolerancia * req.body.pixel}
+            )`)
+            } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
+                consulta = consulta.concat(`WHERE
             st_dwithin(
                 ST_geomfromtext('${wkt}', 4326),
                 geom,
-                ${tolerancia*req.body.pixel}
-            )`);
-        }
-
-        consultar(consulta)
-            .then((result) => {
-                res.status(200).send(result);
-            })
-            .catch((error) => {
-                res.status(200).send(error);
-            })
-
-    }).catch(e => { console.log('Error') });
+                ${tolerancia * req.body.pixel}
+            )`)
+            }
+            return consulta
+        }).then(consulta => consultar(consulta)
+        ).then(result => {
+            res.status(200).send(result)
+        }).catch(error => {
+            res.status(200).send(error)
+        })
 
 })
 
 app.post('/caja', (req, res) => {
     const coordinate = req.body.coordinates;
-    var wkt = 'POLYGON((';
+    var wkt = 'POLYGON(('
     for (var i = 0; i < coordinate[0].length - 1; i++) {
-        wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';
+        wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ','
     }
-    wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))';
+    wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))'
 
-    tipoGeometria(req.body.tabla).then(tipo => {
-        let consulta = `SELECT * FROM ${req.body.tabla} `;
-        if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
-            consulta = consulta.concat(`WHERE
+    tipoGeometria(req.body.tabla)
+        .then(tipo => {
+            let consulta = `SELECT * FROM ${req.body.tabla} `
+            if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
+                consulta = consulta.concat(`WHERE
             st_intersects(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
-            )`);
-        } else if (tipo['st_geometrytype'] == 'ST_Point') {
-            consulta = consulta.concat(`WHERE
-            st_contains(
+            )`)
+            } else if (tipo['st_geometrytype'] == 'ST_Point') {
+                consulta = consulta.concat(`WHERE
+            st_containss(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
-            )`);
-        } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
-            consulta = consulta.concat(`WHERE
+            )`)
+            } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
+                consulta = consulta.concat(`WHERE
             st_intersects(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
-            )`);
-        }
-
-        consultar(consulta)
-            .then((result) => {
-                res.status(200).send(result);
-            })
-            .catch((error) => {
-                res.status(200).send(error);
-            })
-
-    }).catch(e => { console.log('Error') });
+            )`)
+            }
+            return consulta
+        }).then(consulta => consultar(consulta)
+        ).then(result => {
+            res.status(200).send(result)
+        }).catch(error => {
+            res.status(200).send(error)
+        })
 
 })
 

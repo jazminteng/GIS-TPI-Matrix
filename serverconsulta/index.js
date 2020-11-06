@@ -17,9 +17,12 @@ function consultar(consulta) {
                             resolver({ msg: 'No hay resultados.' });
                         }
                         else {
-                            resolver({ consulta: result.rows });
+                            const resultado = result.rows.map((fila) => {
+                                delete fila.geom;
+                                return fila;
+                            })
+                            resolver({ resultado: resultado });
                         }
-                        console.log(result.rows[1])
                     })
                     .catch(err => {
                         client.release()
@@ -30,26 +33,22 @@ function consultar(consulta) {
     });
 }
 
-var consultsdad = function (coordinate) {
+function tipoGeometria(tabla) {
+    const consulta = `SELECT ST_GeometryType(geom) FROM ${tabla} LIMIT 1`;
 
-
-    console.log(coordinate);
-    if (coordinate.length == 2) {
-        //es un punto [lon,lat]
-        var wkt = 'POINT(' + coordinate[0] + ' ' + coordinate[1] + ')';
-    } else {
-        //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
-        var wkt = 'POLYGON((';
-        for (var i = 0; i < coordinate[0].length - 1; i++) {
-            wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';
-        }
-        wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))'
-    }
-    console.log(wkt);
-    window.open('consulta.php?wkt=' + wkt);
-
-};
-
+    return new Promise((resolver, rechazar) => {
+        db.connect()
+            .then(client => {
+                const algo = client
+                    .query(consulta)
+                    .then(result => { client.release(); resolver(result.rows[0]) })
+            })
+            .catch(err => {
+                client.release()
+                rechazar('na');
+            })
+    })
+}
 
 const db = new Pool({
     user: 'matrix',
@@ -76,25 +75,87 @@ app.get('/', (req, res) => {
 })
 
 app.post('/punto', (req, res) => {
-    console.log(req.body);
+    const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')';
 
-    var wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')';
+    tipoGeometria(req.body.tabla).then(tipo => {
+        let consulta = `SELECT * FROM ${req.body.tabla} `;
+        if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        } else if (tipo['st_geometrytype'] == 'ST_Point') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        }
 
-    //if(req.body.tabla pertenece a tal tipo, cambiar la consulta)
+        consultar(consulta)
+            .then((result) => {
+                res.status(200).send(result);
+            })
+            .catch((error) => {
+                res.status(200).send(error);
+            })
 
-    const consulta = `SELECT * FROM ${req.body.tabla} WHERE
-    st_intersects(
-        ST_geomfromtext('${wkt}', 4326),
-        geom
-    )`;
+    }).catch(e => { console.log('Error') });
 
-    consultar(consulta)
-        .then((result)=>{
-            res.status(200).send(result);
-        })
-        .catch((error)=>{
-            res.status(200).send(error);
-        })
+})
+
+app.post('/caja', (req, res) => {
+    const coordinate = req.body.coordinates;
+    if (coordinate.length == 2) {
+        //es un punto [lon,lat]
+        var wkt = 'POINT(' + coordinate[0] + ' ' + coordinate[1] + ')';
+    } else {
+        //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
+        var wkt = 'POLYGON((';
+        for (var i = 0; i < coordinate[0].length - 1; i++) {
+            wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';
+        }
+        wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))'
+    }
+
+    tipoGeometria(req.body.tabla).then(tipo => {
+        let consulta = `SELECT * FROM ${req.body.tabla} `;
+        if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        } else if (tipo['st_geometrytype'] == 'ST_Point') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
+            consulta = consulta.concat(`WHERE
+            st_intersects(
+                ST_geomfromtext('${wkt}', 4326),
+                geom
+            )`);
+        }
+
+        consultar(consulta)
+            .then((result) => {
+                res.status(200).send(result);
+            })
+            .catch((error) => {
+                res.status(200).send(error);
+            })
+
+    }).catch(e => { console.log('Error') });
 
 })
 

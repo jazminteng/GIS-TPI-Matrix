@@ -26,7 +26,7 @@ class NavCapasWMS extends Component {
 
     return (
       <div>
-        <Nav>
+        <Nav color="light">
           {items}
         </Nav>
       </div>

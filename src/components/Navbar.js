@@ -14,7 +14,6 @@ import {
   DropdownItem
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
-import NavCapasWFS from './NavCapasWFS';
 import { CATEGORIAS } from '../layers/categorias';
 
 class NavBar extends Component {
@@ -75,8 +74,6 @@ class NavBar extends Component {
         {this.state.categoria !== '' &&
           <NavCapasWMS capas={this.state.capas} />
         }
-        
-        <NavCapasWFS isCapasWFSOpen={this.state.isCapasWFSOpen} />
 
       </div>
     );

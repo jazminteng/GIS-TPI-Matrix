@@ -5,5 +5,12 @@
 
 .active {
     color: red;
-    background-color: black;
-  }
+    background-color: lightgreen;
+}
+
+.chill{
+    background-color: lightblue;
+}
+.no{
+    background-color: white;
+}

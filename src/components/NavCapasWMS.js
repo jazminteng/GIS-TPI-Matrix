@@ -21,7 +21,6 @@ class NavCapasWMS extends Component {
     const capas = this.props.capas;
 
     for (const index in capas) {
-      console.log(index);
       items.push(<NavLink className={capas[index].getVisible() ? "active" : "inactive"} id={index} onClick={() => this.mostrarCapa(capas[index])}>{capas[index].getProperties().title}</NavLink>)
     }
 

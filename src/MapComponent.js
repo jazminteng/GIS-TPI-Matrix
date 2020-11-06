@@ -88,11 +88,7 @@ export default class MapComponent extends React.Component {
       console.log(this.map);
       map.addOverlay(overlay);
     });
-    // Cajita con el Ctrl+Click
-    var dragBox = new DragBox({
-      condition: platformModifierKeyOnly,
-    });
-    map.addInteraction(dragBox);
+    
 
     this.moveToSaladas = this.moveToSaladas.bind(this);
       moveToSaladas() {
@@ -101,6 +97,18 @@ export default class MapComponent extends React.Component {
     this.map.getView().setZoom(15);
   }
   */
+
+  // Cajita con el Ctrl+Click
+  var dragBox = new DragBox({
+    condition: platformModifierKeyOnly,
+  });
+  this.map.addInteraction(dragBox);
+  dragBox.on('boxend', function (evt) {
+  //this: referencia al selectInteraction
+  console.log('boxend', this.getGeometry().getCoordinates());
+  //consultar(selectInteraction.getGeometry().getCoordinates());
+
+});
   }
 
   // <h4> Mapa </h4>

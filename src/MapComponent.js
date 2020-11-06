@@ -6,13 +6,8 @@ import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
 
-//Funciones OpenLayers
-import { toStringHDMS } from 'ol/coordinate';
-import Overlay from 'ol/Overlay';
-// import { transform } from 'ol/proj';
-
 // Interacciones
-import { DragBox, Select } from 'ol/interaction';
+import { DragBox } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 
 // Capas
@@ -30,9 +25,6 @@ import {
 
 // Controles
 import { scaleControl } from './controls';
-// import { ZoomToExtent } from 'ol/control'
-
-// require('ol/ol.css'); no hace falta esto aca xd
 
 import NavBar from './components/Navbar';
 
@@ -123,11 +115,11 @@ export default class MapComponent extends React.Component {
     this.map.addInteraction(dragBox);
     // Cambio de interaccion
     var seleccionarControl = function () {
-      if (this.state.modo == "consulta") {
+      if (this.state.modo === "consulta") {
         this.map.addInteraction(dragBox);
         this.map.on('click', clickEnMapa);
 
-      } else if (this.state.modo == "navegacion") {
+      } else if (this.state.modo === "navegacion") {
         this.map.removeInteraction(dragBox);
         this.map.un('click', clickEnMapa);
       }

@@ -2,11 +2,9 @@ import 'ol/ol.css';
 import Circle from 'ol/geom/Circle';
 import Feature from 'ol/Feature';
 import GeoJSON from 'ol/format/GeoJSON';
-import Map from 'ol/Map';
-import View from 'ol/View';
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
-import {OSM, Vector as VectorSource} from 'ol/source';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+import { Vector as VectorSource} from 'ol/source';
+import { Vector as VectorLayer} from 'ol/layer';
 
 var image = new CircleStyle({
     radius: 5,

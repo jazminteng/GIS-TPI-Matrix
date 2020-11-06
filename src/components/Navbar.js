@@ -6,15 +6,9 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   NavLink,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
-import NavCapasWFS from './NavCapasWFS';
 import { CATEGORIAS } from '../layers/categorias';
 
 class NavBar extends Component {
@@ -32,7 +26,7 @@ class NavBar extends Component {
   }
 
   toggleCategoria(event) {
-    if (event.target.id == this.state.categoria){
+    if (event.target.id === this.state.categoria){
       this.setState({
         categoria: '',
         capas: null
@@ -56,7 +50,7 @@ class NavBar extends Component {
     const navlinks = [];
 
     for (const index in CATEGORIAS) {
-      navlinks.push(<NavLink className={this.state.categoria==index ? "chill" : "no"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
+      navlinks.push(<NavLink className={this.state.categoria===index ? "chill" : "no"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
     }
 
     return (
@@ -75,8 +69,6 @@ class NavBar extends Component {
         {this.state.categoria !== '' &&
           <NavCapasWMS capas={this.state.capas} />
         }
-        
-        <NavCapasWFS isCapasWFSOpen={this.state.isCapasWFSOpen} />
 
       </div>
     );

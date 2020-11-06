@@ -1,4 +1,4 @@
-import { ScaleLine, defaults as defaultControls } from 'ol/control';
+import { ScaleLine } from 'ol/control';
 
 var scaleBarSteps = 4;
 var scaleBarText = true;

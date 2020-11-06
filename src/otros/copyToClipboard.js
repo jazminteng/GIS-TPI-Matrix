@@ -1,4 +1,3 @@
-import { transform } from 'ol/proj';
 // Place in top-left corner of screen regardless of scroll position.
 var textArea = document.createElement("textarea");
 textArea.style.position = 'fixed';

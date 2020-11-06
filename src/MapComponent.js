@@ -6,13 +6,8 @@ import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
 
-//Funciones OpenLayers
-import { toStringHDMS } from 'ol/coordinate';
-import Overlay from 'ol/Overlay';
-// import { transform } from 'ol/proj';
-
 // Interacciones
-import { DragBox, Select } from 'ol/interaction';
+import { DragBox } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 
 // Capas
@@ -30,9 +25,6 @@ import {
 
 // Controles
 import { scaleControl } from './controls';
-// import { ZoomToExtent } from 'ol/control'
-
-// require('ol/ol.css'); no hace falta esto aca xd
 
 import NavBar from './components/Navbar';
 
@@ -45,12 +37,20 @@ const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_
   infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips, edificio_de_seguridad_ips, edificio_de_salud_ips,
   edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades];
 
+const capasO = {osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
+    veg_suelo_desnudo, veg_arborea, veg_cultivos, veg_hidrofila, espejo_de_agua_hid, red_vial, limite_politico_administrativo_lim, vias_secundarias, curvas_de_nivel,
+    curso_de_agua_hid, red_ferroviaria, líneas_de_conducción_ene, muro_embalse, señalizaciones, salvado_de_obstaculo, puntos_del_terreno, puntos_de_alturas_topograficas,
+    puente_red_vial_puntos, otras_edificaciones, obra_portuaria, obra_de_comunicación, marcas_y_señales, infraestructura_hidro, estructuras_portuarias,
+    infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips, edificio_de_seguridad_ips, edificio_de_salud_ips,
+    edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades};
+
 var capaConsulta = ""; 
 
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleCapaActiva = this.toggleCapaActiva.bind(this);
     this.state = {
       isDropdownOpen: false,
       capaConsulta: 'Modo Consulta',
@@ -78,9 +78,6 @@ export default class MapComponent extends React.Component {
 
     //funcion para el evento click en el mapa
     var clickEnMapa = function (evento) {
-      //muestro por consola las coordenadas del evento
-      console.log('click', evento.coordinate);
-      //consultar(evento.coordinate);
       if (capaConsulta !== "Modo Consulta") {
         axios.post('http://localhost:3001/punto', {
           coordinates: evento.coordinate,
@@ -102,7 +99,6 @@ export default class MapComponent extends React.Component {
       condition: platformModifierKeyOnly,
     });
     dragBox.on('boxend', function (evento) {
-      console.log('boxend', this.getGeometry().getCoordinates());
       if (capaConsulta !== "Modo Consulta") {
         axios.post('http://localhost:3001/caja', {
           coordinates: this.getGeometry().getCoordinates(),
@@ -119,11 +115,11 @@ export default class MapComponent extends React.Component {
     this.map.addInteraction(dragBox);
     // Cambio de interaccion
     var seleccionarControl = function () {
-      if (this.state.modo == "consulta") {
+      if (this.state.modo === "consulta") {
         this.map.addInteraction(dragBox);
         this.map.on('click', clickEnMapa);
 
-      } else if (this.state.modo == "navegacion") {
+      } else if (this.state.modo === "navegacion") {
         this.map.removeInteraction(dragBox);
         this.map.un('click', clickEnMapa);
       }
@@ -134,18 +130,24 @@ export default class MapComponent extends React.Component {
 
   toggleDropdown(event) {
     this.setState({
+      isDropdownOpen: !this.state.isDropdownOpen
+    });
+  }
+
+  toggleCapaActiva(event) {
+    this.setState({
       isDropdownOpen: !this.state.isDropdownOpen,
-      capaConsulta: event.currentTarget.textContent
+      capaConsulta: event.currentTarget.id
     });
   }
 
   render() {
     capaConsulta = this.state.capaConsulta;
     const activelayers = [];
-    activelayers.push(<DropdownItem onClick={this.toggleDropdown}>Modo Consulta </DropdownItem>)
-    for (const index in capas) {
-      if (capas[index].getVisible()) {
-        activelayers.push(<DropdownItem id={index} onClick={this.toggleDropdown}>{capas[index].getProperties().title} </DropdownItem>)
+    activelayers.push(<DropdownItem id='Modo Consulta' onClick={this.toggleCapaActiva}>Modo Consulta </DropdownItem>)
+    for (const index in capasO) {
+      if (capasO[index].getVisible()) {
+        activelayers.push(<DropdownItem id={index} onClick={this.toggleCapaActiva}>{capasO[index].getProperties().title} </DropdownItem>)
       }
     }
     return (
@@ -166,7 +168,8 @@ export default class MapComponent extends React.Component {
                   <Button outline color="secondary">Medir distancia</Button>
                   <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
                     <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
-                      {this.state.capaConsulta}
+                      {this.state.capaConsulta !== 'Modo Consulta' && 
+                        capasO[this.state.capaConsulta].getProperties().title}
                     </DropdownToggle>
                     <DropdownMenu
                       modifiers={{

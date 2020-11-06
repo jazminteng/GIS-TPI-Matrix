@@ -118,7 +118,6 @@ app.post('/punto', (req, res) => {
 
 app.post('/caja', (req, res) => {
     const coordinate = req.body.coordinates;
-    console.log(req.body);
     var wkt = 'POLYGON((';
     for (var i = 0; i < coordinate[0].length - 1; i++) {
         wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';

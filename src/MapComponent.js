@@ -67,38 +67,6 @@ export default class MapComponent extends React.Component {
     });
     provincias.setVisible(true);
 
-    /*
-    var overlay = new Overlay({
-      element: document.getElementById('overlay'),
-      positioning: 'bottom-center'
-    });
-    // Mostrar coordenadas con click
-    this.map.on('click', function (event) {
-      // extract the spatial coordinate of the click event in map projection units
-      var coord = event.coordinate;
-      // transform it to decimal degrees
-      //var degrees = transform(coord, 'EPSG:3857', 'EPSG:4326');
-      // format a human readable version
-      var hdms = toStringHDMS(coord);
-      // update the overlay element's content
-      var element = overlay.getElement();
-      element.innerHTML = hdms;
-      // position the element (using the coordinate in the map's projection)
-      overlay.setPosition(coord);
-      // and add it to the map
-      console.log(this.map);
-      map.addOverlay(overlay);
-    });
-    
-
-    this.moveToSaladas = this.moveToSaladas.bind(this);
-      moveToSaladas() {
-    // this.map.getView().setCenter([-58.625, -28.256]);
-    this.view.setCenter([-58.625, -28.256]);
-    this.map.getView().setZoom(15);
-  }
-  */
-
     //funcion para el evento click en el mapa
     var clickEnMapa = function (evento) {
       //muestro por consola las coordenadas del evento
@@ -130,9 +98,6 @@ export default class MapComponent extends React.Component {
 
   }
 
-  // <h4> Mapa </h4>
-  // <Button color='primary' onClick={this.moveToSaladas}> Vamos a Saladas? </Button>
-
   render() {
     return (
       <div>
@@ -142,10 +107,6 @@ export default class MapComponent extends React.Component {
 
         {/* Mapa */}
         <div id="mapContainer" ref="mapContainer"> </div>
-
-
-        {/* Elemento para el click */}
-        <div id="overlay"></div>
 
       </div>
     );

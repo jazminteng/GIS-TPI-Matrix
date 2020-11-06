@@ -1,5 +1,5 @@
 const express = require('express')
-const { Client } = require('pg')
+const { Pool } = require('pg')
 const app = express()
 const port = 3001
 
@@ -21,18 +21,10 @@ var consultar = function (coordinate) {
     console.log(wkt);
     window.open('consulta.php?wkt=' + wkt);
 
-    // Aca hay que ver la operacion dependiendo del tipo de geometria de la tabla y de la seleccion
-
-    const consulta = `SELECT * FROM ${tabla} WHERE
-    st_intersects(
-        ST_geomfromtext('${wkt}', 4326),
-        geom
-    )`;
-
 };
 
 
-const client = new Client({
+const db = new Pool({
     user: 'matrix',
     host: 'localhost',
     database: 'matrix',
@@ -40,12 +32,25 @@ const client = new Client({
     port: 5432,
 })
 
-client.connect();
+db.on('error', (err, client) => {
+    console.error('Unexpected error on idle client', err)
+    process.exit(-1)
+  })
 
-const result = client.query('SELECT provincia from provincias', (err, res) => {
-    console.log(err, res)
-    client.end()
-})
+db.connect()
+  .then(client => {
+    return client
+      .query('SELECT provincia from provincias')
+      .then(res => {
+        client.release()
+        console.log(res.rows[1])
+      })
+      .catch(err => {
+        client.release()
+        console.log(err.stack)
+      })
+  })
+
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -59,7 +64,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/punto', (req, res) => {
-    client.connect();
+
     var wkt = 'POINT(' + req.body.coordinate[0] + ' ' + req.body.coordinate[1] + ')';
 
     //if(req.body.tabla pertenece a tal tipo, cambiar la consulta)
@@ -69,10 +74,7 @@ app.get('/punto', (req, res) => {
         ST_geomfromtext('${wkt}', 4326),
         geom
     )`;
-    const result = client.query('SELECT provincia from provincias', (err, res) => {
-        console.log(err, res)
-        client.end()
-    })
+
     res.status(200).send('Hello World!');
 })
 

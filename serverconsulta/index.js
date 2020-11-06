@@ -78,7 +78,10 @@ app.post('/punto', (req, res) => {
     const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')';
 
     tipoGeometria(req.body.tabla).then(tipo => {
+        const tolerancia = 4;
+
         let consulta = `SELECT * FROM ${req.body.tabla} `;
+        
         if (tipo['st_geometrytype'] == 'ST_MultiPolygon') {
             consulta = consulta.concat(`WHERE
             st_intersects(
@@ -87,15 +90,17 @@ app.post('/punto', (req, res) => {
             )`);
         } else if (tipo['st_geometrytype'] == 'ST_Point') {
             consulta = consulta.concat(`WHERE
-            st_intersects(
+            st_dwithin(
                 ST_geomfromtext('${wkt}', 4326),
-                geom
+                geom,
+                ${tolerancia*req.body.pixel}
             )`);
         } else if (tipo['st_geometrytype'] == 'ST_MultiLineString') {
             consulta = consulta.concat(`WHERE
-            st_intersects(
+            st_dwithin(
                 ST_geomfromtext('${wkt}', 4326),
-                geom
+                geom,
+                ${tolerancia*req.body.pixel}
             )`);
         }
 
@@ -113,17 +118,11 @@ app.post('/punto', (req, res) => {
 
 app.post('/caja', (req, res) => {
     const coordinate = req.body.coordinates;
-    if (coordinate.length == 2) {
-        //es un punto [lon,lat]
-        var wkt = 'POINT(' + coordinate[0] + ' ' + coordinate[1] + ')';
-    } else {
-        //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
-        var wkt = 'POLYGON((';
-        for (var i = 0; i < coordinate[0].length - 1; i++) {
-            wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';
-        }
-        wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))'
+    var wkt = 'POLYGON((';
+    for (var i = 0; i < coordinate[0].length - 1; i++) {
+        wkt += coordinate[0][i][0] + ' ' + coordinate[0][i][1] + ',';
     }
+    wkt += coordinate[0][0][0] + ' ' + coordinate[0][0][1] + '))';
 
     tipoGeometria(req.body.tabla).then(tipo => {
         let consulta = `SELECT * FROM ${req.body.tabla} `;
@@ -135,7 +134,7 @@ app.post('/caja', (req, res) => {
             )`);
         } else if (tipo['st_geometrytype'] == 'ST_Point') {
             consulta = consulta.concat(`WHERE
-            st_intersects(
+            st_contains(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
             )`);

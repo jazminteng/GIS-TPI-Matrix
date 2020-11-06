@@ -45,13 +45,15 @@ const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_
   infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips, edificio_de_seguridad_ips, edificio_de_salud_ips,
   edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades];
 
+var capaConsulta = ""; 
+
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
       isDropdownOpen: false,
-      dropdownValue: 'Modo Consulta',
+      capaConsulta: 'Modo Consulta',
     }
   }
 
@@ -74,23 +76,24 @@ export default class MapComponent extends React.Component {
     provincias.setVisible(true);
 
 
-    
     //funcion para el evento click en el mapa
     var clickEnMapa = function (evento) {
       //muestro por consola las coordenadas del evento
       console.log('click', evento.coordinate);
       //consultar(evento.coordinate);
-      axios.post('http://localhost:3001/punto', {
-        coordinates: evento.coordinate,
-        tabla: 'localidades',
-        pixel: view.getResolution()
-      })
-        .then(function (response) {
-          console.log(response);
+      if (capaConsulta !== "Modo Consulta") {
+        axios.post('http://localhost:3001/punto', {
+          coordinates: evento.coordinate,
+          tabla: capaConsulta,
+          pixel: view.getResolution()
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     };
     this.map.on('click', clickEnMapa);
 
@@ -100,17 +103,18 @@ export default class MapComponent extends React.Component {
     });
     dragBox.on('boxend', function (evento) {
       console.log('boxend', this.getGeometry().getCoordinates());
-
-      axios.post('http://localhost:3001/caja', {
-        coordinates: this.getGeometry().getCoordinates(),
-        tabla: 'provincias'
-      })
-        .then(function (response) {
-          console.log(response);
+      if (capaConsulta !== "Modo Consulta") {
+        axios.post('http://localhost:3001/caja', {
+          coordinates: this.getGeometry().getCoordinates(),
+          tabla: capaConsulta
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     });
     this.map.addInteraction(dragBox);
     // Cambio de interaccion
@@ -131,11 +135,12 @@ export default class MapComponent extends React.Component {
   toggleDropdown(event) {
     this.setState({
       isDropdownOpen: !this.state.isDropdownOpen,
-      dropdownValue: event.currentTarget.textContent
+      capaConsulta: event.currentTarget.textContent
     });
   }
 
   render() {
+    capaConsulta = this.state.capaConsulta;
     const activelayers = [];
     activelayers.push(<DropdownItem onClick={this.toggleDropdown}>Modo Consulta </DropdownItem>)
     for (const index in capas) {
@@ -161,7 +166,7 @@ export default class MapComponent extends React.Component {
                   <Button outline color="secondary">Medir distancia</Button>
                   <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
                     <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
-                      {this.state.dropdownValue}
+                      {this.state.capaConsulta}
                     </DropdownToggle>
                     <DropdownMenu
                       modifiers={{

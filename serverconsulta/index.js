@@ -3,7 +3,34 @@ const { Pool } = require('pg')
 const app = express()
 const port = 3001
 
-var consultar = function (coordinate) {
+app.use(express.json());
+
+function consultar(consulta) {
+    return new Promise((resolver, rechazar) => {
+        db.connect()
+            .then(client => {
+                return client
+                    .query(consulta)
+                    .then(result => {
+                        client.release()
+                        if (result.rows.length == 0) {
+                            resolver({ msg: 'No hay resultados.' });
+                        }
+                        else {
+                            resolver({ consulta: result.rows });
+                        }
+                        console.log(result.rows[1])
+                    })
+                    .catch(err => {
+                        client.release()
+                        rechazar({ error: 'uraura' });
+                        console.log(err.stack)
+                    })
+            })
+    });
+}
+
+var consultsdad = function (coordinate) {
 
 
     console.log(coordinate);
@@ -35,22 +62,7 @@ const db = new Pool({
 db.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)
     process.exit(-1)
-  })
-
-db.connect()
-  .then(client => {
-    return client
-      .query('SELECT provincia from provincias')
-      .then(res => {
-        client.release()
-        console.log(res.rows[1])
-      })
-      .catch(err => {
-        client.release()
-        console.log(err.stack)
-      })
-  })
-
+})
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -63,9 +75,10 @@ app.get('/', (req, res) => {
     res.status(200).send('Hello World!');
 })
 
-app.get('/punto', (req, res) => {
+app.post('/punto', (req, res) => {
+    console.log(req.body);
 
-    var wkt = 'POINT(' + req.body.coordinate[0] + ' ' + req.body.coordinate[1] + ')';
+    var wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')';
 
     //if(req.body.tabla pertenece a tal tipo, cambiar la consulta)
 
@@ -75,7 +88,14 @@ app.get('/punto', (req, res) => {
         geom
     )`;
 
-    res.status(200).send('Hello World!');
+    consultar(consulta)
+        .then((result)=>{
+            res.status(200).send(result);
+        })
+        .catch((error)=>{
+            res.status(200).send(error);
+        })
+
 })
 
 app.listen(port, () => {

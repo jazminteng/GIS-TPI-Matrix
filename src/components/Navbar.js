@@ -17,6 +17,9 @@ import NavCapasWMS from './NavCapasWMS';
 import NavCapasWFS from './NavCapasWFS';
 import { CATEGORIAS } from '../layers/categorias';
 
+import axios from 'axios';
+
+
 class NavBar extends Component {
 
   constructor(props) {
@@ -55,6 +58,17 @@ class NavBar extends Component {
   }
 
   render() {
+
+axios.post('http://localhost:3001/punto', {
+  coordinates: [0.21,0.21],
+  tabla: 'provincias'
+})
+.then(function (response) {
+  console.log(response);
+})
+.catch(function (error) {
+  console.log(error);
+});
 
     const navlinks = [];
 

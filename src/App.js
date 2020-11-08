@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
 import MapComponent from './MapComponent';
-
+import {BrowserRouter} from 'react-router-dom';
 
 
 function App() {
   return (
-    <div className="App">
-      <MapComponent/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <MapComponent/>
+      </div>
+    </BrowserRouter>
   );
 }
 

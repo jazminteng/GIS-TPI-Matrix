@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown } from 'reactstrap';
-
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
 import View from 'ol/View';
@@ -27,6 +27,8 @@ import {
 import { scaleControl } from './controls';
 
 import NavBar from './components/Navbar';
+import Resultado from './components/Resultado';
+import './css/MapComponent.css';
 
 import axios from 'axios';
 
@@ -44,7 +46,7 @@ const capasO = {osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue
     infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips, edificio_de_seguridad_ips, edificio_de_salud_ips,
     edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades};
 
-var capaConsulta = ""; 
+var capaConsulta = "";
 
 export default class MapComponent extends React.Component {
   constructor(props) {
@@ -54,10 +56,14 @@ export default class MapComponent extends React.Component {
     this.state = {
       isDropdownOpen: false,
       capaConsulta: 'Modo Consulta',
+      verResultado: false,
+      resultado:'',
     }
   }
-
+  
+  
   componentDidMount() {
+    let currentComponent = this;
 
     const view = new View({
       center: [-58.986666666667, -27.451388888889],
@@ -84,12 +90,18 @@ export default class MapComponent extends React.Component {
           tabla: capaConsulta,
           pixel: view.getResolution()
         })
-          .then(function (response) {
+          .then((response)=> {
             console.log(response);
+            currentComponent.setState({
+              verResultado: true,
+              resultado: response
+            });  
           })
-          .catch(function (error) {
+          .catch((error)=> {
             console.log(error);
+            
           });
+        
       }
     };
     this.map.on('click', clickEnMapa);
@@ -154,6 +166,12 @@ export default class MapComponent extends React.Component {
       <div>
         {/* Navbar */}
         <NavBar />
+          <Switch>
+            <Route exact path="/resultado">
+              <Resultado resultado={this.state.resultado}/>
+            </Route>
+            <Redirect to="/" />
+          </Switch>
         <Container>
           <Row>
             <Col xs="12" sm="9">
@@ -192,6 +210,9 @@ export default class MapComponent extends React.Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
+              </Row>
+              <Row>
+                <Link className={this.state.verResultado ? "link" : "disabled-link"} to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado </Link>
               </Row>
             </Col>
           </Row>

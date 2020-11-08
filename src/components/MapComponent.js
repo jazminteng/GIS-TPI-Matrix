@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Container, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown } from 'reactstrap';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Button, Container, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
 import View from 'ol/View';
@@ -21,14 +21,12 @@ import {
   infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips,
   edificio_de_seguridad_ips, edificio_de_salud_ips, edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas,
   actividades_agropecuarias, edif_construcciones_turisticas, localidades
-} from './layers';
+} from '../layers';
 
 // Controles
-import { scaleControl } from './controls';
+import { scaleControl } from '../controls';
 
-import NavBar from './components/Navbar';
-import Resultado from './components/Resultado';
-import './css/MapComponent.css';
+import '../css/MapComponent.css';
 
 import axios from 'axios';
 
@@ -63,6 +61,9 @@ export default class MapComponent extends React.Component {
   
   
   componentDidMount() {
+    this.setState({
+      verResultado: false,
+    });
     let currentComponent = this;
 
     const view = new View({
@@ -94,8 +95,8 @@ export default class MapComponent extends React.Component {
             console.log(response);
             currentComponent.setState({
               verResultado: true,
-              resultado: response
-            });  
+            });
+            currentComponent.props.setResultado(response);  
           })
           .catch((error)=> {
             console.log(error);
@@ -118,6 +119,10 @@ export default class MapComponent extends React.Component {
         })
           .then(function (response) {
             console.log(response);
+            currentComponent.setState({
+              verResultado: true,
+            });
+            currentComponent.props.setResultado(response);  
           })
           .catch(function (error) {
             console.log(error);
@@ -164,14 +169,9 @@ export default class MapComponent extends React.Component {
     }
     return (
       <div>
-        {/* Navbar */}
-        <NavBar />
-          <Switch>
-            <Route exact path="/resultado">
-              <Resultado resultado={this.state.resultado}/>
-            </Route>
-            <Redirect to="/" />
-          </Switch>
+        <Breadcrumb>
+            <BreadcrumbItem active>Home</BreadcrumbItem>
+          </Breadcrumb>
         <Container>
           <Row>
             <Col xs="12" sm="9">
@@ -180,14 +180,14 @@ export default class MapComponent extends React.Component {
             </Col>
             <Col xs="12" sm="3">
               <Row>
-                <h4> Insert Text here </h4>
                 <ButtonGroup vertical>
                   <Button outline color="secondary">Modo Navegacion</Button>
                   <Button outline color="secondary">Medir distancia</Button>
                   <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
                     <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
-                      {this.state.capaConsulta !== 'Modo Consulta' && 
-                        capasO[this.state.capaConsulta].getProperties().title}
+                      {this.state.capaConsulta !== 'Modo Consulta' 
+                        ? capasO[this.state.capaConsulta].getProperties().title
+                        : "Modo Consulta"}
                     </DropdownToggle>
                     <DropdownMenu
                       modifiers={{

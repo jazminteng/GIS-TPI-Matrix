@@ -1,9 +1,9 @@
-.inactive {
+.Navinactive {
     color: primary;
     background-color: white;
 }
 
-.active {
+.Navactive {
     color: #4E5454;
     background-color: #b4d3b2;
     border-radius: 5px;

@@ -11,32 +11,27 @@ class Resultado extends Component {
 
   render() {
     console.log("ponele que llegue");
-    if (this.props.resultado !== null){
-        console.log(this.props.resultado.data.resultado);
-    }
     const items = [];
-    const resultado = this.props.resultado.data.resultado;
+    if (this.props.resultado !== ''){
+      const resultado = this.props.resultado.data.resultado;
 
-    for (const index in resultado) {
-      items.push(
-        <tr>
-            <th scope="row">1</th>
-            <td>{resultado[index].gid}</td>
-            <td>{resultado[index].prov}</td>
-            <td>{resultado[index].provincia}</td>
-        </tr>
-      );
-      console.log(resultado[index]);
-    }
+      for (const index in resultado) {
+        items.push(
+          <tr>
+              <th scope="row">1</th>
+              <td>{resultado[index].gid}</td>
+              <td>{resultado[index].prov}</td>
+              <td>{resultado[index].provincia}</td>
+          </tr>
+        );
+      }
+    } 
     return (
       <div>
-        <h1>
-            Hola
-        </h1>
         <Breadcrumb>
-			<BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
-			<BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
-		</Breadcrumb>
+          <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
+          <BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
+        </Breadcrumb>
         <Table striped>
             <thead>
                 <tr>
@@ -47,7 +42,7 @@ class Resultado extends Component {
                 </tr>
             </thead>
             <tbody>
-                {items}
+              {items}
             </tbody>
         </Table>
       </div>

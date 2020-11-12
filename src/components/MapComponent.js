@@ -50,10 +50,12 @@ export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleModo = this.toggleModo.bind(this);
     this.toggleCapaActiva = this.toggleCapaActiva.bind(this);
     this.state = {
       isDropdownOpen: false,
-      capaConsulta: 'Modo Consulta',
+      capaConsulta: 'Seleccionar capa',
+      modo: 'Navegacion',
       verResultado: false,
       resultado:'',
     }
@@ -85,7 +87,7 @@ export default class MapComponent extends React.Component {
 
     //funcion para el evento click en el mapa
     var clickEnMapa = function (evento) {
-      if (capaConsulta !== "Modo Consulta") {
+      if (capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/punto', {
           coordinates: evento.coordinate,
           tabla: capaConsulta,
@@ -112,7 +114,7 @@ export default class MapComponent extends React.Component {
       condition: platformModifierKeyOnly,
     });
     dragBox.on('boxend', function (evento) {
-      if (capaConsulta !== "Modo Consulta") {
+      if (capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/caja', {
           coordinates: this.getGeometry().getCoordinates(),
           tabla: capaConsulta
@@ -158,15 +160,63 @@ export default class MapComponent extends React.Component {
     });
   }
 
+  toggleModo(event) {
+    console.log(this.state.modo);
+    this.setState({
+      modo: event.currentTarget.id
+    });
+  }
+
   render() {
     capaConsulta = this.state.capaConsulta;
     const activelayers = [];
-    activelayers.push(<DropdownItem id='Modo Consulta' onClick={this.toggleCapaActiva}>Modo Consulta </DropdownItem>)
+    activelayers.push(<DropdownItem id='Seleccionar capa' onClick={this.toggleCapaActiva}>Seleccionar capa </DropdownItem>)
     for (const index in capasO) {
       if (capasO[index].getVisible()) {
         activelayers.push(<DropdownItem id={index} onClick={this.toggleCapaActiva}>{capasO[index].getProperties().title} </DropdownItem>)
       }
     }
+    const dropdown =[];
+    if (this.state.modo === 'Consulta') {
+      dropdown.push(
+          <Row>
+            <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
+                <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
+                  {this.state.capaConsulta !== 'Seleccionar capa' 
+                    ? capasO[this.state.capaConsulta].getProperties().title
+                    : "Seleccionar capa"}
+                </DropdownToggle>
+                <DropdownMenu
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: (data) => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: 'auto',
+                            maxHeight: '200px',
+                          },
+                        };
+                      },
+                    },
+                  }}>
+                  {activelayers}
+                </DropdownMenu>
+              </ButtonDropdown>
+          </Row>
+
+    );
+    if (this.state.verResultado) {
+      dropdown.push(
+      <Row>
+        <Link className={this.state.verResultado ? "link" : "disabled-link"} to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado </Link>
+      </Row>);
+    }
+    }
+    
     return (
       <div>
         <Breadcrumb>
@@ -181,39 +231,13 @@ export default class MapComponent extends React.Component {
             <Col xs="12" sm="3">
               <Row>
                 <ButtonGroup vertical>
-                  <Button outline color="secondary">Modo Navegacion</Button>
-                  <Button outline color="secondary">Medir distancia</Button>
-                  <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
-                    <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
-                      {this.state.capaConsulta !== 'Modo Consulta' 
-                        ? capasO[this.state.capaConsulta].getProperties().title
-                        : "Modo Consulta"}
-                    </DropdownToggle>
-                    <DropdownMenu
-                      modifiers={{
-                        setMaxHeight: {
-                          enabled: true,
-                          order: 890,
-                          fn: (data) => {
-                            return {
-                              ...data,
-                              styles: {
-                                ...data.styles,
-                                overflow: 'auto',
-                                maxHeight: '200px',
-                              },
-                            };
-                          },
-                        },
-                      }}>
-                      {activelayers}
-                    </DropdownMenu>
-                  </ButtonDropdown>
+                  <Button outline color="secondary" onClick={this.toggleModo} id='Navegacion'>Modo Navegacion</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} id='Distancia'>Medir distancia</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} id='Consulta'>Modo Consulta</Button>
                 </ButtonGroup>
               </Row>
-              <Row>
-                <Link className={this.state.verResultado ? "link" : "disabled-link"} to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado </Link>
-              </Row>
+              <hr class="my-4"></hr>
+                {dropdown}
             </Col>
           </Row>
         </Container>

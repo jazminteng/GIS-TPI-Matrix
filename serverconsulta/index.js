@@ -1,22 +1,12 @@
 const express = require('express')
 const { Pool } = require('pg')
+
+const db = require('./db')
+
 const app = express()
 const port = 3001
 
 app.use(express.json());
-
-const db = new Pool({
-    user: 'matrix',
-    host: 'localhost',
-    database: 'matrix',
-    password: 'matrix',
-    port: 5432,
-})
-
-db.on('error', (err, client) => {
-    console.error('Unexpected error on idle client', err)
-    process.exit(-1)
-})
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -153,6 +143,28 @@ app.post('/caja', (req, res) => {
             res.status(200).send(error)
         })
 
+})
+
+
+// Creamos una tabla y le agregamos un campo de geometria
+// SELECT AddGeometryColumn ('public','prueba','geom',4326,'POINT',2);
+app.get('/nuevoPunto', (req, res) => {
+    //const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')'
+
+    //const consulta = `INSERT INTO ${req.body.tabla} (name, geom) VALUES('Escuela San Jose',ST_geomfromtext('${wkt}', 4326))`;
+
+    const consulta = `INSERT INTO prueba (name, geom) VALUES('Escuela San Jose',ST_geomfromtext('POINT(-34.6083 -58.3712)', 4326))`;
+    
+    db.connect()
+        .then(client => {
+            const algo = client
+                .query(consulta)
+                .then(result => { client.release(); res.status(200).send(result) })
+        })
+        .catch(err => {
+            client.release()
+            res.status(404).send(error)
+        })
 })
 
 app.listen(port, () => {

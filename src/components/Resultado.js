@@ -44,7 +44,8 @@ class Resultado extends Component {
           <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
           <BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
         </Breadcrumb>
-        <Container className="themed-container" fluid={true} id='tab'>
+        <Container className="themed-container " fluid={true} id='tab'>
+          <div class=" table-wrapper-scroll-y my-custom-scrollbar">
           <Table responsive striped bordered>
               <thead>
                   <tr>
@@ -55,6 +56,7 @@ class Resultado extends Component {
                 {filatabla}
               </tbody>
           </Table>
+          </div>
         </Container>
       </div>
     );

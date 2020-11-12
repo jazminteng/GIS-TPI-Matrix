@@ -124,7 +124,7 @@ app.post('/caja', (req, res) => {
             )`)
             } else if (tipo['st_geometrytype'] == 'ST_Point') {
                 consulta = consulta.concat(`WHERE
-            st_containss(
+            st_contains(
                 ST_geomfromtext('${wkt}', 4326),
                 geom
             )`)

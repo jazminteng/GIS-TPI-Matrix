@@ -14,24 +14,29 @@ class Resultado extends Component {
     console.log("ponele que llegue");
     const colname = [];
     const filatabla = [];
+    var keys = [];
     if (this.props.resultado !== ''){
-      const resultado = this.props.resultado.data.resultado;
-      console.log('esto');
-      console.log(resultado);
-      for (const index in resultado[0]) {
-        colname.push(
-              <th>{index}</th>
-        );
-      }
-      resultado.forEach(fila => {
-        const items = [];
-        for (const index in fila) {
-          items.push(
-            <td>{fila[index]}</td>
-          )
+      keys = Object.keys(this.props.resultado.data);
+      if (keys.includes('resultado')){
+        const resultado = this.props.resultado.data.resultado;
+        for (const index in resultado[0]) {
+          colname.push(
+                <th>{index}</th>
+          );
         }
-        filatabla.push(<tr>{items}</tr>);
-      });
+        resultado.forEach(fila => {
+          const items = [];
+          for (const index in fila) {
+            items.push(
+              <td>{fila[index]}</td>
+            )
+          }
+          filatabla.push(<tr>{items}</tr>);
+        });
+      }
+      else {
+        colname.push(<h4>No se ha encontrado resultado</h4>)
+      }
     } 
     return (
       <div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Container, Table, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import '../css/Resultado.css';
 
 class Resultado extends Component {
   constructor(props) {
@@ -11,20 +12,26 @@ class Resultado extends Component {
 
   render() {
     console.log("ponele que llegue");
-    const items = [];
+    const colname = [];
+    const filatabla = [];
     if (this.props.resultado !== ''){
       const resultado = this.props.resultado.data.resultado;
-
-      for (const index in resultado) {
-        items.push(
-          <tr>
-              <th scope="row">1</th>
-              <td>{resultado[index].gid}</td>
-              <td>{resultado[index].prov}</td>
-              <td>{resultado[index].provincia}</td>
-          </tr>
+      console.log('esto');
+      console.log(resultado);
+      for (const index in resultado[0]) {
+        colname.push(
+              <th>{index}</th>
         );
       }
+      resultado.forEach(fila => {
+        const items = [];
+        for (const index in fila) {
+          items.push(
+            <td>{fila[index]}</td>
+          )
+        }
+        filatabla.push(<tr>{items}</tr>);
+      });
     } 
     return (
       <div>
@@ -32,19 +39,18 @@ class Resultado extends Component {
           <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
           <BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
         </Breadcrumb>
-        <Table striped>
-            <thead>
-                <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                </tr>
-            </thead>
-            <tbody>
-              {items}
-            </tbody>
-        </Table>
+        <Container>
+          <Table responsive striped bordered>
+              <thead>
+                  <tr>
+                  {colname}
+                  </tr>
+              </thead>
+              <tbody>
+                {filatabla}
+              </tbody>
+          </Table>
+        </Container>
       </div>
     );
 

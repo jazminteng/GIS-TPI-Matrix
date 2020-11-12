@@ -222,7 +222,7 @@ export default class MapComponent extends React.Component {
         <Breadcrumb>
             <BreadcrumbItem active>Home</BreadcrumbItem>
           </Breadcrumb>
-        <Container>
+        <Container className="themed-container" fluid={true}>
           <Row>
             <Col xs="12" sm="9">
               {/* Mapa */}

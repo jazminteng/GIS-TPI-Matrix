@@ -39,7 +39,7 @@ class Resultado extends Component {
           <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
           <BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
         </Breadcrumb>
-        <Container>
+        <Container className="themed-container" fluid={true} id='tab'>
           <Table responsive striped bordered>
               <thead>
                   <tr>

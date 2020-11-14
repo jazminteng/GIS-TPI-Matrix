@@ -143,6 +143,38 @@ export default class MapComponent extends React.Component {
     });
   }
 
+  handleBlur = (field)=>(evt)=>{
+    this.setState({
+        touched: {...this.state.touched,[field]:true}
+    });
+  }
+
+  validate(element){
+    const errors={
+      element:'',
+    };
+
+    if (this.state.touched.element && element.length < 3)
+        errors.element = 'Element Name should be >= 3 characters';
+    else if (this.state.touched.element && element.length > 10)
+        errors.element = 'Element Name should be <= 10 characters';
+    return errors;
+  }
+
+  handleInputChange(event){
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+        [name]: value
+    });
+  }
+
+  handleSubmit(event){
+    alert('Current State is: ' + JSON.stringify(this.state));
+    event.preventDefault();
+  }
+  
   toggleDropdown(event) {
     this.setState({
       isDropdownOpen: !this.state.isDropdownOpen

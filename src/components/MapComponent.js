@@ -6,17 +6,13 @@ import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
 
-
-import Overlay from 'ol/Overlay'
-import Draw from 'ol/interaction/Draw'
-import { Style, Fill, Stroke, Circle as CircleStyle } from 'ol/style'
-import { Vector as VectorSource } from 'ol/source';
-import { getLength} from 'ol/sphere';
+//import { clickEnMapa, dragBox } from '../interactions/consulta'
+import { helpTooltip, pointerMoveHandler, measureTooltip, draw } from '../interactions/medicion'
 
 // Interacciones
 import { DragBox } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
-
+import axios from 'axios';
 
 
 // Capas
@@ -37,7 +33,6 @@ import { scaleControl } from '../controls';
 
 import '../css/MapComponent.css';
 
-import axios from 'axios';
 
 const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
   veg_suelo_desnudo, veg_arborea, veg_cultivos, veg_hidrofila, espejo_de_agua_hid, red_vial, limite_politico_administrativo_lim, vias_secundarias, curvas_de_nivel,
@@ -79,7 +74,6 @@ export default class MapComponent extends React.Component {
     }
   }
 
-
   componentDidMount() {
     this.setState({
       verResultado: false,
@@ -102,9 +96,8 @@ export default class MapComponent extends React.Component {
     });
     provincias.setVisible(true);
 
-
     //funcion para el evento click en el mapa
-    var clickEnMapa = function (evento) {
+    this.clickEnMapa = function (evento) {
       if (capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/punto', {
           coordinates: evento.coordinate,
@@ -125,13 +118,12 @@ export default class MapComponent extends React.Component {
 
       }
     };
-    this.map.on('click', clickEnMapa);
 
     // Cajita con el Ctrl+Click
-    var dragBox = new DragBox({
+    this.dragBox = new DragBox({
       condition: platformModifierKeyOnly,
     });
-    dragBox.on('boxend', function (evento) {
+    this.dragBox.on('boxend', function (evento) {
       if (capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/caja', {
           coordinates: this.getGeometry().getCoordinates(),
@@ -149,135 +141,6 @@ export default class MapComponent extends React.Component {
           });
       }
     });
-    this.map.addInteraction(dragBox);
-    // Cambio de interaccion
-    var seleccionarControl = function () {
-      if (this.state.modo === "consulta") {
-        this.map.addInteraction(dragBox);
-        this.map.on('click', clickEnMapa);
-
-      } else if (this.state.modo === "Navegacion") {
-        this.map.removeInteraction(dragBox);
-        this.map.un('click', clickEnMapa);
-      }
-    };
-
-   
-    /////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Defino el mensaje de ayuda a mostrarse
-    var helpTooltipElement = document.createElement('p');
-
-    var helpTooltip;
-    helpTooltipElement = document.createElement('div');
-    helpTooltipElement.className = 'ol-tooltip';
-    helpTooltip = new Overlay({
-      element: helpTooltipElement,
-      offset: [15, 0],
-      positioning: 'center-left',
-    });
-    this.map.addOverlay(helpTooltip);
-
-    // Si el puntero se mueve, cambio la posicion del mensaje de ayuda
-    var pointerMoveHandler = function (evt) {
-      if (evt.dragging) {
-        return;
-      }
-
-      var helpMsg = 'Click to start drawing';
-
-      helpTooltipElement.innerHTML = helpMsg;
-      helpTooltip.setPosition(evt.coordinate);
-
-    };
-    this.map.on('pointermove', pointerMoveHandler); // Agrego el listener
-
-
-    // Defino el dibujito de la linea y el circulito
-    const draw = new Draw({
-      source: new VectorSource(),
-      type: 'LineString',
-      style: new Style({
-        fill: new Fill({
-          color: 'rgba(255, 255, 255, 0.2)',
-        }),
-        stroke: new Stroke({
-          color: 'rgba(0, 0, 0, 0.5)',
-          lineDash: [10, 10],
-          width: 2,
-        }),
-        image: new CircleStyle({
-          radius: 5,
-          stroke: new Stroke({
-            color: 'rgba(0, 0, 0, 0.7)',
-          }),
-          fill: new Fill({
-            color: 'rgba(255, 255, 255, 0.2)',
-          }),
-        }),
-      }),
-    });
-    this.map.addInteraction(draw);  // Agrego la interaccion
-
-      // Mensajito del kilometraje del vehiculo
-      var measureTooltipElement = document.createElement('div');
-      measureTooltipElement.className = 'ol-tooltip ol-tooltip-measure';
-      const measureTooltip = new Overlay({
-        element: measureTooltipElement,
-        offset: [0, -15],
-        positioning: 'bottom-center',
-      });
-      this.map.addOverlay(measureTooltip);
-
-      // Formateo el kilometraje
-      var formatLength = function (line) {
-        var length = getLength(line);
-        var output = Math.round(length * 10000) / 100 + ' ' + 'km';
-        return output;
-      };
-      // Este actualiza el mensajito del kilometraje cuando se empieza a dibujar
-      draw.on('drawstart', function (evt) {
-        helpTooltipElement.classList.add('hidden');
-        var sketch = evt.feature;
-        sketch.getGeometry().on('change', function (evt) {
-          var geom = evt.target;
-          var tooltipCoord = geom.getLastCoordinate();
-          measureTooltipElement.innerHTML = formatLength(geom);
-          measureTooltip.setPosition(tooltipCoord);
-        });
-      });
-  }
-
-  handleBlur = (field)=>(evt)=>{
-    this.setState({
-        touched: {...this.state.touched,[field]:true}
-    });
-  }
-
-  validate(element){
-    const errors={
-      element:'',
-    };
-
-    if (this.state.touched.element && element.length < 3)
-        errors.element = 'Element Name should be >= 3 characters';
-    else if (this.state.touched.element && element.length > 10)
-        errors.element = 'Element Name should be <= 10 characters';
-    return errors;
-  }
-
-  handleInputChange(event){
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    this.setState({
-        [name]: value
-    });
-  }
-
-  handleSubmit(event){
-    alert('Current State is: ' + JSON.stringify(this.state));
-    event.preventDefault();
   }
 
   toggleDropdown(event) {
@@ -294,7 +157,25 @@ export default class MapComponent extends React.Component {
   }
 
   toggleModo(event) {
-    console.log(this.state.modo);
+    this.map.removeInteraction(this.dragBox);
+    this.map.un('click', this.clickEnMapa);
+
+    this.map.removeOverlay(helpTooltip);
+    this.map.un('pointermove', pointerMoveHandler);
+    this.map.removeOverlay(measureTooltip);
+    this.map.removeInteraction(draw); 
+
+    if (event.currentTarget.id === "Consulta") {
+      this.map.on('click', this.clickEnMapa);
+      this.map.addInteraction(this.dragBox);
+
+    } else if (event.currentTarget.id === "Distancia") {
+      this.map.addOverlay(helpTooltip);
+      this.map.on('pointermove', pointerMoveHandler);
+      this.map.addOverlay(measureTooltip);
+      this.map.addInteraction(draw);
+    }
+
     this.setState({
       modo: event.currentTarget.id
     });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
@@ -57,10 +57,12 @@ const capasO = {
 
 var capaConsulta = "";
 
-
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSubmit= this.handleSubmit.bind(this);
+    this.handleInputChange= this.handleInputChange.bind(this);
+    this.handleBlur=this.handleBlur.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleModo = this.toggleModo.bind(this);
     this.toggleCapaActiva = this.toggleCapaActiva.bind(this);
@@ -70,6 +72,10 @@ export default class MapComponent extends React.Component {
       modo: 'Navegacion',
       verResultado: false,
       resultado: '',
+      element:'',
+      touched:{
+        element: false,
+      }
     }
   }
 
@@ -156,7 +162,7 @@ export default class MapComponent extends React.Component {
       }
     };
 
-
+   
     /////////////////////////////////////////////////////////////////////////////////////////////
 
     // Defino el mensaje de ayuda a mostrarse
@@ -186,6 +192,7 @@ export default class MapComponent extends React.Component {
     };
     this.map.on('pointermove', pointerMoveHandler); // Agrego el listener
 
+
     // Defino el dibujito de la linea y el circulito
     const draw = new Draw({
       source: new VectorSource(),
@@ -212,34 +219,65 @@ export default class MapComponent extends React.Component {
     });
     this.map.addInteraction(draw);  // Agrego la interaccion
 
-    // Mensajito del kilometraje del vehiculo
-    var measureTooltipElement = document.createElement('div');
-    measureTooltipElement.className = 'ol-tooltip ol-tooltip-measure';
-    const measureTooltip = new Overlay({
-      element: measureTooltipElement,
-      offset: [0, -15],
-      positioning: 'bottom-center',
-    });
-    this.map.addOverlay(measureTooltip);
-
-    // Formateo el kilometraje
-    var formatLength = function (line) {
-      var length = getLength(line);
-      var output = Math.round(length * 10000) / 100 + ' ' + 'km';
-      return output;
-    };
-    // Este actualiza el mensajito del kilometraje cuando se empieza a dibujar
-    draw.on('drawstart', function (evt) {
-      helpTooltipElement.classList.add('hidden');
-      var sketch = evt.feature;
-      sketch.getGeometry().on('change', function (evt) {
-        var geom = evt.target;
-        var tooltipCoord = geom.getLastCoordinate();
-        measureTooltipElement.innerHTML = formatLength(geom);
-        measureTooltip.setPosition(tooltipCoord);
+      // Mensajito del kilometraje del vehiculo
+      var measureTooltipElement = document.createElement('div');
+      measureTooltipElement.className = 'ol-tooltip ol-tooltip-measure';
+      const measureTooltip = new Overlay({
+        element: measureTooltipElement,
+        offset: [0, -15],
+        positioning: 'bottom-center',
       });
-    });
+      this.map.addOverlay(measureTooltip);
 
+      // Formateo el kilometraje
+      var formatLength = function (line) {
+        var length = getLength(line);
+        var output = Math.round(length * 10000) / 100 + ' ' + 'km';
+        return output;
+      };
+      // Este actualiza el mensajito del kilometraje cuando se empieza a dibujar
+      draw.on('drawstart', function (evt) {
+        helpTooltipElement.classList.add('hidden');
+        var sketch = evt.feature;
+        sketch.getGeometry().on('change', function (evt) {
+          var geom = evt.target;
+          var tooltipCoord = geom.getLastCoordinate();
+          measureTooltipElement.innerHTML = formatLength(geom);
+          measureTooltip.setPosition(tooltipCoord);
+        });
+      });
+  }
+
+  handleBlur = (field)=>(evt)=>{
+    this.setState({
+        touched: {...this.state.touched,[field]:true}
+    });
+  }
+
+  validate(element){
+    const errors={
+      element:'',
+    };
+
+    if (this.state.touched.element && element.length < 3)
+        errors.element = 'Element Name should be >= 3 characters';
+    else if (this.state.touched.element && element.length > 10)
+        errors.element = 'Element Name should be <= 10 characters';
+    return errors;
+  }
+
+  handleInputChange(event){
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+        [name]: value
+    });
+  }
+
+  handleSubmit(event){
+    alert('Current State is: ' + JSON.stringify(this.state));
+    event.preventDefault();
   }
 
   toggleDropdown(event) {
@@ -263,7 +301,7 @@ export default class MapComponent extends React.Component {
   }
 
   render() {
-
+    const errors = this.validate(this.state.element);
     capaConsulta = this.state.capaConsulta;
     const activelayers = [];
     activelayers.push(<DropdownItem id='Seleccionar capa' onClick={this.toggleCapaActiva}>Seleccionar capa </DropdownItem>)
@@ -272,6 +310,35 @@ export default class MapComponent extends React.Component {
         activelayers.push(<DropdownItem id={index} onClick={this.toggleCapaActiva}>{capasO[index].getProperties().title} </DropdownItem>)
       }
     }
+    const input = [];
+    if (this.state.modo === 'AddFeature') {
+      input.push(
+        <div>
+          <Form onSubmit={this.handleSubmit}>                            
+            <FormGroup row>
+              <Label htmlFor='element' md={10}>Nombre del elemento</Label>
+              <Col md={10}>
+                <Input type='text' id='element' name='element'
+                placeholder='Nombre del elemento' value={this.state.element}
+                onChange={this.handleInputChange}
+                    placeholder="Nombre del elemento"
+                    value={this.state.element}
+                    valid={errors.element ==='' && this.state.element !== ''}
+                    invalid={errors.element !==''}
+                    onBlur={this.handleBlur('element')}
+                    onChange={this.handleInputChange}/>
+                <FormFeedback>{errors.element}</FormFeedback>
+              </Col>
+              <Col>
+                <Button type='submit' outline color="secondary">Agregar</Button>
+              </Col>
+            </FormGroup>
+          </Form>
+        </div>
+      );
+    
+    }
+
     const dropdown = [];
     if (this.state.modo === 'Consulta') {
       dropdown.push(
@@ -324,16 +391,19 @@ export default class MapComponent extends React.Component {
               {/* Mapa */}
               <div id="mapContainer" ref="mapContainer"> </div>
             </Col>
-            <Col xs="12" sm="3">
+            <Col xs="12" sm="3" >
               <Row>
                 <ButtonGroup vertical>
                   <Button outline color="secondary" onClick={this.toggleModo} id='Navegacion'>Modo Navegacion</Button>
                   <Button outline color="secondary" onClick={this.toggleModo} id='Distancia'>Medir distancia</Button>
                   <Button outline color="secondary" onClick={this.toggleModo} id='Consulta'>Modo Consulta</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} id='AddFeature'>Ingresar Elementos</Button>
                 </ButtonGroup>
               </Row>
+              
               <hr class="my-4"></hr>
               {dropdown}
+              {input}
             </Col>
           </Row>
         </Container>

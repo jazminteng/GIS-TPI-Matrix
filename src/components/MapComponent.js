@@ -55,20 +55,26 @@ var capaConsulta = "";
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit= this.handleSubmit.bind(this);
-    this.handleInputChange= this.handleInputChange.bind(this);
-    this.handleBlur=this.handleBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleModo = this.toggleModo.bind(this);
     this.toggleCapaActiva = this.toggleCapaActiva.bind(this);
+    this.sendGeom = this.sendGeom.bind(this);
+
+    this.clickNewGeom = (evento) => {
+      this.geom = evento.coordinate;
+    }
+
     this.state = {
       isDropdownOpen: false,
       capaConsulta: 'Seleccionar capa',
       modo: 'Navegacion',
       verResultado: false,
       resultado: '',
-      element:'',
-      touched:{
+      element: '',
+      touched: {
         element: false,
       }
     }
@@ -113,9 +119,7 @@ export default class MapComponent extends React.Component {
           })
           .catch((error) => {
             console.log(error);
-
           });
-
       }
     };
 
@@ -143,38 +147,38 @@ export default class MapComponent extends React.Component {
     });
   }
 
-  handleBlur = (field)=>(evt)=>{
+  handleBlur = (field) => (evt) => {
     this.setState({
-        touched: {...this.state.touched,[field]:true}
+      touched: { ...this.state.touched, [field]: true }
     });
   }
 
-  validate(element){
-    const errors={
-      element:'',
+  validate(element) {
+    const errors = {
+      element: '',
     };
 
     if (this.state.touched.element && element.length < 3)
-        errors.element = 'Element Name should be >= 3 characters';
+      errors.element = 'Element Name should be >= 3 characters';
     else if (this.state.touched.element && element.length > 10)
-        errors.element = 'Element Name should be <= 10 characters';
+      errors.element = 'Element Name should be <= 10 characters';
     return errors;
   }
 
-  handleInputChange(event){
+  handleInputChange(event) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
     this.setState({
-        [name]: value
+      [name]: value
     });
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     alert('Current State is: ' + JSON.stringify(this.state));
     event.preventDefault();
   }
-  
+
   toggleDropdown(event) {
     this.setState({
       isDropdownOpen: !this.state.isDropdownOpen
@@ -195,7 +199,9 @@ export default class MapComponent extends React.Component {
     this.map.removeOverlay(helpTooltip);
     this.map.un('pointermove', pointerMoveHandler);
     this.map.removeOverlay(measureTooltip);
-    this.map.removeInteraction(draw); 
+    this.map.removeInteraction(draw);
+
+    this.map.un('click', this.clickNewGeom);
 
     if (event.currentTarget.id === "Consulta") {
       this.map.on('click', this.clickEnMapa);
@@ -206,11 +212,28 @@ export default class MapComponent extends React.Component {
       this.map.on('pointermove', pointerMoveHandler);
       this.map.addOverlay(measureTooltip);
       this.map.addInteraction(draw);
+    } else if (event.currentTarget.id === "AddFeature") {
+      this.map.on('click', this.clickNewGeom);
     }
 
     this.setState({
       modo: event.currentTarget.id
     });
+  }
+
+  sendGeom(event) {
+    if (this.geom) {
+      axios.post('http://localhost:3001/nuevoPunto', {
+        coordinates: this.geom,
+        name: this.state.element
+      })
+        .then(response => {
+          console.log(response);    // Revisar que hacer con el okey (status 200)
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
   render() {
@@ -227,29 +250,29 @@ export default class MapComponent extends React.Component {
     if (this.state.modo === 'AddFeature') {
       input.push(
         <div>
-          <Form onSubmit={this.handleSubmit}>                            
+          <Form onSubmit={this.handleSubmit}>
             <FormGroup row>
               <Label htmlFor='element' md={10}>Nombre del elemento</Label>
               <Col md={10}>
                 <Input type='text' id='element' name='element'
-                placeholder='Nombre del elemento' value={this.state.element}
-                onChange={this.handleInputChange}
-                    placeholder="Nombre del elemento"
-                    value={this.state.element}
-                    valid={errors.element ==='' && this.state.element !== ''}
-                    invalid={errors.element !==''}
-                    onBlur={this.handleBlur('element')}
-                    onChange={this.handleInputChange}/>
+                  placeholder='Nombre del elemento' value={this.state.element}
+                  onChange={this.handleInputChange}
+                  placeholder="Nombre del elemento"
+                  value={this.state.element}
+                  valid={errors.element === '' && this.state.element !== ''}
+                  invalid={errors.element !== ''}
+                  onBlur={this.handleBlur('element')}
+                  onChange={this.handleInputChange} />
                 <FormFeedback>{errors.element}</FormFeedback>
               </Col>
               <Col>
-                <Button type='submit' outline color="secondary">Agregar</Button>
+                <Button type='submit' outline color="secondary" onClick={this.sendGeom}>Agregar</Button>
               </Col>
             </FormGroup>
           </Form>
         </div>
       );
-    
+
     }
 
     const dropdown = [];
@@ -313,7 +336,7 @@ export default class MapComponent extends React.Component {
                   <Button outline color="secondary" onClick={this.toggleModo} id='AddFeature'>Ingresar Elementos</Button>
                 </ButtonGroup>
               </Row>
-              
+
               <hr class="my-4"></hr>
               {dropdown}
               {input}

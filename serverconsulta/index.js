@@ -148,12 +148,10 @@ app.post('/caja', (req, res) => {
 
 // Creamos una tabla y le agregamos un campo de geometria
 // SELECT AddGeometryColumn ('public','prueba','geom',4326,'POINT',2);
-app.get('/nuevoPunto', (req, res) => {
-    //const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')'
+app.post('/nuevoPunto', (req, res) => {
+    const wkt = 'POINT(' + req.body.coordinates[0] + ' ' + req.body.coordinates[1] + ')'
 
-    //const consulta = `INSERT INTO ${req.body.tabla} (name, geom) VALUES('Escuela San Jose',ST_geomfromtext('${wkt}', 4326))`;
-
-    const consulta = `INSERT INTO prueba (name, geom) VALUES('Escuela San Jose',ST_geomfromtext('POINT(-34.6083 -58.3712)', 4326))`;
+    const consulta = `INSERT INTO prueba (name, geom) VALUES('${req.body.name}',ST_geomfromtext('${wkt}', 4326))`
     
     db.connect()
         .then(client => {

@@ -9,7 +9,7 @@ import Zoom from 'ol/control/Zoom';
 //import { clickEnMapa, dragBox } from '../interactions/consulta'
 import { helpTooltip, pointerMoveHandler, measureTooltip, draw } from '../interactions/medicion'
 
-import { urlLeyenda } from '../cfg/url'
+import { urlLeyenda, rutasBack } from '../cfg/url'
 
 // Interacciones
 import { DragBox } from 'ol/interaction';
@@ -108,7 +108,7 @@ export default class MapComponent extends React.Component {
     //funcion para el evento click en el mapa
     this.clickEnMapa = evento => {
       if (this.state.capaConsulta !== "Seleccionar capa") {
-        axios.post('http://localhost:3001/punto', {
+        axios.post(rutasBack.consultaPunto, {
           coordinates: evento.coordinate,
           tabla: this.state.capaConsulta,
           pixel: view.getResolution()
@@ -131,7 +131,7 @@ export default class MapComponent extends React.Component {
     });
     this.dragBox.on('boxend', evento => {
       if (this.state.capaConsulta !== "Seleccionar capa") {
-        axios.post('http://localhost:3001/caja', {
+        axios.post(rutasBack.consultaCaja, {
           coordinates: evento.target.box_.getGeometry().getCoordinates(),
           tabla: this.state.capaConsulta
         })
@@ -224,7 +224,7 @@ export default class MapComponent extends React.Component {
 
   sendGeom(event) {
     if (this.geom) {
-      axios.post('http://localhost:3001/nuevoPunto', {
+      axios.post(rutasBack.nuevoPunto, {
         coordinates: this.geom,
         name: this.state.element
       })
@@ -342,7 +342,8 @@ export default class MapComponent extends React.Component {
               <hr class="my-4"></hr>
               {dropdown}
               {input}
-              <img src={urlLeyenda(capasActivas)} />
+
+              <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
 
             </Col>
           </Row>

@@ -21,7 +21,6 @@ class Main extends Component {
 
     return (
         <div>
-            <NavBar/>
             <Switch>
                 <Route exact path="/resultado">
                     <Resultado resultado={this.state.resultado}/>

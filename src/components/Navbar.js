@@ -67,7 +67,7 @@ class NavBar extends Component {
         </Navbar>
         
         {this.state.categoria !== '' &&
-          <NavCapasWMS capas={this.state.capas} />
+          <NavCapasWMS capas={this.state.capas} rerender={this.props.rerender}/>
         }
 
       </div>

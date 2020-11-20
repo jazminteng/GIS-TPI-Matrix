@@ -13,6 +13,7 @@ class NavCapasWMS extends Component {
 
   mostrarCapa(capa) {
     capa.setVisible(!capa.getVisible());
+    this.props.rerender();
     this.forceUpdate();
   }
 

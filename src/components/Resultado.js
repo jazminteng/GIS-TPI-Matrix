@@ -41,7 +41,7 @@ class Resultado extends Component {
     return (
       <div>
         <Breadcrumb>
-          <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
+          <BreadcrumbItem><Link to='/'>Mapa</Link></BreadcrumbItem>
           <BreadcrumbItem active>Resultado de la consulta</BreadcrumbItem>
         </Breadcrumb>
         <Container className="themed-container " fluid={true} id='tab'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
@@ -8,6 +8,8 @@ import Zoom from 'ol/control/Zoom';
 
 //import { clickEnMapa, dragBox } from '../interactions/consulta'
 import { helpTooltip, pointerMoveHandler, measureTooltip, draw } from '../interactions/medicion'
+
+import { urlLeyenda } from '../cfg/url'
 
 // Interacciones
 import { DragBox } from 'ol/interaction';
@@ -33,7 +35,9 @@ import { scaleControl } from '../controls';
 
 import '../css/MapComponent.css';
 
+import NavBar from './Navbar';
 
+// este array solo se usa para agregarlas al mapa
 const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
   veg_suelo_desnudo, veg_arborea, veg_cultivos, veg_hidrofila, espejo_de_agua_hid, red_vial, limite_politico_administrativo_lim, vias_secundarias, curvas_de_nivel,
   curso_de_agua_hid, red_ferroviaria, líneas_de_conducción_ene, muro_embalse, señalizaciones, salvado_de_obstaculo, puntos_del_terreno, puntos_de_alturas_topograficas,
@@ -49,8 +53,6 @@ const capasO = {
   infraestructura_aeroportuaria_punto, edif_religiosos, edificios_ferroviarios, edif_educacion, edificio_publico_ips, edificio_de_seguridad_ips, edificio_de_salud_ips,
   edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades
 };
-
-var capaConsulta = "";
 
 export default class MapComponent extends React.Component {
   constructor(props) {
@@ -80,11 +82,12 @@ export default class MapComponent extends React.Component {
     }
   }
 
+  reRender = () => this.forceUpdate();
+
   componentDidMount() {
     this.setState({
       verResultado: false,
     });
-    let currentComponent = this;
 
     const view = new View({
       center: [-58.986666666667, -27.451388888889],
@@ -103,19 +106,18 @@ export default class MapComponent extends React.Component {
     provincias.setVisible(true);
 
     //funcion para el evento click en el mapa
-    this.clickEnMapa = function (evento) {
-      if (capaConsulta !== "Seleccionar capa") {
+    this.clickEnMapa = evento => {
+      if (this.state.capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/punto', {
           coordinates: evento.coordinate,
-          tabla: capaConsulta,
+          tabla: this.state.capaConsulta,
           pixel: view.getResolution()
         })
-          .then((response) => {
-            console.log(response);
-            currentComponent.setState({
+          .then(response => {
+            this.setState({
               verResultado: true,
             });
-            currentComponent.props.setResultado(response);
+            this.props.setResultado(response);
           })
           .catch((error) => {
             console.log(error);
@@ -127,20 +129,19 @@ export default class MapComponent extends React.Component {
     this.dragBox = new DragBox({
       condition: platformModifierKeyOnly,
     });
-    this.dragBox.on('boxend', function (evento) {
-      if (capaConsulta !== "Seleccionar capa") {
+    this.dragBox.on('boxend', evento => {
+      if (this.state.capaConsulta !== "Seleccionar capa") {
         axios.post('http://localhost:3001/caja', {
-          coordinates: this.getGeometry().getCoordinates(),
-          tabla: capaConsulta
+          coordinates: evento.target.box_.getGeometry().getCoordinates(),
+          tabla: this.state.capaConsulta
         })
-          .then(function (response) {
-            console.log(response);
-            currentComponent.setState({
+          .then(response => {
+            this.setState({
               verResultado: true,
             });
-            currentComponent.props.setResultado(response);
+            this.props.setResultado(response);
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log(error);
           });
       }
@@ -237,46 +238,47 @@ export default class MapComponent extends React.Component {
   }
 
   render() {
-    const errors = this.validate(this.state.element);
-    capaConsulta = this.state.capaConsulta;
-    const activelayers = [];
-    activelayers.push(<DropdownItem id='Seleccionar capa' onClick={this.toggleCapaActiva}>Seleccionar capa </DropdownItem>)
+    const capasActivas = []; // Nombre de las capas activas
     for (const index in capasO) {
-      if (capasO[index].getVisible()) {
-        activelayers.push(<DropdownItem id={index} onClick={this.toggleCapaActiva}>{capasO[index].getProperties().title} </DropdownItem>)
-      }
+      if (capasO[index].getVisible()) capasActivas.push(index)
     }
+
     const input = [];
     if (this.state.modo === 'AddFeature') {
+      const errors = this.validate(this.state.element);
       input.push(
-        <div>
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup row>
-              <Label htmlFor='element' md={10}>Nombre del elemento</Label>
-              <Col md={10}>
-                <Input type='text' id='element' name='element'
-                  placeholder='Nombre del elemento' value={this.state.element}
-                  onChange={this.handleInputChange}
-                  placeholder="Nombre del elemento"
-                  value={this.state.element}
-                  valid={errors.element === '' && this.state.element !== ''}
-                  invalid={errors.element !== ''}
-                  onBlur={this.handleBlur('element')}
-                  onChange={this.handleInputChange} />
-                <FormFeedback>{errors.element}</FormFeedback>
-              </Col>
-              <Col>
-                <Button type='submit' outline color="secondary" onClick={this.sendGeom}>Agregar</Button>
-              </Col>
-            </FormGroup>
-          </Form>
-        </div>
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup row>
+            <Label htmlFor='element' md={10}>Nombre del elemento</Label>
+            <Col md={10}>
+              <Input type='text' id='element' name='element'
+                placeholder='Nombre del elemento' value={this.state.element}
+                onChange={this.handleInputChange}
+                placeholder="Nombre del elemento"
+                value={this.state.element}
+                valid={errors.element === '' && this.state.element !== ''}
+                invalid={errors.element !== ''}
+                onBlur={this.handleBlur('element')}
+                onChange={this.handleInputChange} />
+              <FormFeedback>{errors.element}</FormFeedback>
+            </Col>
+            <Col>
+              <Button type='submit' outline color="secondary" onClick={this.sendGeom}>Agregar</Button>
+            </Col>
+          </FormGroup>
+        </Form>
       );
 
     }
 
     const dropdown = [];
     if (this.state.modo === 'Consulta') {
+      const activelayers = [];
+      activelayers.push(<DropdownItem id='Seleccionar capa' onClick={this.toggleCapaActiva}>Seleccionar capa </DropdownItem>)
+      capasActivas.forEach(index => {
+        activelayers.push(<DropdownItem id={index} onClick={this.toggleCapaActiva}>{capasO[index].getProperties().title} </DropdownItem>)
+      })
+
       dropdown.push(
         <Row>
           <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
@@ -306,21 +308,21 @@ export default class MapComponent extends React.Component {
             </DropdownMenu>
           </ButtonDropdown>
         </Row>
-
       );
+
       if (this.state.verResultado) {
+        //  No es necesario el condicional ?
         dropdown.push(
           <Row>
-            <Link className={this.state.verResultado ? "link" : "disabled-link"} to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado </Link>
+            <Link to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado</Link>
           </Row>);
       }
     }
 
     return (
       <div>
-        <Breadcrumb>
-          <BreadcrumbItem active>Home</BreadcrumbItem>
-        </Breadcrumb>
+        <NavBar rerender={this.reRender} />
+
         <Container className="themed-container" fluid={true}>
           <Row>
             <Col xs="12" sm="9">
@@ -340,6 +342,8 @@ export default class MapComponent extends React.Component {
               <hr class="my-4"></hr>
               {dropdown}
               {input}
+              <img src={urlLeyenda(capasActivas)} />
+
             </Col>
           </Row>
         </Container>

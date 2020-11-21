@@ -6,13 +6,16 @@ import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
 
+import { Vector as VectorLayer } from 'ol/layer';
+import { Vector as VectorSource } from 'ol/source'
+
 //import { clickEnMapa, dragBox } from '../interactions/consulta'
 import { helpTooltip, pointerMoveHandler, measureTooltip, draw } from '../interactions/medicion'
 
 import { urlLeyenda, rutasBack } from '../cfg/url'
 
 // Interacciones
-import { DragBox } from 'ol/interaction';
+import { DragBox, Draw } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 import axios from 'axios';
 
@@ -82,6 +85,7 @@ export default class MapComponent extends React.Component {
     }
   }
 
+  // Renderiza de nuevo el componente Mapa para que refresque la lista de leyendas y sus simbologias
   reRender = () => this.forceUpdate();
 
   componentDidMount() {
@@ -146,6 +150,16 @@ export default class MapComponent extends React.Component {
           });
       }
     });
+
+    // Dibujo de feature nueva
+    this.sourceFeature = new VectorSource({ wrapX: false });
+    this.layerFeature = new VectorLayer({
+      source: this.sourceFeature,
+    });
+    this.puntoFeature = new Draw({
+      source: this.sourceFeature,
+      type: 'Point'
+    });
   }
 
   handleBlur = (field) => (evt) => {
@@ -204,6 +218,9 @@ export default class MapComponent extends React.Component {
 
     this.map.un('click', this.clickNewGeom);
 
+    this.map.removeLayer(this.layerFeature);
+    this.map.removeInteraction(this.puntoFeature);
+
     if (event.currentTarget.id === "Consulta") {
       this.map.on('click', this.clickEnMapa);
       this.map.addInteraction(this.dragBox);
@@ -215,6 +232,13 @@ export default class MapComponent extends React.Component {
       this.map.addInteraction(draw);
     } else if (event.currentTarget.id === "AddFeature") {
       this.map.on('click', this.clickNewGeom);
+
+
+      this.map.addLayer(this.layerFeature)
+      this.puntoFeature.on('drawstart', evento => {
+        this.sourceFeature.clear();
+      })
+      this.map.addInteraction(this.puntoFeature);
     }
 
     this.setState({

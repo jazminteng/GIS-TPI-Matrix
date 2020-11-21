@@ -341,7 +341,12 @@ export default class MapComponent extends React.Component {
         dropdown.push(
           <Row >
             <Col className='text-center'>
-            <Link to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado</Link>
+            <Link to={this.state.verResultado ? '/resultado' : '#'} >
+              <img src="/eye-disease.png" 
+              className="align-center" 
+              height="45"
+              width="45"/>
+            </Link>
             </Col>
           </Row>);
       }

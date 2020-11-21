@@ -1,9 +1,9 @@
-.Navinactive {
+.capa-inactiva {
     color: primary;
     background-color: white;
 }
 
-.Navactive {
+.capa-inactiva {
     color: #4E5454;
     background-color: #b4d3b2;
     border-radius: 5px;
@@ -11,12 +11,12 @@
     margin-right: 1px;
 }
 
-.chill{
+.nav-activa{
     background-color: lightblue;
     border-radius: 5px;
     margin-left: 1px;
     margin-right: 1px;
 }
-.no{
+.nav-inactiva{
     background-color: light;
 }

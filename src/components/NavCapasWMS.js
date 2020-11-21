@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/NavCapasWMS.css';
+import '../css/NavCapas.css';
 import {
   Nav,
   NavLink,
@@ -22,7 +22,7 @@ class NavCapasWMS extends Component {
     const capas = this.props.capas;
 
     for (const index in capas) {
-      items.push(<NavLink className={capas[index].getVisible() ? "Navactive" : "Navinactive"} id={index} onClick={() => this.mostrarCapa(capas[index])}>{capas[index].getProperties().title}</NavLink>)
+      items.push(<NavLink className={capas[index].getVisible() ? "capa-activa" : "capa-inactiva"} id={index} onClick={() => this.mostrarCapa(capas[index])}>{capas[index].getProperties().title}</NavLink>)
     }
 
     return (

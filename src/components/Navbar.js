@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/NavCapasWMS.css';
+import '../css/NavCapas.css';
 import {
   Collapse,
   Navbar,
@@ -50,7 +50,7 @@ class NavBar extends Component {
     const navlinks = [];
 
     for (const index in CATEGORIAS) {
-      navlinks.push(<NavLink className={this.state.categoria===index ? "chill" : "no"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
+      navlinks.push(<NavLink className={this.state.categoria===index ? "nav-activa" : "nav-inactiva"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
     }
 
     return (

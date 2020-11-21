@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUserFull="Martin" projectname="" saveUser="martinejaw" saveDateTime="2020-11-21T16:45:48" version="3.14.16-Pi">
+<qgis saveUserFull="Martin" projectname="" saveUser="martinejaw" saveDateTime="2020-11-21T16:54:47" version="3.14.16-Pi">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -266,10 +266,10 @@
   <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>degrees</units>
     <extent>
-      <xmin>-71.3409529193422145</xmin>
-      <ymin>-40.25523049272722176</ymin>
-      <xmax>-59.8473530861201013</xmax>
-      <ymax>-20.09318948658309267</ymax>
+      <xmin>-68.19585965960864371</xmin>
+      <ymin>-41.71505244131710555</ymin>
+      <xmax>-56.70225982638653761</xmax>
+      <ymax>-21.55301143517295515</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -18092,13 +18092,13 @@ def my_form_open(dialog, layer, feature):
           <end></end>
         </fixedRange>
       </temporal>
-      <renderer-v2 attr="Tipo" forceraster="0" enableorderby="0" type="categorizedSymbol" symbollevels="0">
-        <categories>
-          <category value="Autopista con Camino Pavimentado Dual con Separador" symbol="0" render="true" label="Autopista"/>
-          <category value="Camino Pavimentado" symbol="1" render="true" label="Camino Pavimentado"/>
-          <category value="Camino Consolidado, Camino sin Pavimentar de Transitavilidad Permanente" symbol="2" render="true" label="Camino Consolidado"/>
-          <category value="Camino de Tierra, Camino sin Pavimentar de Transitavilidad Temporaria" symbol="3" render="true" label="Camino de Transitavilidad Temporaria"/>
-        </categories>
+      <renderer-v2 forceraster="0" enableorderby="0" type="RuleRenderer" symbollevels="0">
+        <rules key="{be81dc90-4863-4abc-9d2f-9cc64c8a32a3}">
+          <rule symbol="0" key="{d6f035b1-b706-4b6c-ae91-352eba8442af}" label="Autopista" filter="&quot;Tipo&quot; = 'Autopista con Camino Pavimentado Dual con Separador'"/>
+          <rule symbol="1" key="{f0e291a6-ebf3-4d1b-9cc9-e315c779cfaa}" label="Camino Pavimentado" filter="&quot;Tipo&quot; = 'Camino Pavimentado'"/>
+          <rule symbol="2" key="{bfd18d08-4418-4b0b-aa82-7351ad83af88}" label="Camino Consolidado" filter="&quot;Tipo&quot; = 'Camino Consolidado, Camino sin Pavimentar de Transitavilidad Permanente'" scalemindenom="1000" scalemaxdenom="2921557"/>
+          <rule symbol="3" key="{896da19b-825e-453e-b0bc-32240787a467}" label="Camino de Transitavilidad Temporaria" filter="&quot;Tipo&quot; = 'Camino de Tierra, Camino sin Pavimentar de Transitavilidad Temporaria'" scalemindenom="1000" scalemaxdenom="865520"/>
+        </rules>
         <symbols>
           <symbol force_rhr="0" name="0" clip_to_extent="1" type="line" alpha="1">
             <layer enabled="1" locked="0" class="SimpleLine" pass="0">
@@ -18309,37 +18309,6 @@ def my_form_open(dialog, layer, feature):
             </layer>
           </symbol>
         </symbols>
-        <source-symbol>
-          <symbol force_rhr="0" name="0" clip_to_extent="1" type="line" alpha="1">
-            <layer enabled="1" locked="0" class="SimpleLine" pass="0">
-              <prop v="square" k="capstyle"/>
-              <prop v="5;2" k="customdash"/>
-              <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
-              <prop v="MM" k="customdash_unit"/>
-              <prop v="0" k="draw_inside_polygon"/>
-              <prop v="bevel" k="joinstyle"/>
-              <prop v="232,113,141,255" k="line_color"/>
-              <prop v="solid" k="line_style"/>
-              <prop v="0.26" k="line_width"/>
-              <prop v="MM" k="line_width_unit"/>
-              <prop v="0" k="offset"/>
-              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
-              <prop v="MM" k="offset_unit"/>
-              <prop v="0" k="ring_filter"/>
-              <prop v="0" k="use_custom_dash"/>
-              <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option name="name" value="" type="QString"/>
-                  <Option name="properties"/>
-                  <Option name="type" value="collection" type="QString"/>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </source-symbol>
-        <rotation/>
-        <sizescale/>
       </renderer-v2>
       <customproperties>
         <property value="0" key="embeddedWidgets/count"/>

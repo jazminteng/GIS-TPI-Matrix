@@ -286,8 +286,10 @@ export default class MapComponent extends React.Component {
                 onChange={this.handleInputChange} />
               <FormFeedback>{errors.element}</FormFeedback>
             </Col>
-            <Col>
-              <Button type='submit' outline color="secondary" onClick={this.sendGeom}>Agregar</Button>
+          </FormGroup>
+          <FormGroup row>  
+            <Col md={10}>
+              <Button type='submit' outline color="secondary" onClick={this.sendGeom} block>Agregar</Button>
             </Col>
           </FormGroup>
         </Form>
@@ -304,7 +306,7 @@ export default class MapComponent extends React.Component {
       })
 
       dropdown.push(
-        <Row>
+        <Row className="justify-content-center">
           <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
             <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
               {this.state.capaConsulta !== 'Seleccionar capa'
@@ -337,8 +339,10 @@ export default class MapComponent extends React.Component {
       if (this.state.verResultado) {
         //  No es necesario el condicional ?
         dropdown.push(
-          <Row>
+          <Row >
+            <Col className='text-center'>
             <Link to={this.state.verResultado ? '/resultado' : '#'} >Ver Resultado</Link>
+            </Col>
           </Row>);
       }
     }
@@ -353,22 +357,25 @@ export default class MapComponent extends React.Component {
               {/* Mapa */}
               <div id="mapContainer" ref="mapContainer"> </div>
             </Col>
-            <Col xs="12" sm="3" >
-              <Row>
+            <Col xs="12" sm="3">
+              <Row className="justify-content-center">
                 <ButtonGroup vertical>
-                  <Button outline color="secondary" onClick={this.toggleModo} id='Navegacion'>Modo Navegacion</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} id='Distancia'>Medir distancia</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} id='Consulta'>Modo Consulta</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} id='AddFeature'>Ingresar Elementos</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Navegacion' ? "Modoactive" : "Modoinactive"} id='Navegacion' block>Modo Navegacion</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Distancia' ? "Modoactive" : "Modoinactive"} id='Distancia' block>Medir distancia</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Consulta' ? "Modoactive" : "Modoinactive"} id='Consulta' block>Modo Consulta</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Ingresar Elementos</Button>
                 </ButtonGroup>
               </Row>
-
-              <hr class="my-4"></hr>
+              {(this.state.modo==='Consulta' || this.state.modo ==='AddFeature') && 
+               <hr class="my-2"></hr>
+              }
               {dropdown}
               {input}
-
-              <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
-
+              <hr class="my-2"></hr>
+              <Label htmlFor='leyenda' md={10}>Leyendas</Label>
+              <div className="leyenda">
+                <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
+              </div>
             </Col>
           </Row>
         </Container>

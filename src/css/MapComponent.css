@@ -6,3 +6,22 @@
 .disabled-link {
     color: #4E5454;
 }
+
+.leyenda {
+    flex: 1;
+    overflow-y: scroll;
+    height:180px;
+}
+
+.Modoinactive {
+    color: primary;
+    background-color: white;
+}
+
+.Modoactive {
+    color: #4E5454;
+    background-color: #fddb7e;
+    border-radius: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
+}

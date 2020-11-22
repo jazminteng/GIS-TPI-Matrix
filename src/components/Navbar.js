@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import { CATEGORIAS } from '../layers/categorias';
+import { Button } from 'reactstrap';
 
 class NavBar extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class NavBar extends Component {
     const navlinks = [];
 
     for (const index in CATEGORIAS) {
-      navlinks.push(<NavLink className={this.state.categoria===index ? "nav-activa" : "nav-inactiva"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</NavLink>)
+      navlinks.push(<Button className={this.state.categoria===index ? "nav-activa" : "nav-inactiva"} onClick={this.toggleCategoria} id={index}>{CATEGORIAS[index].title}</Button>)
     }
 
     return (

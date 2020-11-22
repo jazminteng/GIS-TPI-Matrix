@@ -3,6 +3,7 @@ import '../css/NavCapas.css';
 import {
   Nav,
   NavLink,
+  Button
 } from 'reactstrap';
 
 class NavCapasWMS extends Component {
@@ -22,7 +23,7 @@ class NavCapasWMS extends Component {
     const capas = this.props.capas;
 
     for (const index in capas) {
-      items.push(<NavLink className={capas[index].getVisible() ? "capa-activa" : "capa-inactiva"} id={index} onClick={() => this.mostrarCapa(capas[index])}>{capas[index].getProperties().title}</NavLink>)
+      items.push(<Button className={capas[index].getVisible() ? "capa-activa" : "capa-inactiva"} id={index} onClick={() => this.mostrarCapa(capas[index])}>{capas[index].getProperties().title}</Button>)
     }
 
     return (

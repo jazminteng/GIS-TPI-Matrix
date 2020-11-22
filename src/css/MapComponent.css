@@ -8,9 +8,7 @@
 }
 
 .leyenda {
-    flex: 1;
     overflow-y: scroll;
-    height:180px;
 }
 
 .Modoinactive {

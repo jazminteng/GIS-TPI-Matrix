@@ -39,6 +39,9 @@ import { scaleControl } from '../controls';
 import '../css/MapComponent.css';
 
 import NavBar from './Navbar';
+import CardTitle from 'reactstrap/lib/CardTitle';
+import Card from 'reactstrap/lib/Card';
+import CardBody from 'reactstrap/lib/CardBody';
 
 // este array solo se usa para agregarlas al mapa
 const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
@@ -49,7 +52,7 @@ const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_
   edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas, actividades_agropecuarias, edif_construcciones_turisticas, localidades];
 
 const capasO = {
-  osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
+  pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
   veg_suelo_desnudo, veg_arborea, veg_cultivos, veg_hidrofila, espejo_de_agua_hid, red_vial, limite_politico_administrativo_lim, vias_secundarias, curvas_de_nivel,
   curso_de_agua_hid, red_ferroviaria, líneas_de_conducción_ene, muro_embalse, señalizaciones, salvado_de_obstaculo, puntos_del_terreno, puntos_de_alturas_topograficas,
   puente_red_vial_puntos, otras_edificaciones, obra_portuaria, obra_de_comunicación, marcas_y_señales, infraestructura_hidro, estructuras_portuarias,
@@ -287,7 +290,7 @@ export default class MapComponent extends React.Component {
               <FormFeedback>{errors.element}</FormFeedback>
             </Col>
           </FormGroup>
-          <FormGroup row>  
+          <FormGroup row>
             <Col md={10}>
               <Button type='submit' outline color="secondary" onClick={this.sendGeom} block>Agregar</Button>
             </Col>
@@ -308,10 +311,10 @@ export default class MapComponent extends React.Component {
       dropdown.push(
         <Row className="justify-content-center">
           <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} >
-            <DropdownToggle caret outline color="secondary" onClick={this.toggleDropdown}>
-              {this.state.capaConsulta !== 'Seleccionar capa'
-                ? capasO[this.state.capaConsulta].getProperties().title
-                : "Seleccionar capa"}
+            <DropdownToggle caret outline color="secondary" className={this.state.capaConsulta == 'Seleccionar capa' && "bg-danger text-white"} onClick={this.toggleDropdown}>
+              {this.state.capaConsulta == 'Seleccionar capa'
+                ? "Seleccionar capa"
+                : capasO[this.state.capaConsulta].getProperties().title}
             </DropdownToggle>
             <DropdownMenu
               modifiers={{
@@ -341,12 +344,12 @@ export default class MapComponent extends React.Component {
         dropdown.push(
           <Row >
             <Col className='text-center'>
-            <Link to={this.state.verResultado ? '/resultado' : '#'} >
-              <img src="/eye-disease.png" 
-              className="align-center" 
-              height="45"
-              width="45"/>
-            </Link>
+              <Link to={this.state.verResultado ? '/resultado' : '#'} >
+                <img src="/eye-disease.png"
+                  className="align-center"
+                  height="45"
+                  width="45" />
+              </Link>
             </Col>
           </Row>);
       }
@@ -363,24 +366,29 @@ export default class MapComponent extends React.Component {
               <div id="mapContainer" ref="mapContainer"> </div>
             </Col>
             <Col xs="12" sm="3">
-              <Row className="justify-content-center">
+              <Row className="justify-content-center" style={{height:"25hv"}}>
                 <ButtonGroup vertical>
-                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Navegacion' ? "Modoactive" : "Modoinactive"} id='Navegacion' block>Modo Navegacion</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Distancia' ? "Modoactive" : "Modoinactive"} id='Distancia' block>Medir distancia</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='Consulta' ? "Modoactive" : "Modoinactive"} id='Consulta' block>Modo Consulta</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo==='AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Ingresar Elementos</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Navegacion' ? "Modoactive" : "Modoinactive"} id='Navegacion' block>Modo Navegacion</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Distancia' ? "Modoactive" : "Modoinactive"} id='Distancia' block>Medir distancia</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Consulta' ? "Modoactive" : "Modoinactive"} id='Consulta' block>Modo Consulta</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Ingresar Elementos</Button>
                 </ButtonGroup>
               </Row>
-              {(this.state.modo==='Consulta' || this.state.modo ==='AddFeature') && 
-               <hr class="my-2"></hr>
+              {(this.state.modo === 'Consulta' || this.state.modo === 'AddFeature') &&
+                <hr class="my-2"></hr>
               }
               {dropdown}
               {input}
               <hr class="my-2"></hr>
-              <Label htmlFor='leyenda' md={10}>Leyendas</Label>
-              <div className="leyenda">
-                <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
-              </div>
+
+              <Card style={{height:"50vh"}}>
+                <CardBody className="leyenda" >
+                  <CardTitle htmlFor='leyenda' className="font-weight-bold" md={10}>Leyenda</CardTitle>
+                  <div >
+                    <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
+                  </div>
+                </CardBody>
+              </Card>
             </Col>
           </Row>
         </Container>

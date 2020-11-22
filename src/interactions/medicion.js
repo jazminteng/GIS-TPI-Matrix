@@ -24,7 +24,7 @@ var pointerMoveHandler = function (evt) {
         return;
     }
 
-    var helpMsg = 'Click to start drawing';
+    var helpMsg = 'Click para empezar';
 
     helpTooltipElement.innerHTML = helpMsg;
     helpTooltip.setPosition(evt.coordinate);

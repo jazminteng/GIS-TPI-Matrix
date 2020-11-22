@@ -11,7 +11,6 @@ class Resultado extends Component {
 
 
   render() {
-    console.log("ponele que llegue");
     const colname = [];
     const filatabla = [];
     var keys = [];

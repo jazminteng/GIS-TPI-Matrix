@@ -112,6 +112,8 @@ export default class MapComponent extends React.Component {
     });
     provincias.setVisible(true);
 
+    this.map.getViewport().style.cursor = 'move';
+
     //funcion para el evento click en el mapa
     this.clickEnMapa = evento => {
       if (this.state.capaConsulta !== "Seleccionar capa") {
@@ -211,6 +213,8 @@ export default class MapComponent extends React.Component {
   }
 
   toggleModo(event) {
+
+
     this.map.removeInteraction(this.dragBox);
     this.map.un('click', this.clickEnMapa);
 
@@ -228,11 +232,15 @@ export default class MapComponent extends React.Component {
       this.map.on('click', this.clickEnMapa);
       this.map.addInteraction(this.dragBox);
 
+      this.map.getViewport().style.cursor = 'auto';
+
     } else if (event.currentTarget.id === "Distancia") {
       this.map.addOverlay(helpTooltip);
       this.map.on('pointermove', pointerMoveHandler);
       this.map.addOverlay(measureTooltip);
       this.map.addInteraction(draw);
+
+      this.map.getViewport().style.cursor = 'none';
     } else if (event.currentTarget.id === "AddFeature") {
       this.map.on('click', this.clickNewGeom);
 
@@ -242,6 +250,11 @@ export default class MapComponent extends React.Component {
         this.sourceFeature.clear();
       })
       this.map.addInteraction(this.puntoFeature);
+
+      this.map.getViewport().style.cursor = 'none';
+    } else {
+      
+      this.map.getViewport().style.cursor = 'move';
     }
 
     this.setState({

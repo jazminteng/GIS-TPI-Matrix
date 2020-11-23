@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
+import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, 
+  ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
@@ -63,22 +64,24 @@ const capasO = {
 export default class MapComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleModo = this.toggleModo.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.toggleCapaActiva = this.toggleCapaActiva.bind(this);
     this.sendGeom = this.sendGeom.bind(this);
 
     this.clickNewGeom = (evento) => {
       this.geom = evento.coordinate;
+      this.toggleModal();
     }
 
     this.state = {
       isDropdownOpen: false,
       capaConsulta: 'Seleccionar capa',
       modo: 'Navegacion',
+      modal: false,
       verResultado: false,
       resultado: '',
       element: '',
@@ -90,6 +93,13 @@ export default class MapComponent extends React.Component {
 
   // Renderiza de nuevo el componente Mapa para que refresque la lista de leyendas y sus simbologias
   reRender = () => this.forceUpdate();
+
+  toggleModal() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
 
   componentDidMount() {
     this.setState({
@@ -194,10 +204,6 @@ export default class MapComponent extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    alert('Current State is: ' + JSON.stringify(this.state));
-    event.preventDefault();
-  }
 
   toggleDropdown(event) {
     this.setState({
@@ -208,7 +214,8 @@ export default class MapComponent extends React.Component {
   toggleCapaActiva(event) {
     this.setState({
       isDropdownOpen: !this.state.isDropdownOpen,
-      capaConsulta: event.currentTarget.id
+      capaConsulta: event.currentTarget.id,
+      verResultado: false,
     });
   }
 
@@ -252,6 +259,7 @@ export default class MapComponent extends React.Component {
       this.map.addInteraction(this.puntoFeature);
 
       this.map.getViewport().style.cursor = 'none';
+      
     } else {
       
       this.map.getViewport().style.cursor = 'move';
@@ -287,30 +295,32 @@ export default class MapComponent extends React.Component {
     if (this.state.modo === 'AddFeature') {
       const errors = this.validate(this.state.element);
       input.push(
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup row>
-            <Label htmlFor='element' md={10}>Nombre del elemento</Label>
-            <Col md={10}>
-              <Input type='text' id='element' name='element'
-                placeholder='Nombre del elemento' value={this.state.element}
-                onChange={this.handleInputChange}
-                placeholder="Nombre del elemento"
-                value={this.state.element}
-                valid={errors.element === '' && this.state.element !== ''}
-                invalid={errors.element !== ''}
-                onBlur={this.handleBlur('element')}
-                onChange={this.handleInputChange} />
-              <FormFeedback>{errors.element}</FormFeedback>
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Col md={10}>
-              <Button type='submit' outline color="secondary" onClick={this.sendGeom} block>Agregar</Button>
-            </Col>
-          </FormGroup>
-        </Form>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+        <ModalHeader toggle={this.toggleModal}>Ingresar Elementos</ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup row className="justify-content-center">
+              <Label htmlFor='element' md={12}>Nombre del elemento</Label>
+              <Col md={12}>
+                <Input type='text' id='element' name='element'
+                  placeholder='Nombre del elemento' value={this.state.element}
+                  onChange={this.handleInputChange}
+                  placeholder="Nombre del elemento"
+                  value={this.state.element}
+                  valid={errors.element === '' && this.state.element !== ''}
+                  invalid={errors.element !== ''}
+                  onBlur={this.handleBlur('element')}
+                  onChange={this.handleInputChange} />
+                <FormFeedback>{errors.element}</FormFeedback>
+              </Col>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button outline color="primary" onClick={this.sendGeom} block>Agregar</Button>
+        </ModalFooter>
+      </Modal>
       );
-
     }
 
     const dropdown = [];
@@ -349,23 +359,18 @@ export default class MapComponent extends React.Component {
               {activelayers}
             </DropdownMenu>
           </ButtonDropdown>
+        {this.state.verResultado &&
+        //  No es necesario el condicional ?
+          <Link to={this.state.verResultado ? '/resultado' : '#'} >
+            <img src="/eye-disease.png"
+              className="align-center"
+              height="40"
+              width="40" />
+          </Link>
+      }
         </Row>
       );
 
-      if (this.state.verResultado) {
-        //  No es necesario el condicional ?
-        dropdown.push(
-          <Row >
-            <Col className='text-center'>
-              <Link to={this.state.verResultado ? '/resultado' : '#'} >
-                <img src="/eye-disease.png"
-                  className="align-center"
-                  height="45"
-                  width="45" />
-              </Link>
-            </Col>
-          </Row>);
-      }
     }
 
     return (
@@ -387,19 +392,16 @@ export default class MapComponent extends React.Component {
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Ingresar Elementos</Button>
                 </ButtonGroup>
               </Row>
-              {(this.state.modo === 'Consulta' || this.state.modo === 'AddFeature') &&
+              {this.state.modo === 'Consulta' &&
                 <hr class="my-2"></hr>
               }
               {dropdown}
               {input}
               <hr class="my-2"></hr>
-
+              <CardTitle htmlFor='leyenda' className="font-weight-bold align-me" md={10}>Leyenda</CardTitle>
               <Card style={{height:"50vh"}}>
                 <CardBody className="leyenda" >
-                  <CardTitle htmlFor='leyenda' className="font-weight-bold" md={10}>Leyenda</CardTitle>
-                  <div >
-                    <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
-                  </div>
+                  <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
                 </CardBody>
               </Card>
             </Col>

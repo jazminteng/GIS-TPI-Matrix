@@ -190,8 +190,8 @@ export default class MapComponent extends React.Component {
 
     if (this.state.touched.element && element.length < 3)
       errors.element = 'Element Name should be >= 3 characters';
-    else if (this.state.touched.element && element.length > 10)
-      errors.element = 'Element Name should be <= 10 characters';
+    else if (this.state.touched.element && element.length > 30)
+      errors.element = 'Element Name should be <= 30 characters';
     return errors;
   }
 
@@ -296,16 +296,16 @@ export default class MapComponent extends React.Component {
       const errors = this.validate(this.state.element);
       input.push(
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-        <ModalHeader toggle={this.toggleModal}>Ingresar Elementos</ModalHeader>
+        <ModalHeader toggle={this.toggleModal}>Agregar Punto Favorito</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup row className="justify-content-center">
-              <Label htmlFor='element' md={12}>Nombre del elemento</Label>
+              <Label htmlFor='element' md={12}>Nombre del punto</Label>
               <Col md={12}>
                 <Input type='text' id='element' name='element'
-                  placeholder='Nombre del elemento' value={this.state.element}
+                  placeholder='Nombre del punto' value={this.state.element}
                   onChange={this.handleInputChange}
-                  placeholder="Nombre del elemento"
+                  placeholder="Nombre del punto"
                   value={this.state.element}
                   valid={errors.element === '' && this.state.element !== ''}
                   invalid={errors.element !== ''}
@@ -389,7 +389,7 @@ export default class MapComponent extends React.Component {
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Navegacion' ? "Modoactive" : "Modoinactive"} id='Navegacion' block>Modo Navegacion</Button>
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Distancia' ? "Modoactive" : "Modoinactive"} id='Distancia' block>Medir distancia</Button>
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Consulta' ? "Modoactive" : "Modoinactive"} id='Consulta' block>Modo Consulta</Button>
-                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Ingresar Elementos</Button>
+                  <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'AddFeature' ? "Modoactive" : "Modoinactive"} id='AddFeature' block>Agregar puntos favoritos</Button>
                 </ButtonGroup>
               </Row>
               {this.state.modo === 'Consulta' &&

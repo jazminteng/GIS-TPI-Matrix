@@ -1,6 +1,8 @@
 import React from 'react';
-import { Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown, 
-  ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown,
+  ModalHeader, Modal, ModalBody, ModalFooter
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 // Objetos OpenLayers
 import olMap from 'ol/Map';
@@ -19,6 +21,8 @@ import { urlLeyenda, rutasBack } from '../cfg/url'
 import { DragBox, Draw } from 'ol/interaction';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 import axios from 'axios';
+
+import GeoJSON from 'ol/format/GeoJSON';
 
 
 // Capas
@@ -137,6 +141,14 @@ export default class MapComponent extends React.Component {
               verResultado: true,
             });
             this.props.setResultado(response);
+
+            this.sourceFeature.clear()
+            if (response.data.resultado !== undefined) {
+              
+              response.data.resultado.forEach((fila) => {
+                this.sourceFeature.addFeature(new GeoJSON().readFeatures(fila.geojson)[0])
+              })
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -159,6 +171,13 @@ export default class MapComponent extends React.Component {
               verResultado: true,
             });
             this.props.setResultado(response);
+
+            this.sourceFeature.clear()
+            if (response.data.resultado !== undefined) {
+              response.data.resultado.forEach((fila) => {
+                this.sourceFeature.addFeature(new GeoJSON().readFeatures(fila.geojson)[0])
+              })
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -219,6 +238,21 @@ export default class MapComponent extends React.Component {
     });
   }
 
+  consultaFavoritos = () => {
+    axios.get(rutasBack.favoritos)
+        .then(response => {
+          this.sourceFeature.clear()
+          if (response.data !== undefined) {
+            response.data.forEach((fila) => {
+              this.sourceFeature.addFeature(new GeoJSON().readFeatures(fila.geojson)[0])
+            })
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+
   toggleModo(event) {
 
 
@@ -236,6 +270,7 @@ export default class MapComponent extends React.Component {
     this.map.removeInteraction(this.puntoFeature);
 
     if (event.currentTarget.id === "Consulta") {
+      this.map.addLayer(this.layerFeature);
       this.map.on('click', this.clickEnMapa);
       this.map.addInteraction(this.dragBox);
 
@@ -249,6 +284,9 @@ export default class MapComponent extends React.Component {
 
       this.map.getViewport().style.cursor = 'none';
     } else if (event.currentTarget.id === "AddFeature") {
+      
+      this.consultaFavoritos();
+
       this.map.on('click', this.clickNewGeom);
 
 
@@ -259,9 +297,9 @@ export default class MapComponent extends React.Component {
       this.map.addInteraction(this.puntoFeature);
 
       this.map.getViewport().style.cursor = 'none';
-      
+
     } else {
-      
+
       this.map.getViewport().style.cursor = 'move';
     }
 
@@ -277,12 +315,15 @@ export default class MapComponent extends React.Component {
         name: this.state.element
       })
         .then(response => {
-          console.log(response);    // Revisar que hacer con el okey (status 200)
+          //console.log(response);    // Revisar que hacer con el okey (status 200)
+          this.consultaFavoritos();
         })
         .catch(error => {
           console.log(error);
+          this.consultaFavoritos();
         });
     }
+    this.toggleModal();
   }
 
   render() {
@@ -296,30 +337,30 @@ export default class MapComponent extends React.Component {
       const errors = this.validate(this.state.element);
       input.push(
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-        <ModalHeader toggle={this.toggleModal}>Agregar Punto Favorito</ModalHeader>
-        <ModalBody>
-          <Form>
-            <FormGroup row className="justify-content-center">
-              <Label htmlFor='element' md={12}>Nombre del punto</Label>
-              <Col md={12}>
-                <Input type='text' id='element' name='element'
-                  placeholder='Nombre del punto' value={this.state.element}
-                  onChange={this.handleInputChange}
-                  placeholder="Nombre del punto"
-                  value={this.state.element}
-                  valid={errors.element === '' && this.state.element !== ''}
-                  invalid={errors.element !== ''}
-                  onBlur={this.handleBlur('element')}
-                  onChange={this.handleInputChange} />
-                <FormFeedback>{errors.element}</FormFeedback>
-              </Col>
-            </FormGroup>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-          <Button outline color="primary" onClick={this.sendGeom} block>Agregar</Button>
-        </ModalFooter>
-      </Modal>
+          <ModalHeader toggle={this.toggleModal}>Agregar Punto Favorito</ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup row className="justify-content-center">
+                <Label htmlFor='element' md={12}>Nombre del punto</Label>
+                <Col md={12}>
+                  <Input type='text' id='element' name='element'
+                    placeholder='Nombre del punto' value={this.state.element}
+                    onChange={this.handleInputChange}
+                    placeholder="Nombre del punto"
+                    value={this.state.element}
+                    valid={errors.element === '' && this.state.element !== ''}
+                    invalid={errors.element !== ''}
+                    onBlur={this.handleBlur('element')}
+                    onChange={this.handleInputChange} />
+                  <FormFeedback>{errors.element}</FormFeedback>
+                </Col>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button outline color="primary" onClick={this.sendGeom} block>Agregar</Button>
+          </ModalFooter>
+        </Modal>
       );
     }
 
@@ -359,15 +400,15 @@ export default class MapComponent extends React.Component {
               {activelayers}
             </DropdownMenu>
           </ButtonDropdown>
-        {this.state.verResultado &&
-        //  No es necesario el condicional ?
-          <Link to={this.state.verResultado ? '/resultado' : '#'} >
-            <img src="/eye-disease.png"
-              className="align-center"
-              height="40"
-              width="40" />
-          </Link>
-      }
+          {this.state.verResultado &&
+            //  No es necesario el condicional ?
+            <Link to={this.state.verResultado ? '/resultado' : '#'} >
+              <img src="/eye-disease.png"
+                className="align-center"
+                height="40"
+                width="40" />
+            </Link>
+          }
         </Row>
       );
 
@@ -384,7 +425,7 @@ export default class MapComponent extends React.Component {
               <div id="mapContainer" ref="mapContainer"> </div>
             </Col>
             <Col xs="12" sm="3">
-              <Row className="justify-content-center" style={{height:"25hv"}}>
+              <Row className="justify-content-center" style={{ height: "25hv" }}>
                 <ButtonGroup vertical>
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Navegacion' ? "Modoactive" : "Modoinactive"} id='Navegacion' block>Modo Navegacion</Button>
                   <Button outline color="secondary" onClick={this.toggleModo} className={this.state.modo === 'Distancia' ? "Modoactive" : "Modoinactive"} id='Distancia' block>Medir distancia</Button>
@@ -399,7 +440,7 @@ export default class MapComponent extends React.Component {
               {input}
               <hr class="my-2"></hr>
               <CardTitle htmlFor='leyenda' className="font-weight-bold align-me" md={10}>Leyenda</CardTitle>
-              <Card style={{height:"50vh"}}>
+              <Card style={{ height: "50vh" }}>
                 <CardBody className="leyenda" >
                   <img src={urlLeyenda(capasActivas)} alt="No hay capas activas" />
                 </CardBody>

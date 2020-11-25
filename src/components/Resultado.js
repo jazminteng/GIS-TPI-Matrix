@@ -19,6 +19,7 @@ class Resultado extends Component {
       if (keys.includes('resultado')){
         const resultado = this.props.resultado.data.resultado;
         for (const index in resultado[0]) {
+          if(index !== "geojson")
           colname.push(
                 <th>{index}</th>
           );
@@ -26,6 +27,7 @@ class Resultado extends Component {
         resultado.forEach(fila => {
           const items = [];
           for (const index in fila) {
+            if(index !== "geojson")
             items.push(
               <td>{fila[index]}</td>
             )

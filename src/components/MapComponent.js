@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
+import {Icon, Style} from 'ol/style';
 
 import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source'
@@ -100,10 +101,10 @@ export default class MapComponent extends React.Component {
 
   toggleModal() {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      element: ''
     });
   }
-
 
   componentDidMount() {
     this.setState({
@@ -244,8 +245,9 @@ export default class MapComponent extends React.Component {
           this.sourceFeature.clear()
           if (response.data !== undefined) {
             response.data.forEach((fila) => {
-              this.sourceFeature.addFeature(new GeoJSON().readFeatures(fila.geojson)[0])
-            })
+              console.log(this.sourceFeature.getFeatures());
+              this.sourceFeature.addFeature(new GeoJSON().readFeatures(fila.geojson)[0]);
+            });
           }
         })
         .catch((error) => {

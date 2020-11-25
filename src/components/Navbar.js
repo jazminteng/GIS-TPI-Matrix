@@ -38,7 +38,6 @@ class NavBar extends Component {
         capas: CATEGORIAS[event.target.id].capas
       });
     }
-    
   }
 
   toggleCollapse() {
@@ -57,7 +56,7 @@ class NavBar extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Bievenido a mapita</NavbarBrand>
+          <NavbarBrand href="/">Bievenido a mapa</NavbarBrand>
           <NavbarToggler onClick={this.toggleCollapse} />
 
           <Collapse isOpen={this.state.isCollapseOpen} navbar>

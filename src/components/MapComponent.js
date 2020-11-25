@@ -254,7 +254,7 @@ export default class MapComponent extends React.Component {
   }
 
   toggleModo(event) {
-
+    this.sourceFeature.clear();
 
     this.map.removeInteraction(this.dragBox);
     this.map.un('click', this.clickEnMapa);

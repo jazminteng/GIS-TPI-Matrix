@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUser="hernan" saveUserFull="Hernan Thouzeau" saveDateTime="2020-11-25T21:53:55" projectname="" version="3.16.0-Hannover">
+<qgis saveUser="hernan" saveUserFull="Hernan Thouzeau" saveDateTime="2020-11-25T22:18:59" projectname="" version="3.16.0-Hannover">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -80,7 +80,7 @@
     <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="puntos_de_alturas_topograficas_550aac92_e2a7_4add_aa45_cf30054559ce" legend_split_behavior="0" name="puntos_de_alturas_topograficas" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;puntos_de_alturas_topograficas&quot; (geom)" expanded="0" patch_size="0,0">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="red_vial_e0c3c980_f362_4154_bfc3_0ae53fe6f02b" legend_split_behavior="0" name="red_vial" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;red_vial&quot; (geom)" expanded="0" patch_size="0,0">
+    <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="red_vial_e0c3c980_f362_4154_bfc3_0ae53fe6f02b" legend_split_behavior="0" name="red_vial" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;red_vial&quot; (geom)" expanded="1" patch_size="0,0">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="puntos_del_terreno_3fbf4eb5_74eb_4520_9afe_8eb8b8a9f732" legend_split_behavior="0" name="puntos_del_terreno" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;puntos_del_terreno&quot; (geom)" expanded="1" patch_size="0,0">
@@ -119,10 +119,10 @@
     <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="vias_secundarias_6549d8f1_7623_4487_be3a_c5857d49bd38" legend_split_behavior="0" name="vias_secundarias" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;vias_secundarias&quot; (geom)" expanded="0" patch_size="0,0">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="infraestructura_hidro_9d11e21b_2093_4d75_b2b2_7cc4882504eb" legend_split_behavior="0" name="infraestructura_hidro" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;infraestructura_hidro&quot; (geom)" expanded="0" patch_size="0,0">
+    <layer-tree-layer checked="Qt::Checked" providerKey="postgres" legend_exp="" id="infraestructura_hidro_9d11e21b_2093_4d75_b2b2_7cc4882504eb" legend_split_behavior="0" name="infraestructura_hidro" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=Point checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;infraestructura_hidro&quot; (geom)" expanded="1" patch_size="0,0">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="muro_embalse_e8c08d62_3327_46f6_ab71_10b43a2165ae" legend_split_behavior="0" name="muro_embalse" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;muro_embalse&quot; (geom)" expanded="0" patch_size="0,0">
+    <layer-tree-layer checked="Qt::Checked" providerKey="postgres" legend_exp="" id="muro_embalse_e8c08d62_3327_46f6_ab71_10b43a2165ae" legend_split_behavior="0" name="muro_embalse" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;muro_embalse&quot; (geom)" expanded="1" patch_size="0,0">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Unchecked" providerKey="postgres" legend_exp="" id="limite_politico_administrativo_lim_68d854d2_d97e_40f6_8590_019c854eac5b" legend_split_behavior="0" name="limite_politico_administrativo_lim" source="dbname='matrix' host=localhost port=5432 user='matrix' sslmode=disable key='gid' srid=4326 type=MultiLineString checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;limite_politico_administrativo_lim&quot; (geom)" expanded="0" patch_size="0,0">
@@ -266,10 +266,10 @@
   <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>degrees</units>
     <extent>
-      <xmin>-56.39051451236126411</xmin>
-      <ymin>-29.27540398183325365</ymin>
-      <xmax>-53.68529370874283302</xmax>
-      <ymax>-24.52990431319037512</ymax>
+      <xmin>-59.96172889535019834</xmin>
+      <ymin>-27.98788498117330903</ymin>
+      <xmax>-59.20088554014156301</xmax>
+      <ymax>-26.65321319884363049</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -390,8 +390,8 @@
         <legendlayerfile layerid="puntos_de_alturas_topograficas_550aac92_e2a7_4add_aa45_cf30054559ce" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" name="red_vial" showFeatureCount="0" drawingOrder="-1" open="false">
-      <filegroup hidden="false" open="false">
+    <legendlayer checked="Qt::Unchecked" name="red_vial" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
         <legendlayerfile layerid="red_vial_e0c3c980_f362_4154_bfc3_0ae53fe6f02b" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
@@ -455,14 +455,14 @@
         <legendlayerfile layerid="vias_secundarias_6549d8f1_7623_4487_be3a_c5857d49bd38" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" name="infraestructura_hidro" showFeatureCount="0" drawingOrder="-1" open="false">
-      <filegroup hidden="false" open="false">
-        <legendlayerfile layerid="infraestructura_hidro_9d11e21b_2093_4d75_b2b2_7cc4882504eb" visible="0" isInOverview="0"/>
+    <legendlayer checked="Qt::Checked" name="infraestructura_hidro" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="infraestructura_hidro_9d11e21b_2093_4d75_b2b2_7cc4882504eb" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" name="muro_embalse" showFeatureCount="0" drawingOrder="-1" open="false">
-      <filegroup hidden="false" open="false">
-        <legendlayerfile layerid="muro_embalse_e8c08d62_3327_46f6_ab71_10b43a2165ae" visible="0" isInOverview="0"/>
+    <legendlayer checked="Qt::Checked" name="muro_embalse" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="muro_embalse_e8c08d62_3327_46f6_ab71_10b43a2165ae" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" name="limite_politico_administrativo_lim" showFeatureCount="0" drawingOrder="-1" open="false">
@@ -14396,6 +14396,33 @@ def my_form_open(dialog, layer, feature):
         </categories>
         <symbols>
           <symbol clip_to_extent="1" type="marker" name="0" alpha="1" force_rhr="0">
+            <layer enabled="1" pass="0" locked="0" class="SimpleMarker">
+              <prop k="angle" v="90"/>
+              <prop k="color" v="255,0,0,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="half_square"/>
+              <prop k="offset" v="1,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="3"/>
+              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
             <layer enabled="1" pass="0" locked="0" class="FontMarker">
               <prop k="angle" v="180"/>
               <prop k="chr" v="ᚄ"/>
@@ -14404,7 +14431,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="font_style" v=""/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,-0.40000000000000002"/>
+              <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="35,35,35,255"/>
@@ -19341,28 +19368,22 @@ def my_form_open(dialog, layer, feature):
         </categories>
         <symbols>
           <symbol clip_to_extent="1" type="line" name="0" alpha="1" force_rhr="0">
-            <layer enabled="1" pass="0" locked="0" class="SimpleLine">
-              <prop k="align_dash_pattern" v="0"/>
-              <prop k="capstyle" v="square"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="dash_pattern_offset" v="0"/>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="dash_pattern_offset_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="90,224,239,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
-              <prop k="line_width_unit" v="MM"/>
+            <layer enabled="1" pass="0" locked="0" class="MarkerLine">
+              <prop k="average_angle_length" v="4"/>
+              <prop k="average_angle_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="average_angle_unit" v="MM"/>
+              <prop k="interval" v="3"/>
+              <prop k="interval_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="interval_unit" v="MM"/>
               <prop k="offset" v="0"/>
+              <prop k="offset_along_line" v="0"/>
+              <prop k="offset_along_line_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_along_line_unit" v="MM"/>
               <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
+              <prop k="placement" v="interval"/>
               <prop k="ring_filter" v="0"/>
-              <prop k="tweak_dash_pattern_on_corners" v="0"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="rotate" v="1"/>
               <data_defined_properties>
                 <Option type="Map">
                   <Option type="QString" value="" name="name"/>
@@ -19370,6 +19391,35 @@ def my_form_open(dialog, layer, feature):
                   <Option type="QString" value="collection" name="type"/>
                 </Option>
               </data_defined_properties>
+              <symbol clip_to_extent="1" type="marker" name="@0@0" alpha="1" force_rhr="0">
+                <layer enabled="1" pass="0" locked="0" class="FontMarker">
+                  <prop k="angle" v="180"/>
+                  <prop k="chr" v="ᚄ"/>
+                  <prop k="color" v="0,0,0,255"/>
+                  <prop k="font" v="Dingbats"/>
+                  <prop k="font_style" v=""/>
+                  <prop k="horizontal_anchor_point" v="1"/>
+                  <prop k="joinstyle" v="miter"/>
+                  <prop k="offset" v="0,0"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="outline_color" v="0,0,0,255"/>
+                  <prop k="outline_width" v="0"/>
+                  <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="outline_width_unit" v="MM"/>
+                  <prop k="size" v="3"/>
+                  <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="size_unit" v="MM"/>
+                  <prop k="vertical_anchor_point" v="1"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
             </layer>
           </symbol>
           <symbol clip_to_extent="1" type="line" name="1" alpha="1" force_rhr="0">
@@ -19462,6 +19512,59 @@ def my_form_open(dialog, layer, feature):
                   <Option type="QString" value="collection" name="type"/>
                 </Option>
               </data_defined_properties>
+            </layer>
+            <layer enabled="1" pass="0" locked="0" class="MarkerLine">
+              <prop k="average_angle_length" v="4"/>
+              <prop k="average_angle_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="average_angle_unit" v="MM"/>
+              <prop k="interval" v="3"/>
+              <prop k="interval_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="interval_unit" v="MM"/>
+              <prop k="offset" v="0"/>
+              <prop k="offset_along_line" v="0"/>
+              <prop k="offset_along_line_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_along_line_unit" v="MM"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="placement" v="interval"/>
+              <prop k="ring_filter" v="0"/>
+              <prop k="rotate" v="1"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+              <symbol clip_to_extent="1" type="marker" name="@1@3" alpha="1" force_rhr="0">
+                <layer enabled="1" pass="0" locked="0" class="FontMarker">
+                  <prop k="angle" v="0"/>
+                  <prop k="chr" v="ᚉ"/>
+                  <prop k="color" v="0,0,0,255"/>
+                  <prop k="font" v="Dingbats"/>
+                  <prop k="font_style" v=""/>
+                  <prop k="horizontal_anchor_point" v="1"/>
+                  <prop k="joinstyle" v="miter"/>
+                  <prop k="offset" v="0,-1"/>
+                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="outline_color" v="0,0,0,255"/>
+                  <prop k="outline_width" v="0"/>
+                  <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="outline_width_unit" v="MM"/>
+                  <prop k="size" v="3"/>
+                  <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+                  <prop k="size_unit" v="MM"/>
+                  <prop k="vertical_anchor_point" v="1"/>
+                  <data_defined_properties>
+                    <Option type="Map">
+                      <Option type="QString" value="" name="name"/>
+                      <Option name="properties"/>
+                      <Option type="QString" value="collection" name="type"/>
+                    </Option>
+                  </data_defined_properties>
+                </layer>
+              </symbol>
             </layer>
           </symbol>
         </symbols>
@@ -27279,7 +27382,7 @@ def my_form_open(dialog, layer, feature):
       </temporal>
       <renderer-v2 type="RuleRenderer" symbollevels="1" forceraster="0" enableorderby="0">
         <rules key="{be81dc90-4863-4abc-9d2f-9cc64c8a32a3}">
-          <rule symbol="0" filter="&quot;Tipo&quot; = 'Autopista con Camino Pavimentado Dual con Separador'" label="Autopista" key="{d6f035b1-b706-4b6c-ae91-352eba8442af}"/>
+          <rule checkstate="0" symbol="0" filter="&quot;Tipo&quot; = 'Autopista con Camino Pavimentado Dual con Separador'" label="Autopista" key="{d6f035b1-b706-4b6c-ae91-352eba8442af}"/>
           <rule symbol="1" filter="&quot;Tipo&quot; = 'Camino Pavimentado'" label="Camino Pavimentado" key="{f0e291a6-ebf3-4d1b-9cc9-e315c779cfaa}"/>
           <rule symbol="2" filter="&quot;Tipo&quot; = 'Camino Consolidado, Camino sin Pavimentar de Transitavilidad Permanente'" label="Camino Consolidado" scalemaxdenom="2921557" scalemindenom="1000" key="{bfd18d08-4418-4b0b-aa82-7351ad83af88}"/>
           <rule symbol="3" filter="&quot;Tipo&quot; = 'Camino de Tierra, Camino sin Pavimentar de Transitavilidad Temporaria'" label="Camino de Transitavilidad Temporaria" scalemaxdenom="865520" scalemindenom="1000" key="{896da19b-825e-453e-b0bc-32240787a467}"/>

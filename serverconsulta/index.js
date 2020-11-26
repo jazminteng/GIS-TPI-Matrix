@@ -20,7 +20,7 @@ const columnas_inservibles = ["gid","__gid", "geom","situación", "precisión", 
 "t_act", "coord", "sp", "datum", "ac", "administra", "progreso", "responsabl",
 "revestimie", "igds_style", "igds_type", "igds_weigh", "igds_level", "igds_color", "group", "rotation",  "km_inicial", "de_carga",
 "actualizac", "cell_name", "cargo",
-"opeador", "admin", "libre_hz", "libre_vcal", "capacidad", "largo", "precision"]
+"opeador", "admin", "libre_hz", "libre_vcal", "capacidad", "largo", "precision", "coincide", "contenido", "cuenca", "electrific", "concesión"]
 
 function consultar(consulta) {
     return new Promise((resolver, rechazar) => {
@@ -43,7 +43,7 @@ function consultar(consulta) {
                     })
                     .catch(err => {
                         client.release()
-                        rechazar({ error: 'uraura' });
+                        rechazar({ error: 'Error' });
                         console.log(err.stack)
                     })
             })

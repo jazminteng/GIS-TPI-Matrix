@@ -1,23 +1,29 @@
 import React from 'react';
 import { Button, Container, Row, Col, ButtonGroup } from 'reactstrap';
-// Objetos OpenLayers
+
 import olMap from 'ol/Map';
 import View from 'ol/View';
 import Zoom from 'ol/control/Zoom';
+import { DragBox } from 'ol/interaction';
+import { platformModifierKeyOnly } from 'ol/events/condition';
+import GeoJSON from 'ol/format/GeoJSON';
 
-//import { clickEnMapa, dragBox } from '../interactions/consulta'
 import { helpTooltip, pointerMoveHandler, measureTooltip, draw } from '../interactions/medicion'
-
+import puntoDraw from '../interactions/puntoNewFeature';
+import { scaleControl } from '../controls';
+import { vectorSource, vectorLayer } from '../layers/capaVectorial'
 import { estrellaStyle } from '../styles/estrella'
+
+import '../css/MapComponent.css';
+
+import axios from 'axios';
 
 import { rutasBack } from '../cfg/url'
 
-// Interacciones
-import { DragBox } from 'ol/interaction';
-import { platformModifierKeyOnly } from 'ol/events/condition';
-import axios from 'axios';
-
-import GeoJSON from 'ol/format/GeoJSON';
+import NavBar from './Navbar';
+import Consulta from './Consulta';
+import AddFeature from './AddFeature';
+import Leyenda from './Leyenda';
 
 // Capas
 import {
@@ -31,20 +37,6 @@ import {
   edificio_de_seguridad_ips, edificio_de_salud_ips, edif_depor_y_esparcimiento, complejo_de_energia_ene, actividades_economicas,
   actividades_agropecuarias, edif_construcciones_turisticas, localidades
 } from '../layers';
-
-// Controles
-import { scaleControl } from '../controls';
-
-import '../css/MapComponent.css';
-
-import NavBar from './Navbar';
-
-import puntoDraw from '../interactions/puntoNewFeature';
-
-import { vectorSource, vectorLayer } from '../layers/capaVectorial'
-import Consulta from './Consulta';
-import AddFeature from './AddFeature';
-import Leyenda from './Leyenda';
 
 // este array solo se usa para agregarlas al mapa
 const capas = [osm_default, pais_lim, provincias, isla, sue_no_consolidado, sue_consolidado, sue_hidromorfologico, sue_costero, veg_arbustiva, sue_congelado, ejido,
@@ -84,7 +76,7 @@ export default class MapComponent extends React.Component {
     vectorSource.clear();
     const view = new View({
       center: [-58.986666666667, -27.451388888889],
-      zoom: 13,
+      zoom: 8,
       minZoom: 2,
       maxZoom: 20,
       projection: 'EPSG:4326',

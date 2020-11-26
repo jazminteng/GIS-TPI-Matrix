@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import '../css/NavCapas.css';
-import {
-  Nav,
-  NavLink,
-  Button
-} from 'reactstrap';
+import { Nav, Button} from 'reactstrap';
 
 class NavCapasWMS extends Component {
   constructor(props) {

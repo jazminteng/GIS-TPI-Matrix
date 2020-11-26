@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  Form, FormGroup, Input, FormFeedback, Button, Container, Label, Row, Col, ButtonGroup, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown,
-  ModalHeader, Modal, ModalBody, ModalFooter
-} from 'reactstrap';
+   Row, DropdownToggle, DropdownItem, DropdownMenu, ButtonDropdown} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Consulta extends Component {

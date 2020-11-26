@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import MapComponent from './MapComponent';
-import NavBar from './Navbar';
 import Resultado from './Resultado';
 
 class Main extends Component {

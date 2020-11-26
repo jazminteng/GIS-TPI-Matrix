@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import '../css/NavCapas.css';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavLink,
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from 'reactstrap';
 import NavCapasWMS from './NavCapasWMS';
 import { CATEGORIAS } from '../layers/categorias';
 import { Button } from 'reactstrap';

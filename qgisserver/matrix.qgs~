@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUser="martinejaw" saveDateTime="2020-11-26T16:59:27" saveUserFull="Martin" projectname="" version="3.14.16-Pi">
+<qgis saveUser="martinejaw" saveDateTime="2020-11-26T17:01:29" saveUserFull="Martin" projectname="" version="3.14.16-Pi">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -34820,6 +34820,7 @@ def my_form_open(dialog, layer, feature):
       </extent>
       <id>veg_hidrofila_83dd8acf_d584_450a_82ca_ef176cb12b0c</id>
       <datasource>dbname='matrix' host=localhost port=5432 user='matrix' password='matrix' sslmode=disable key='gid' srid=4326 type=MultiPolygon checkPrimaryKeyUnicity='0' table="public"."veg_hidrofila" (geom)</datasource>
+      <title>Vegetación Hidrófila</title>
       <keywordList>
         <value></value>
       </keywordList>
